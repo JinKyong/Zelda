@@ -1,0 +1,31 @@
+#pragma once
+#include "gameNode.h"
+#include <vector>
+
+class Player;
+
+enum CAMERAFADE {
+	FADEOUT = -1,
+	NORMAL,
+	FADEIN,
+	ENDFADE
+};
+
+class Scene : public gameNode
+{
+protected:
+	static Player* _player;
+
+public:
+	Scene() {};
+	~Scene() {};
+
+	virtual HRESULT init(Player* player);
+	virtual void release() = 0;
+	virtual void update() = 0;
+	virtual void render() = 0;
+
+	virtual void changeScene() = 0;
+
+	static Player* getPlayer() { return _player; }
+};
