@@ -5,6 +5,8 @@ class playGround : public gameNode
 {
 private:
 	bool _debug;
+	bool _test;
+
 
 public:
 	playGround();
