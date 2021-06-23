@@ -4,6 +4,8 @@
 
 HRESULT Run::init(Player * player)
 {
+	State::init(player);
+
 	_img = IMAGEMANAGER->addFrameImage("run", "img/link/run.bmp", 384, 256, 8, 4, true, RGB(255, 0, 255));
 
 	_count = 0;
@@ -63,8 +65,8 @@ void Run::controlKey()
 	}
 	if (KEYMANAGER->isStayKeyDown(KEY_DOWN))
 	{
-		updateDirect(UP);
-		_player->move(UP);
+		updateDirect(DOWN);
+		_player->move(DOWN);
 	}
 
 	if (KEYMANAGER->isOnceKeyUp(KEY_RIGHT)) 	STATEMANAGER->changeState(IDLE);

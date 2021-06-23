@@ -4,7 +4,6 @@ class Run : public State
 {
 private:
 
-
 public:
 	Run() {};
 	~Run() {};

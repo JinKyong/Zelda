@@ -26,7 +26,7 @@ public:
 	void render(HDC hdc);
 
 	State* addState(int stateNum, State* state);
-	HRESULT changeState(int state, BOOL reverse = false);
+	HRESULT changeState(int state);
 
 	void setState(State* state) { _currentState = state; };
 	State* getPrevState() { return _prevState; }

@@ -20,6 +20,7 @@ HRESULT playGround::init()
 
 	//SCENEMANAGER->addScene("플레이어", new Player);
 	SCENEMANAGER->init(_player);
+
 	_debug = false;
 
 	return S_OK;
@@ -52,8 +53,10 @@ void playGround::update()
 		_debug = !_debug;
 		PRINTMANAGER->setDebug(_debug);
 	}
-	
+
+	_player->update();
 	SCENEMANAGER->update();
+	CAMERAMANAGER->updateScreen(_player->getX(), _player->getY());
 }
 
 
@@ -66,6 +69,7 @@ void playGround::render()
 	SetBkMode(getMemDC(), TRANSPARENT);
 	SetTextColor(getMemDC(), RGB(255, 255, 255));
 
+	_player->render();
 	SCENEMANAGER->render();
 
 	//투명 브러쉬

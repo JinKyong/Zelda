@@ -10,7 +10,7 @@ public :
 	Idle() {};
 	~Idle() {};
 
-	virtual HRESULT init(Player* player, bool reverse = false);
+	virtual HRESULT init(Player* player);
 	virtual void release();
 	virtual void update();
 	virtual void render(HDC hdc);

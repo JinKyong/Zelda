@@ -42,6 +42,7 @@ void Player::render()
 	if (PRINTMANAGER->isDebug()) {
 
 	}
+
 	Rectangle(getMemDC(), _body);
 	STATEMANAGER->render(getMemDC());
 }

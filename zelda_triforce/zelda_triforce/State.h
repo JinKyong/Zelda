@@ -30,7 +30,7 @@ public:
 	State() {};
 	~State() {};
 
-	virtual HRESULT init(Player* player, bool reverse = false);
+	virtual HRESULT init(Player* player);
 	virtual void release() = 0;
 	virtual void update() = 0;
 	virtual void render(HDC hdc) = 0;

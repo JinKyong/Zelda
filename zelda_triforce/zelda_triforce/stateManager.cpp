@@ -59,7 +59,7 @@ State * stateManager::addState(int stateNum, State * state)
 	return state;
 }
 
-HRESULT stateManager::changeState(int state, BOOL reverse)
+HRESULT stateManager::changeState(int state)
 {
 	stateIter find = _stateList.find(state);
 
@@ -67,7 +67,7 @@ HRESULT stateManager::changeState(int state, BOOL reverse)
 
 	if (find->second == _currentState) return S_OK;
 
-	if (SUCCEEDED(find->second->init(_player, reverse))) {
+	if (SUCCEEDED(find->second->init(_player))) {
 		if (_currentState) _currentState->release();
 
 		_prevState = _currentState;

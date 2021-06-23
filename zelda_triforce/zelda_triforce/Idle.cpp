@@ -2,8 +2,10 @@
 #include "Idle.h"
 #include "Player.h"
 
-HRESULT Idle::init(Player * player, bool reverse)
+HRESULT Idle::init(Player * player)
 {
+	State::init(player);
+
 	_img = IMAGEMANAGER->addFrameImage("idle", "img/link/idle.bmp", 43, 256, 1, 4, true, RGB(255, 0, 255));
 
 	_count = 0;
