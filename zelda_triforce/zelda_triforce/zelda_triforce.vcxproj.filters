@@ -126,6 +126,12 @@
     <ClInclude Include="tileInfo.h">
       <Filter>playGround\tile</Filter>
     </ClInclude>
+    <ClInclude Include="Idle.h">
+      <Filter>playGround\state</Filter>
+    </ClInclude>
+    <ClInclude Include="Run.h">
+      <Filter>playGround\state</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="zelda_triforce.rc">
@@ -194,6 +200,12 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>playGround\stage\base</Filter>
+    </ClCompile>
+    <ClCompile Include="Idle.cpp">
+      <Filter>playGround\state</Filter>
+    </ClCompile>
+    <ClCompile Include="Run.cpp">
+      <Filter>playGround\state</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,6 +2,8 @@
 #include "stateManager.h"
 #include "Player.h"
 #include "State.h"
+#include "Idle.h"
+#include "Run.h"
 
 Player* stateManager::_player = NULL;
 State* stateManager::_currentState = NULL;
@@ -12,8 +14,11 @@ HRESULT stateManager::init(Player * player)
 	_player = player;
 	_prevState = _currentState = NULL;
 
-	/**** 상태 ****/
+	addState(IDLE, new Idle);
+	addState(RUN, new Run);
 
+	/**** 상태 ****/
+	changeState(IDLE);
 	return S_OK;
 }
 

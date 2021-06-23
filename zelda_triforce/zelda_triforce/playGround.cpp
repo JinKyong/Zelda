@@ -18,8 +18,8 @@ HRESULT playGround::init()
 	_player = new Player;
 	_player->init();
 
+	//SCENEMANAGER->addScene("플레이어", new Player);
 	SCENEMANAGER->init(_player);
-
 	_debug = false;
 
 	return S_OK;
@@ -52,7 +52,7 @@ void playGround::update()
 		_debug = !_debug;
 		PRINTMANAGER->setDebug(_debug);
 	}
-
+	
 	SCENEMANAGER->update();
 }
 

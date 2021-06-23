@@ -10,7 +10,8 @@ class Player;
 /***********************************/
 
 enum PLAYERSTATE {
-
+	IDLE,
+	RUN
 };
 
 class State

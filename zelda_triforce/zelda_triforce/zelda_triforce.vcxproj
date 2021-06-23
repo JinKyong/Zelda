@@ -43,7 +43,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -154,6 +154,7 @@
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="collisionManager.h" />
     <ClInclude Include="gameNode.h" />
+    <ClInclude Include="Idle.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
     <ClInclude Include="keyManager.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="playGround.h" />
     <ClInclude Include="printManager.h" />
     <ClInclude Include="randomFunction.h" />
+    <ClInclude Include="Run.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
@@ -180,12 +182,14 @@
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="collisionManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
+    <ClCompile Include="Idle.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="printManager.cpp" />
+    <ClCompile Include="Run.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="State.cpp" />
