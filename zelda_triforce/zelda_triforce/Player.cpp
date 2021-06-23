@@ -5,7 +5,10 @@
 HRESULT Player::init()
 {
 	//¸öÃ¼
-
+	_x = 200;
+	_y = 300;
+	_z = 1;
+	_body = RectMakeCenter(_x, _y, 64, 64);
 
 	//½ºÅÈ
 
@@ -28,7 +31,9 @@ void Player::release()
 void Player::update()
 {
 	STATEMANAGER->update();
-	STATEMANAGER->getCurrentState()->updateRect();
+	//STATEMANAGER->getCurrentState()->updateRect();
+
+	_body = RectMakeCenter(_x, _y, 64, 64);
 }
 
 void Player::render()

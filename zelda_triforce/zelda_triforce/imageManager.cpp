@@ -83,6 +83,67 @@ image * imageManager::addImage(string strKey, const char * fileName, int width, 
 	return img;
 }
 
+image * imageManager::addImage(int intKey, int width, int height)
+{
+	image* img = findImage(intKey);
+
+	//해당 이미지가 만약에 있으면 그냥 그 이미지를 써라
+	if (img) return img;
+
+	img = new image;
+
+	if (FAILED(img->init(width, height)))
+	{
+		SAFE_DELETE(img);
+
+		return nullptr;
+	}
+
+	_tImageList.insert(make_pair(intKey, img));
+
+	return img;
+}
+
+image * imageManager::addImage(int intKey, const char * fileName, int width, int height, bool trans, COLORREF transColor)
+{
+	image* img = findImage(intKey);
+
+	if (img) return img;
+
+	img = new image;
+
+	if (FAILED(img->init(fileName, width, height, trans, transColor)))
+	{
+		SAFE_DELETE(img);
+
+		return nullptr;
+	}
+
+	_tImageList.insert(make_pair(intKey, img));
+
+	return img;
+}
+
+image * imageManager::addImage(int intKey, const char * fileName, int width, int height, bool trans, COLORREF transColor, bool blend)
+{
+	image* img = findImage(intKey);
+
+	if (img) return img;
+
+	img = new image;
+
+	if (FAILED(img->init(fileName, width, height, trans, transColor, blend)))
+	{
+		SAFE_DELETE(img);
+
+		return nullptr;
+	}
+
+	_tImageList.insert(make_pair(intKey, img));
+
+	return img;
+}
+
 image * imageManager::addFrameImage(string strKey, const char * fileName, float x, float y, int width, int height, int frameX, int frameY, bool trans, COLORREF transColor)
 {
 	image* img = findImage(strKey);
@@ -156,6 +217,19 @@ image* imageManager::findImage(string strKey)
 	return nullptr;
 }
 
+image * imageManager::findImage(int intKey)
+{
+	tileImageIter key = _tImageList.find(intKey);
+
+	//찾았다!
+	if (key != _tImageList.end())
+	{
+		return key->second;
+	}
+
+	return nullptr;
+}
+
 BOOL imageManager::deleteImage(string strKey)
 {
 	mapImageIter key = _mImageList.find(strKey);
@@ -165,6 +239,22 @@ BOOL imageManager::deleteImage(string strKey)
 		key->second->release();
 		SAFE_DELETE(key->second);
 		_mImageList.erase(key);
+
+		return true;
+	}
+
+	return false;
+}
+
+BOOL imageManager::deleteImage(int intKey)
+{
+	tileImageIter key = _tImageList.find(intKey);
+
+	if (key != _tImageList.end())
+	{
+		key->second->release();
+		SAFE_DELETE(key->second);
+		_tImageList.erase(key);
 
 		return true;
 	}
@@ -189,6 +279,24 @@ BOOL imageManager::deleteAll()
 	}
 
 	_mImageList.clear();
+
+
+
+	tileImageIter titer = _tImageList.begin();
+
+	for (; titer != _tImageList.end();)
+	{
+		//맵컨테이너안에 이미지가 있다면
+		if (titer->second != nullptr)
+		{
+			titer->second->release();
+			SAFE_DELETE(titer->second);
+			titer = _tImageList.erase(titer);
+		}
+		else ++titer;
+	}
+
+	_tImageList.clear();
 
 	return false;
 }

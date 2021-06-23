@@ -15,6 +15,10 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
+	_player = new Player;
+	_player->init();
+
+	SCENEMANAGER->init(_player);
 
 	_debug = false;
 
@@ -35,7 +39,8 @@ void playGround::release()
 {
 	gameNode::release();
 
-
+	SCENEMANAGER->release();
+	SCENEMANAGER->releaseSingleton();
 }
 
 
@@ -47,6 +52,8 @@ void playGround::update()
 		_debug = !_debug;
 		PRINTMANAGER->setDebug(_debug);
 	}
+
+	SCENEMANAGER->update();
 }
 
 
@@ -58,6 +65,8 @@ void playGround::render()
 	//글자 배경색 모드
 	SetBkMode(getMemDC(), TRANSPARENT);
 	SetTextColor(getMemDC(), RGB(255, 255, 255));
+
+	SCENEMANAGER->render();
 
 	//투명 브러쉬
 	/*HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
@@ -71,6 +80,6 @@ void playGround::render()
 	DeleteObject(myBrush);*/
 
 	//==================================================
-	this->getBackBuffer()->render(getHDC(), 0, 0);
-	//CAMERAMANAGER->render(getHDC(), 0, 0, getMemDC());
+	//this->getBackBuffer()->render(getHDC(), 0, 0);
+	CAMERAMANAGER->render(getHDC(), 0, 0, getMemDC());
 }

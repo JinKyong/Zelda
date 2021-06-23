@@ -28,5 +28,12 @@ public:
 	//동작
 
 	//================= 접근자 =================//
+	void setX(float x) { _x = x; }
+	float getX() { return _x; }
+	void setY(float y) { _y = y; }
+	float getY() { return _y; }
+	void setZ(float z) { _z = z; }
+	float getZ() { return _z; }
 
+	RECT getBody() { return _body; }
 };
