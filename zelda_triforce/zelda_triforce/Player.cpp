@@ -39,12 +39,11 @@ void Player::update()
 
 void Player::render()
 {
-	if (PRINTMANAGER->isDebug()) {
+	/*if (PRINTMANAGER->isDebug()) {
+		Rectangle(getMemDC(), _body);
+	}*/
 
-	}
-
-	Rectangle(getMemDC(), _body);
-	STATEMANAGER->render(getMemDC());
+	//STATEMANAGER->render(getMemDC());
 }
 
 void Player::move(int direct)

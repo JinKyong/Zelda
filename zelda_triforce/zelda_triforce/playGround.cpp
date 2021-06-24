@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "playGround.h"
+#include "testStage.h"
 
 playGround::playGround()
 {
@@ -18,8 +19,12 @@ HRESULT playGround::init()
 	_player = new Player;
 	_player->init();
 
-	//SCENEMANAGER->addScene("플레이어", new Player);
+	TILEMANAGER->init(_player);
+
 	SCENEMANAGER->init(_player);
+	SCENEMANAGER->addScene("test", new testStage);
+
+	SCENEMANAGER->changeScene("test");
 
 	_debug = false;
 
@@ -39,6 +44,9 @@ HRESULT playGround::init(const char * str)
 void playGround::release()
 {
 	gameNode::release();
+
+	TILEMANAGER->release();
+	TILEMANAGER->releaseSingleton();
 
 	SCENEMANAGER->release();
 	SCENEMANAGER->releaseSingleton();
@@ -69,7 +77,7 @@ void playGround::render()
 	SetBkMode(getMemDC(), TRANSPARENT);
 	SetTextColor(getMemDC(), RGB(255, 255, 255));
 
-	_player->render();
+	//_player->render();
 	SCENEMANAGER->render();
 
 	//투명 브러쉬
