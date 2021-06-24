@@ -41,30 +41,28 @@ typedef struct tagTile {
 
 /********** BLUE **********/
 #define	PLAYER		0
-#define BASE		255
 
 //========= tree =========//
-
-#define TREE1		10
-#define TREE2		11
-#define TREE3		12
-#define TREE4		13
-#define TREE5		14
-#define TREE6		15
-#define TREE7		16
-#define TREE8		17
-#define TREE9		18
-#define TREE10		19
-#define TREE11		20
-#define TREE12		21
-#define TREEDOWN1	22
-#define TREEDOWN2	23
-#define TREEDOWN3	24
-#define TREEDOWN4	25
-#define TREEDOWN5	26
-#define TREEDOWN6	27
-#define TREEDOWN7	28
-#define TREEDOWN8	29
+#define TREELEAF1		10
+#define TREELEAF2		11
+#define TREELEAF3		12
+#define TREELEAF4		13
+#define TREELEAF5		14
+#define TREELEAF6		15
+#define TREELEAF7		16
+#define TREELEAF8		17
+#define TREELEAF9		18
+#define TREELEAF10		19
+#define TREESTUMP1		20
+#define TREESTUMP2		21
+#define TREESTUMP3		22
+#define TREESTUMP4		23
+#define TREESTUMP5		24
+#define TREESTUMP6		25
+#define TREESTUMP7		26
+#define TREESTUMP8		27
+#define TREESTUMP9		28
+#define TREESTUMP10		29
 
 
 
