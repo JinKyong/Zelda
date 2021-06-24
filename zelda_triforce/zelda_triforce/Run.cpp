@@ -6,7 +6,7 @@ HRESULT Run::init(Player * player)
 {
 	State::init(player);
 
-	_img = IMAGEMANAGER->addFrameImage("run", "img/link/run.bmp", 384, 256, 8, 4, true, RGB(255, 0, 255));
+	_img = IMAGEMANAGER->addFrameImage("run", "img/link/run.bmp", 576, 384, 8, 4, true, RGB(255, 0, 255));
 
 	_count = 0;
 	_direct = _player->getDirect();
