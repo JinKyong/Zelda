@@ -66,18 +66,32 @@ void tileManager::render(HDC hdc)
 	////º£ÀÌ½º »Ñ¸®±â
 	//for (; iter != _renderTile.end(); ++iter)
 	//	IMAGEMANAGER->findImage(BASE)->render(hdc, (*iter)->x, (*iter)->y);
+	
 
 	tileIter iter = _renderTile.begin();
+
 	//°´Ã¼ »Ñ¸®±â
 	for (; iter != _renderTile.end(); ++iter) {
-		//ÇÃ·¹ÀÌ¾î
-		if ((*iter)->b == PLAYER)
-			Rectangle(hdc, (*iter)->body);
-		//Å¸ÀÏ
-		else if ((*iter)->img == nullptr)
-			continue;
-		else
+		switch ((*iter)->b) {
+		case PLAYER:
+			//µð¹ö±ë
+			if (PRINTMANAGER->isDebug()) {
+				RECT rc = _player->getBody();
+				Rectangle(hdc, rc);
+			}
+			STATEMANAGER->render(hdc);
+			break;
+
+		default:
+			if ((*iter)->img == nullptr) continue;
+
+			//µð¹ö±ë
+			if (PRINTMANAGER->isDebug()) {
+				Rectangle(hdc, (*iter)->body);
+			}			
 			(*iter)->img->render(hdc, (*iter)->x, (*iter)->y);
+			break;
+		}
 	}
 }
 
@@ -85,7 +99,11 @@ void tileManager::addTileImages()
 {
 	char str[128];
 
-	//======= tree =======//
+	//========= bush =========//
+	IMAGEMANAGER->addImage(BUSH, "img/tile/bush/bush.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(BUSHOFF, "img/tile/bush/bush_off.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
+
+	//========= tree =========//
 	for (int i = 1, j = TREELEAF1; i <= TREELEAF10; i++, j++) {
 		sprintf_s(str, "img/tile/tree/treeLeaf%d.bmp", i);
 		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
@@ -104,6 +122,15 @@ void tileManager::createTile(float x, float y)
 	int ID = GetBValue(rgb);
 
 	switch (ID) {
+	case BUSH:
+		_mapTile.push_back(new TILE(IMPASSABLE, BREAKABLE, ID,
+			x, y, 0, IMAGEMANAGER->findImage(ID)));
+		break;
+	case BUSHOFF:
+		_mapTile.push_back(new TILE(PASSABLE, IMMUTABLE, ID,
+			x, y, 0, IMAGEMANAGER->findImage(ID)));
+		break;
+
 	case TREELEAF1:
 	case TREELEAF2:
 	case TREELEAF3:

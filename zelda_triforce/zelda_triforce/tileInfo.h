@@ -25,7 +25,10 @@ typedef struct tagTile {
 	}
 } TILE, *PTILE;
 
-
+/********** Z축 **********/
+#define Z0	0
+#define Z1	1
+#define Z2	2
 
 /********** RED **********/
 #define PASSABLE	0		//지나갈 수 있음
@@ -41,6 +44,10 @@ typedef struct tagTile {
 
 /********** BLUE **********/
 #define	PLAYER		0
+
+//========= bush =========//
+#define BUSH	1
+#define BUSHOFF	2
 
 //========= tree =========//
 #define TREELEAF1		10
@@ -68,9 +75,3 @@ typedef struct tagTile {
 
 
 
-///********** Z축 **********/
-//#define ZBRIDGE	0
-//#define ZTEST1	0
-//#define ZTEST2	0
-//#define ZTEST3	0
-//#define ZTEST4	0
