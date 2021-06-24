@@ -4,7 +4,7 @@
 
 Player* State::_player = NULL;
 
-HRESULT State::init(Player * player, bool reverse)
+HRESULT State::init(Player * player)
 {
 	_player = player;
 

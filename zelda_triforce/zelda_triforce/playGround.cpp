@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "playGround.h"
+#include "testStage.h"
 
 playGround::playGround()
 {
@@ -15,6 +16,15 @@ HRESULT playGround::init()
 {
 	gameNode::init(true);
 
+	_player = new Player;
+	_player->init();
+
+	TILEMANAGER->init(_player);
+
+	SCENEMANAGER->init(_player);
+	SCENEMANAGER->addScene("test", new testStage);
+
+	SCENEMANAGER->changeScene("test");
 
 	_debug = false;
 
@@ -35,7 +45,11 @@ void playGround::release()
 {
 	gameNode::release();
 
+	TILEMANAGER->release();
+	TILEMANAGER->releaseSingleton();
 
+	SCENEMANAGER->release();
+	SCENEMANAGER->releaseSingleton();
 }
 
 
@@ -47,6 +61,10 @@ void playGround::update()
 		_debug = !_debug;
 		PRINTMANAGER->setDebug(_debug);
 	}
+
+	_player->update();
+	SCENEMANAGER->update();
+	CAMERAMANAGER->updateScreen(_player->getX(), _player->getY());
 }
 
 
@@ -58,6 +76,9 @@ void playGround::render()
 	//글자 배경색 모드
 	SetBkMode(getMemDC(), TRANSPARENT);
 	SetTextColor(getMemDC(), RGB(255, 255, 255));
+
+	//_player->render();
+	SCENEMANAGER->render();
 
 	//투명 브러쉬
 	/*HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
@@ -71,6 +92,6 @@ void playGround::render()
 	DeleteObject(myBrush);*/
 
 	//==================================================
-	this->getBackBuffer()->render(getHDC(), 0, 0);
-	//CAMERAMANAGER->render(getHDC(), 0, 0, getMemDC());
+	//this->getBackBuffer()->render(getHDC(), 0, 0);
+	CAMERAMANAGER->render(getHDC(), 0, 0, getMemDC());
 }

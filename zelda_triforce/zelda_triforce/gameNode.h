@@ -4,13 +4,13 @@
 #define RENDERCOUNT		0.05
 #define RENDERCOUNT2	RENDERCOUNT * 2
 
-static image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", 5000, 3000);
+static image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", 20000, 20000);
 
 enum DIRECT {
+	DOWN,
+	UP,
 	RIGHT,
 	LEFT,
-	UP,
-	DOWN,
 	ENDDIRECT
 };
 

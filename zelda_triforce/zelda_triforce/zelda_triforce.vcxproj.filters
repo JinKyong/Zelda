@@ -49,6 +49,9 @@
     <Filter Include="playGround\stage\base">
       <UniqueIdentifier>{7a3194a9-e0c7-44af-85ec-5ff2311ed8c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\tile">
+      <UniqueIdentifier>{96c860bf-4cd5-439a-a544-e6f81d7b6745}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -120,6 +123,21 @@
     <ClInclude Include="Scene.h">
       <Filter>playGround\stage\base</Filter>
     </ClInclude>
+    <ClInclude Include="tileInfo.h">
+      <Filter>playGround\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="Idle.h">
+      <Filter>playGround\state</Filter>
+    </ClInclude>
+    <ClInclude Include="Run.h">
+      <Filter>playGround\state</Filter>
+    </ClInclude>
+    <ClInclude Include="tileManager.h">
+      <Filter>playGround\tile</Filter>
+    </ClInclude>
+    <ClInclude Include="testStage.h">
+      <Filter>playGround\stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="zelda_triforce.rc">
@@ -188,6 +206,18 @@
     </ClCompile>
     <ClCompile Include="Scene.cpp">
       <Filter>playGround\stage\base</Filter>
+    </ClCompile>
+    <ClCompile Include="Idle.cpp">
+      <Filter>playGround\state</Filter>
+    </ClCompile>
+    <ClCompile Include="Run.cpp">
+      <Filter>playGround\state</Filter>
+    </ClCompile>
+    <ClCompile Include="tileManager.cpp">
+      <Filter>playGround\tile</Filter>
+    </ClCompile>
+    <ClCompile Include="testStage.cpp">
+      <Filter>playGround\stage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
