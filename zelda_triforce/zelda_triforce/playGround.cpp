@@ -19,13 +19,19 @@ HRESULT playGround::init()
 	_player = new Player;
 	_player->init();
 
-	TILEMANAGER->init(_player);
+	IMAGEMANAGER->addImage("bmrang", "img/equip/boomerang.bmp", 64, 64, true, PINK);
+	IMAGEMANAGER->addImage("candela", "img/equip/candela2.bmp", 64, 64, true, PINK);
+	IMAGEMANAGER->addImage("mushroom", "img/equip/mushroom.bmp", 64, 64, true, PINK);
 
+	TILEMANAGER->init(_player);
 	SCENEMANAGER->init(_player);
+
 	SCENEMANAGER->addScene("test", new testStage);
+	SCENEMANAGER->addScene("inven", new inventory); //??
 
 	SCENEMANAGER->changeScene("test");
 
+	_invOpen = false;
 	_debug = false;
 
 	return S_OK;
@@ -60,6 +66,20 @@ void playGround::update()
 	if (KEYMANAGER->isOnceKeyDown(VK_TAB)) {
 		_debug = !_debug;
 		PRINTMANAGER->setDebug(_debug);
+	}
+
+	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
+	{
+		if (!_invOpen)
+		{
+			SCENEMANAGER->changeScene("inven");
+			_invOpen = true;
+		}
+		else
+		{
+			SCENEMANAGER->changeScene("Á©´Ù");
+			_invOpen = false;
+		}
 	}
 
 	_player->update();

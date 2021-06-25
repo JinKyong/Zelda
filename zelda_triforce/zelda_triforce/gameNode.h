@@ -4,6 +4,8 @@
 #define RENDERCOUNT		0.05
 #define RENDERCOUNT2	RENDERCOUNT * 2
 
+#define PINK RGB(255, 0, 255)
+
 static image* _backBuffer = IMAGEMANAGER->addImage("backBuffer", 20000, 20000);
 
 enum DIRECT {

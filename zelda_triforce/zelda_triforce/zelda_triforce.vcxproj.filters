@@ -52,6 +52,9 @@
     <Filter Include="playGround\tile">
       <UniqueIdentifier>{96c860bf-4cd5-439a-a544-e6f81d7b6745}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\inventory">
+      <UniqueIdentifier>{8dfea613-b9be-425b-8c0e-13109c6e8e88}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -138,6 +141,12 @@
     <ClInclude Include="testStage.h">
       <Filter>playGround\stage</Filter>
     </ClInclude>
+    <ClInclude Include="inventory.h">
+      <Filter>playGround\inventory</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>playGround\inventory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="zelda_triforce.rc">
@@ -221,6 +230,12 @@
     </ClCompile>
     <ClCompile Include="makeTile.cpp">
       <Filter>playGround\tile</Filter>
+    </ClCompile>
+    <ClCompile Include="inventory.cpp">
+      <Filter>playGround\inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>playGround\inventory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
