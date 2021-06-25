@@ -6,7 +6,7 @@ HRESULT Idle::init(Player * player)
 {
 	State::init(player);
 
-	_img = IMAGEMANAGER->addFrameImage("idle", "img/link/idle.bmp", 64, 378, 1, 4, true, RGB(255, 0, 255));
+	_img = IMAGEMANAGER->addFrameImage("idle", "img/link/idle.bmp", 64, 368, 1, 4, true, RGB(255, 0, 255));
 
 	_count = 0;
 	_direct = _player->getDirect();
