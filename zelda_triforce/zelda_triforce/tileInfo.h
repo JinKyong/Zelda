@@ -8,6 +8,9 @@ typedef struct tagTile {
 	int r, g, b;
 	float x, y, z;
 
+	int sizeX;
+	int sizeY;
+
 	image* img;
 	RECT body;
 

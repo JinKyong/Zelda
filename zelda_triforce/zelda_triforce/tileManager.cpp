@@ -53,17 +53,24 @@ void tileManager::release()
 
 void tileManager::update()
 {
+	//이미지 클리핑
 	updateTile();
 	//플레이어 추가
 	_renderTile.push_back(new TILE(0, 0, PLAYER, _player->getX(), _player->getY(), _player->getZ(), nullptr));
 	//에너미 추가
 	//
 
+	//statemanager->getstatenum(THROW);
+	//객체타일 추가
+	//
+
+	//z-order를 위한 정렬(라이브러리 함수)
 	sort(_renderTile.begin(), _renderTile.end(), compare);
 }
 
 void tileManager::render(HDC hdc)
 {
+	//베이스 뿌리기
 	HBRUSH brush = CreateSolidBrush(RGB(72, 152, 72));
 	HBRUSH oldbrush = (HBRUSH)SelectObject(hdc, brush);
 
@@ -72,7 +79,6 @@ void tileManager::render(HDC hdc)
 
 	SelectObject(hdc, oldbrush);
 	DeleteObject(brush);
-	////베이스 뿌리기
 	//for (; iter != _renderTile.end(); ++iter)
 	//	IMAGEMANAGER->findImage(BASE)->render(hdc, (*iter)->x, (*iter)->y);
 
@@ -186,6 +192,7 @@ void tileManager::updateTile()
 {
 	RECT _screen = CAMERAMANAGER->getScreen();
 
+	//카메라 기준으로 랜더할 타일 인덱스
 	int initY = _screen.top / TILEY;
 	int endY = _screen.bottom / TILEY;
 	int initX = _screen.left / TILEX;
@@ -196,16 +203,20 @@ void tileManager::updateTile()
 
 	int size = (endY - initY + 1) * cols;
 
+	//초기화
 	_renderTile.clear();
 	_renderTile.resize(size * 2);
 
+	//맵 타일 벡터에서 복사해오는 코드
 	tileIter iter;
 	for (int i = initY, j = 0; i <= endY; i++, j++) {
 		iter = _mapBTile.begin() + (i * width + initX);
+		//라이브러리 함수 (복사하는)
 		copy(iter, iter + cols, _renderTile.begin() + j * cols);
 	}
 	for (int i = initY, j = 0; i <= endY; i++, j++) {
 		iter = _mapGTile.begin() + (i * width + initX);
+		//라이브러리 함수 (복사하는)
 		copy(iter, iter + cols, _renderTile.begin() + size + j * cols);
 	}
 }

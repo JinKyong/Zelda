@@ -8,6 +8,7 @@ class testStage : public Scene
 {
 private:
 	image* _background;
+	//에너미매니저 추가되야 함
 
 public:
 	virtual HRESULT init(Player* player);

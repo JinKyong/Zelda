@@ -19,8 +19,8 @@ HRESULT cameraManager::init(int width, int height)
 	//화면 Rect 생성
 	_screen = RectMake(0, 0, WINSIZEX, WINSIZEY);
 	//fade화면
-	_fadeScreen = IMAGEMANAGER->addImage("fade_B", "image/fade_B.bmp",
-		WINSIZEX, WINSIZEY, true, RGB(255, 0, 255), true);
+	//_fadeScreen = IMAGEMANAGER->addImage("fade_B", "image/fade_B.bmp",
+	//	WINSIZEX, WINSIZEY, true, RGB(255, 0, 255), true);
 	_alpha = 255;
 	_fade = 0;
 

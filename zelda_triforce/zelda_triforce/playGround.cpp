@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "playGround.h"
 #include "testStage.h"
+#include "inventory.h"
 
 playGround::playGround()
 {
@@ -84,7 +85,7 @@ void playGround::update()
 
 	_player->update();
 	SCENEMANAGER->update();
-	CAMERAMANAGER->updateScreen(_player->getX(), _player->getY());
+	//CAMERAMANAGER->updateScreen(_player->getX(), _player->getY());
 }
 
 

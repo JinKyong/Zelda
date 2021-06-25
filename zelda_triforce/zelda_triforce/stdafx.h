@@ -32,7 +32,7 @@ using namespace MACRO_FUNC;
 //==================================
 
 #define WINNAME (LPTSTR)(TEXT("ZELDA"))
-#define WINSTARTX 2050	//윈도우 창 시작좌표 (left)
+#define WINSTARTX 50	//윈도우 창 시작좌표 (left)
 #define WINSTARTY 50	//윈도우 창 시작좌표 (top)
 #define WINSIZEX 1024	//윈도우 가로크기
 #define WINSIZEY 896	//윈도우 세로크기
