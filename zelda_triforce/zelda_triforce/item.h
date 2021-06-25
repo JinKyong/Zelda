@@ -16,6 +16,11 @@ struct tile
 	int x[4][5], y[4][5];
 };
 
+// 넹....... 일단해봐야죠모
+// 그럼 완성보단 좀더.. 공부해보라는? 느낌으로?? 가라는거죠?
+// 넵 'ω')>
+// 벡가놈
+
 class item : public gameNode
 {
 	tagItem _candela;

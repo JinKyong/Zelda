@@ -1,9 +1,10 @@
 #pragma once
-#include "gameNode.h"
+//#include "gameNode.h"
+#include "Scene.h"
 
 class item;
 
-class inventory : public gameNode
+class inventory : public Scene
 {
 	image* _bg;
 	item* _item;
@@ -19,10 +20,12 @@ public:
 	inventory() {};
 	~inventory() {};
 
-	virtual HRESULT init();
+	virtual HRESULT init(Player* player);
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	virtual void changeScene();
 
 	void controlKey();
 	void controlFrame();

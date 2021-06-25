@@ -27,7 +27,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->init(_player);
 
 	SCENEMANAGER->addScene("test", new testStage);
-	SCENEMANAGER->addScene("inven", new inventory); //??
+	SCENEMANAGER->addScene("inven", new inventory); //!!
 
 	SCENEMANAGER->changeScene("test");
 

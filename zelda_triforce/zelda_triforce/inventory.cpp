@@ -2,8 +2,10 @@
 #include "inventory.h"
 #include "item.h"
 
-HRESULT inventory::init()
+HRESULT inventory::init(Player* player)
 {
+	Scene::init(player);
+
 	_bg = IMAGEMANAGER->addImage("bg", "img/equip/all.bmp", 1024, 896, true, PINK);
 	_select = IMAGEMANAGER->addFrameImage("select", "img/equip/select.bmp", 208, 104, 2, 1, true, PINK);
 
@@ -40,6 +42,11 @@ void inventory::render()
 
 	//Rectangle(getMemDC(), _selRect);
 	_select->frameRender(getMemDC(), _selRect.left, _selRect.top);
+}
+
+void inventory::changeScene()
+{
+	
 }
 
 void inventory::controlKey()
