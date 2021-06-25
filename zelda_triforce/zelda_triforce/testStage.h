@@ -1,8 +1,8 @@
 #pragma once
 #include "Scene.h"
 
-#define MAPWIDTH	5120
-#define MAPHEIGHT	5120
+#define MAPWIDTH	64
+#define MAPHEIGHT	64
 
 class testStage : public Scene
 {

@@ -219,5 +219,8 @@
     <ClCompile Include="testStage.cpp">
       <Filter>playGround\stage</Filter>
     </ClCompile>
+    <ClCompile Include="makeTile.cpp">
+      <Filter>playGround\tile</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

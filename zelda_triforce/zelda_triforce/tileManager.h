@@ -16,7 +16,9 @@ private:
 	Player* _player;
 
 	image*		_background;
-	tileList	_mapTile;
+	tileList	_mapGTile;
+	tileList	_mapBTile;
+
 	tileList	_renderTile;
 
 	int _width;
@@ -38,5 +40,6 @@ public:
 	void createTile(float x, float y);
 	void updateTile();
 
+	PTILE makeTile(float x, float y, int ID);
 	static bool compare(PTILE a, PTILE b);
 };
