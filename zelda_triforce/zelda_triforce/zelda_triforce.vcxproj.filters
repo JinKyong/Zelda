@@ -147,6 +147,15 @@
     <ClInclude Include="item.h">
       <Filter>playGround\inventory</Filter>
     </ClInclude>
+    <ClInclude Include="Slash.h">
+      <Filter>playGround\state</Filter>
+    </ClInclude>
+    <ClInclude Include="Charging.h">
+      <Filter>playGround\state</Filter>
+    </ClInclude>
+    <ClInclude Include="ChargeAttack.h">
+      <Filter>playGround\state</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="zelda_triforce.rc">
@@ -236,6 +245,15 @@
     </ClCompile>
     <ClCompile Include="item.cpp">
       <Filter>playGround\inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="Slash.cpp">
+      <Filter>playGround\state</Filter>
+    </ClCompile>
+    <ClCompile Include="Charging.cpp">
+      <Filter>playGround\state</Filter>
+    </ClCompile>
+    <ClCompile Include="ChargeAttack.cpp">
+      <Filter>playGround\state</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

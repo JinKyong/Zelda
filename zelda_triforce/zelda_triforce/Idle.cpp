@@ -61,6 +61,10 @@ void Idle::controlKey()
 		_player->setDirect(DOWN);
 		STATEMANAGER->changeState(RUN);
 	}
+	if (KEYMANAGER->isOnceKeyDown(KEY_SLASH))
+	{
+		STATEMANAGER->changeState(SLASH);
+	}
 }
 
 void Idle::controlFrame()

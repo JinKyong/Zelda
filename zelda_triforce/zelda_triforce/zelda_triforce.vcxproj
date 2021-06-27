@@ -152,6 +152,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="cameraManager.h" />
+    <ClInclude Include="ChargeAttack.h" />
+    <ClInclude Include="Charging.h" />
     <ClInclude Include="collisionManager.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="Idle.h" />
@@ -169,6 +171,7 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
+    <ClInclude Include="Slash.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="stateManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -184,6 +187,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="cameraManager.cpp" />
+    <ClCompile Include="ChargeAttack.cpp" />
+    <ClCompile Include="Charging.cpp" />
     <ClCompile Include="collisionManager.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="Idle.cpp" />
@@ -199,6 +204,7 @@
     <ClCompile Include="Run.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="sceneManager.cpp" />
+    <ClCompile Include="Slash.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="stateManager.cpp" />
     <ClCompile Include="testStage.cpp" />

@@ -7,11 +7,16 @@ class Player;
 #define KEY_LEFT	VK_LEFT
 #define KEY_UP		VK_UP
 #define KEY_DOWN	VK_DOWN
+
+#define KEY_SLASH   'A'
 /***********************************/
 
 enum PLAYERSTATE {
 	IDLE,
-	RUN
+	RUN,
+	SLASH,
+	CHARGING,
+	CHARGEATTACK
 };
 
 class State
@@ -22,7 +27,7 @@ protected:
 	static Player* _player;
 
 	image* _img;
-	float _count;
+	int _count;
 	int _direct;
 	bool _reverse;
 

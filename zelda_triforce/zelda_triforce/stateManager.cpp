@@ -4,6 +4,9 @@
 #include "State.h"
 #include "Idle.h"
 #include "Run.h"
+#include "Slash.h"
+#include "Charging.h"
+#include "ChargeAttack.h"
 
 Player* stateManager::_player = NULL;
 State* stateManager::_currentState = NULL;
@@ -16,6 +19,9 @@ HRESULT stateManager::init(Player * player)
 
 	addState(IDLE, new Idle);
 	addState(RUN, new Run);
+	addState(SLASH, new Slash);
+	addState(CHARGING, new Charging);
+	addState(CHARGEATTACK, new ChargeAttack);
 
 	/**** ป๓ลย ****/
 	changeState(IDLE);

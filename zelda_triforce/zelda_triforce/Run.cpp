@@ -73,13 +73,18 @@ void Run::controlKey()
 	if (KEYMANAGER->isOnceKeyUp(KEY_LEFT))		STATEMANAGER->changeState(IDLE);
 	if (KEYMANAGER->isOnceKeyUp(KEY_UP))		STATEMANAGER->changeState(IDLE);
 	if (KEYMANAGER->isOnceKeyUp(KEY_DOWN))		STATEMANAGER->changeState(IDLE);
+
+	if (KEYMANAGER->isOnceKeyDown(KEY_SLASH))
+	{
+		STATEMANAGER->changeState(SLASH);
+	}
 }
 
 void Run::controlFrame()
 {
-	_count += TIMEMANAGER->getElapsedTime();
+	_count++;
 
-	if (_count >= RENDERCOUNT2)
+	if (_count >= 3)
 	{
 		if (_img->getFrameX() >= _img->getMaxFrameX())
 			_img->setFrameX(0);
