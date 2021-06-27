@@ -1,30 +1,35 @@
 #pragma once
 #include "gameNode.h"
 
-struct tagItem
-{
-	image* img;
-	RECT rc;
-	bool get;
-
-	int x, y;
-};
-
 struct tile
 {
-	RECT rc[4][5];
-	int x[4][5], y[4][5];
+	RECT rc[20];
 };
 
-// 넹....... 일단해봐야죠모
-// 그럼 완성보단 좀더.. 공부해보라는? 느낌으로?? 가라는거죠?
-// 넵 'ω')>
-// 벡가놈
+enum ITEM
+{
+	ITEM_BOOMERANG = 2,
+	ITEM_MUSHROOM = 4,
+	ITEM_CANDELA = 10,
+	ITEM_END
+};
+
+struct itemInfo
+{
+	ITEM itemKind;
+	string itemName;
+	image* img;
+};
 
 class item : public gameNode
 {
-	tagItem _candela;
+private:
 	tile _tile;
+
+	RECT _selItemRc;
+
+	vector<itemInfo> _vItem;
+	vector<itemInfo>::iterator _viItem;
 
 public:
 	item() {};
@@ -34,4 +39,9 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	void itemSetup();
+	void itemOutput();
+
+	vector<itemInfo> getVItem() { return _vItem; }
 };

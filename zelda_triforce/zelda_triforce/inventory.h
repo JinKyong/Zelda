@@ -1,5 +1,4 @@
 #pragma once
-//#include "gameNode.h"
 #include "Scene.h"
 
 class item;
