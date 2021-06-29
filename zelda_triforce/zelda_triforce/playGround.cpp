@@ -13,6 +13,7 @@ playGround::~playGround()
 {
 }
 
+//우와
 //초기화는 여기다 하세요 제발
 HRESULT playGround::init()
 {
