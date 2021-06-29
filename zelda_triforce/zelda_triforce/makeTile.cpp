@@ -16,7 +16,9 @@ PTILE makeObject(float x, float y, int ID, int z);
 
 PTILE tileManager::makeTile(float x, float y, int ID, int z)
 {
-	PTILE tile;
+	PTILE tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, Z0, TILEX, TILEY, nullptr);
+
+	if (ID > STATUE2) return tile;
 
 	//========= bush =========//
 	if (BUSH <= ID && ID <= GRASSTILE)
@@ -63,11 +65,6 @@ PTILE tileManager::makeTile(float x, float y, int ID, int z)
 	//========= object =========//
 	else if (BOX <= ID && ID <= STATUE2)
 		tile = makeObject(x, y, ID, z);
-
-
-	//default
-	else
-		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, Z0, TILEX, TILEY, nullptr);
 
 	return tile;
 }

@@ -79,7 +79,7 @@ void tileManager::render(HDC hdc, int z)
 		_GTileIter = _renderGTile.begin();
 	}
 
-	//객체 뿌리기
+	//객체 뿌리기(B)
 	for (; _BTileIter != _renderBTile.end(); ++_BTileIter) {
 		if ((*_BTileIter)->z > z) break;
 
@@ -92,7 +92,7 @@ void tileManager::render(HDC hdc, int z)
 	}
 
 
-	//객체 뿌리기
+	//객체 뿌리기(G)
 	for (; _GTileIter != _renderGTile.end(); ++_GTileIter) {
 		if ((*_GTileIter)->z > z) break;
 
@@ -110,20 +110,25 @@ void tileManager::createTile(float x, float y)
 {
 	COLORREF rgb = GetPixel(_background->getMemDC(), x, y);
 
-	_mapGTile.push_back(makeTile(x * TILEX, y * TILEY, GetGValue(rgb), GetRValue(rgb)));
-	_mapBTile.push_back(makeTile(x * TILEX, y * TILEY, GetBValue(rgb), GetRValue(rgb)));
+	if (rgb == EXCOLOR) {
+		_mapGTile.push_back(new TILE(0, 0, 0, 0, 0, 0, 0, 0, nullptr));
+		_mapBTile.push_back(new TILE(0, 0, 0, 0, 0, 0, 0, 0, nullptr));
+	}
+	else {
+		_mapGTile.push_back(makeTile(x * TILEX, y * TILEY, GetGValue(rgb), GetRValue(rgb)));
+		_mapBTile.push_back(makeTile(x * TILEX, y * TILEY, GetBValue(rgb), GetRValue(rgb)));
+	}
 }
 
 void tileManager::updateTile()
 {
 	RECT _screen = CAMERAMANAGER->getScreen();
 
-
 	//렌더 범위 계산(이미지 클리핑)
-	int initY = _screen.top / TILEY - 7;
-	int endY = _screen.bottom / TILEY + 7;
-	int initX = _screen.left / TILEX - 7;
-	int endX = _screen.right / TILEX + 7;
+	int initY = _screen.top / TILEY - MARGIN;
+	int endY = _screen.bottom / TILEY + MARGIN;
+	int initX = _screen.left / TILEX - MARGIN;
+	int endX = _screen.right / TILEX + MARGIN;
 
 
 	//예외처리
@@ -141,6 +146,8 @@ void tileManager::updateTile()
 	_renderGTile.clear();
 	int width = _background->getWidth();
 
+
+	//출력타일 복사
 	for (int i = initY; i <= endY; i++) {
 		for (int j = initX; j <= endX; j++) {
 			int index = i * width + j;

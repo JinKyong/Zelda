@@ -4,6 +4,8 @@
 #include <vector>
 #include <algorithm>
 
+#define MARGIN	7
+
 class Player;
 
 class tileManager : public singletonBase<tileManager>

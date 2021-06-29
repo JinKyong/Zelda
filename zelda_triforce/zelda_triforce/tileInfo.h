@@ -1,6 +1,7 @@
 #pragma once
 #include "stdafx.h"
 
+#define EXCOLOR	RGB(214, 230, 240)
 #define TILEX	32
 #define TILEY	32
 
