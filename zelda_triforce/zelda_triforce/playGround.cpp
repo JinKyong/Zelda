@@ -20,6 +20,9 @@ HRESULT playGround::init()
 	_player = new Player;
 	_player->init();
 
+	_inven = new inventory;
+	_inven->init();
+
 	IMAGEMANAGER->addImage("bmrang", "img/equip/boomerang.bmp", 64, 64, true, PINK);
 	IMAGEMANAGER->addImage("candela", "img/equip/candela2.bmp", 64, 64, true, PINK);
 	IMAGEMANAGER->addImage("mushroom", "img/equip/mushroom.bmp", 64, 64, true, PINK);
@@ -28,7 +31,7 @@ HRESULT playGround::init()
 	SCENEMANAGER->init(_player);
 
 	SCENEMANAGER->addScene("test", new testStage);
-	SCENEMANAGER->addScene("inven", new inventory);
+	//SCENEMANAGER->addScene("inven", new inventory);
 
 	SCENEMANAGER->changeScene("test");
 
@@ -57,6 +60,8 @@ void playGround::release()
 
 	SCENEMANAGER->release();
 	SCENEMANAGER->releaseSingleton();
+
+	_inven->release();
 }
 
 
@@ -73,17 +78,19 @@ void playGround::update()
 	{
 		if (!_invOpen)
 		{
-			SCENEMANAGER->changeScene("inven");
+			//SCENEMANAGER->changeScene("inven");
 			_invOpen = true;
 		}
 		else
 		{
-			SCENEMANAGER->changeScene("¡©¥Ÿ");
+			//SCENEMANAGER->changeScene("¡©¥Ÿ");
 			_invOpen = false;
 		}
 	}
 
-	_player->update();
+	if (_invOpen) _inven->update();
+	else _player->update();
+
 	SCENEMANAGER->update();
 	//CAMERAMANAGER->updateScreen(_player->getX(), _player->getY());
 }
@@ -100,6 +107,8 @@ void playGround::render()
 
 	//_player->render();
 	SCENEMANAGER->render();
+
+	if (_invOpen) _inven->render();
 
 	//≈ı∏Ì ∫Í∑ØΩ¨
 	/*HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);

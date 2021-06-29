@@ -1,30 +1,41 @@
 #pragma once
-#include "Scene.h"
+#include "gameNode.h"
+#include "item.h"
 
 class item;
 
-class inventory : public Scene
+class inventory : public gameNode
 {
-	image* _bg;
-	item* _item;
+private:
+	typedef vector<item*>			itemList;
+	typedef vector<item*>::iterator itemIter;
+private:
+	itemList _vItem;
+	itemIter _viItem;
 
-	image* _bag;
+	image* _bgImg;
+
+	int _a, _b;
+
 	RECT _bagRC;
+	image* _bagImg;
 
-	RECT _selRect;
-	image* _select;
+	RECT _toolRc;
+	image* _toolImg;
+
+	RECT _selItemRc;
+	image* _selImg;
 	float _count;
+	int _index;
 
 public:
 	inventory() {};
 	~inventory() {};
 
-	virtual HRESULT init(Player* player);
+	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
 	virtual void render();
-
-	virtual void changeScene();
 
 	void controlKey();
 	void controlFrame();

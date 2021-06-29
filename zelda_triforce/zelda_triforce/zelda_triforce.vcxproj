@@ -151,7 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="boomerang.h" />
     <ClInclude Include="cameraManager.h" />
+    <ClInclude Include="candela.h" />
     <ClInclude Include="ChargeAttack.h" />
     <ClInclude Include="Charging.h" />
     <ClInclude Include="collisionManager.h" />
@@ -163,6 +165,7 @@
     <ClInclude Include="item.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="macroFunc.h" />
+    <ClInclude Include="mushroom.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="printManager.h" />
@@ -186,7 +189,9 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="boomerang.cpp" />
     <ClCompile Include="cameraManager.cpp" />
+    <ClCompile Include="candela.cpp" />
     <ClCompile Include="ChargeAttack.cpp" />
     <ClCompile Include="Charging.cpp" />
     <ClCompile Include="collisionManager.cpp" />
@@ -198,6 +203,7 @@
     <ClCompile Include="item.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="makeTile.cpp" />
+    <ClCompile Include="mushroom.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="printManager.cpp" />

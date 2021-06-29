@@ -55,6 +55,12 @@
     <Filter Include="playGround\inventory">
       <UniqueIdentifier>{8dfea613-b9be-425b-8c0e-13109c6e8e88}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\item">
+      <UniqueIdentifier>{56bb5400-f62b-4df1-947c-c39d1823647e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\item\base">
+      <UniqueIdentifier>{781ec8e8-0c85-4ce8-b4c6-a4bcc2e354f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -144,9 +150,6 @@
     <ClInclude Include="inventory.h">
       <Filter>playGround\inventory</Filter>
     </ClInclude>
-    <ClInclude Include="item.h">
-      <Filter>playGround\inventory</Filter>
-    </ClInclude>
     <ClInclude Include="Slash.h">
       <Filter>playGround\state</Filter>
     </ClInclude>
@@ -155,6 +158,18 @@
     </ClInclude>
     <ClInclude Include="ChargeAttack.h">
       <Filter>playGround\state</Filter>
+    </ClInclude>
+    <ClInclude Include="item.h">
+      <Filter>playGround\item\base</Filter>
+    </ClInclude>
+    <ClInclude Include="boomerang.h">
+      <Filter>playGround\item</Filter>
+    </ClInclude>
+    <ClInclude Include="candela.h">
+      <Filter>playGround\item</Filter>
+    </ClInclude>
+    <ClInclude Include="mushroom.h">
+      <Filter>playGround\item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -243,9 +258,6 @@
     <ClCompile Include="inventory.cpp">
       <Filter>playGround\inventory</Filter>
     </ClCompile>
-    <ClCompile Include="item.cpp">
-      <Filter>playGround\inventory</Filter>
-    </ClCompile>
     <ClCompile Include="Slash.cpp">
       <Filter>playGround\state</Filter>
     </ClCompile>
@@ -254,6 +266,18 @@
     </ClCompile>
     <ClCompile Include="ChargeAttack.cpp">
       <Filter>playGround\state</Filter>
+    </ClCompile>
+    <ClCompile Include="item.cpp">
+      <Filter>playGround\item\base</Filter>
+    </ClCompile>
+    <ClCompile Include="boomerang.cpp">
+      <Filter>playGround\item</Filter>
+    </ClCompile>
+    <ClCompile Include="candela.cpp">
+      <Filter>playGround\item</Filter>
+    </ClCompile>
+    <ClCompile Include="mushroom.cpp">
+      <Filter>playGround\item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

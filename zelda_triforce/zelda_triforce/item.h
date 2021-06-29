@@ -1,47 +1,32 @@
 #pragma once
-#include "gameNode.h"
-
-struct tile
-{
-	RECT rc[20];
-};
 
 enum ITEM
 {
-	ITEM_BOOMERANG = 2,
-	ITEM_MUSHROOM = 4,
-	ITEM_CANDELA = 10,
-	ITEM_END
+	BOOMERANG,
+	MUSHROOM,
+	CANDELA,
+	ENDITEM
 };
 
-struct itemInfo
+class item
 {
-	ITEM itemKind;
-	string itemName;
-	image* img;
-};
-
-class item : public gameNode
-{
-private:
-	tile _tile;
-
-	RECT _selItemRc;
-
-	vector<itemInfo> _vItem;
-	vector<itemInfo>::iterator _viItem;
+protected:
+	RECT _rc;
+	image* _img;
+	float _x, _y;
+	int _type;
 
 public:
 	item() {};
 	~item() {};
 
-	virtual HRESULT init();
-	virtual void release();
-	virtual void update();
-	virtual void render();
+	virtual HRESULT init(float x, float y) = 0;
+	virtual void release() = 0;
+	virtual void update() = 0;
+	virtual void render(HDC hdc) = 0;
 
-	void itemSetup();
-	void itemOutput();
+	float getX() { return _x; }
+	float getY() { return _y; }
 
-	vector<itemInfo> getVItem() { return _vItem; }
+	image* getImage() { return _img; }
 };
