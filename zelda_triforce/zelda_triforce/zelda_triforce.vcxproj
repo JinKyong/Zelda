@@ -175,6 +175,7 @@
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="Slash.h" />
+    <ClInclude Include="stage1.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="stateManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -189,6 +190,7 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="addTileImages.cpp" />
     <ClCompile Include="boomerang.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="candela.cpp" />
@@ -211,6 +213,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="Slash.cpp" />
+    <ClCompile Include="stage1.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="stateManager.cpp" />
     <ClCompile Include="testStage.cpp" />

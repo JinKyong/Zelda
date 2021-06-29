@@ -5,8 +5,8 @@
 HRESULT Player::init()
 {
 	//¸öÃ¼
-	_x = 200;
-	_y = 300;
+	_x = 2500;
+	_y = 2500;
 	_z = 1;
 	_direct = 0;
 	_body = RectMakeCenter(_x, _y, 64, 64);
@@ -39,11 +39,11 @@ void Player::update()
 
 void Player::render()
 {
-	/*if (PRINTMANAGER->isDebug()) {
+	if (PRINTMANAGER->isDebug()) {
 		Rectangle(getMemDC(), _body);
-	}*/
+	}
 
-	//STATEMANAGER->render(getMemDC());
+	STATEMANAGER->render(getMemDC());
 }
 
 void Player::move(int direct)

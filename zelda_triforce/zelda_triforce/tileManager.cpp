@@ -12,10 +12,11 @@ HRESULT tileManager::init(Player* player)
 	return S_OK;
 }
 
-HRESULT tileManager::initMap(image * img)
+HRESULT tileManager::initMap(image * img, COLORREF rgb)
 {
 	//배경 이미지
 	_background = img;
+	_backColor = rgb;
 
 	//타일 생성
 	for (int i = 0; i < _background->getHeight(); i++)
@@ -53,172 +54,127 @@ void tileManager::release()
 
 void tileManager::update()
 {
-	//이미지 클리핑
+	//이미지클리핑
 	updateTile();
 	//플레이어 추가
-	_renderTile.push_back(new TILE(0, 0, PLAYER, _player->getX(), _player->getY(), _player->getZ(), nullptr));
+	//_renderTile.push_back(new TILE(0, 0, PLAYER, _player->getX(), _player->getY(), _player->getZ(), 
+	//	TILEX * 2, TILEY * 2, nullptr));
 	//에너미 추가
 	//
 
-	//statemanager->getstatenum(THROW);
-	//객체타일 추가
-	//
-
-	//z-order를 위한 정렬(라이브러리 함수)
-	sort(_renderTile.begin(), _renderTile.end(), compare);
+	//sort(_renderTile.begin(), _renderTile.end(), compare);
+	sort(_renderBTile.begin(), _renderBTile.end(), compare);
+	sort(_renderGTile.begin(), _renderGTile.end(), compare);
 }
 
-void tileManager::render(HDC hdc)
+void tileManager::render(HDC hdc, int z)
 {
-	//베이스 뿌리기
-	HBRUSH brush = CreateSolidBrush(RGB(72, 152, 72));
-	HBRUSH oldbrush = (HBRUSH)SelectObject(hdc, brush);
+	if (z == 0) {
+		//베이스 뿌리기
+		HBRUSH brush = CreateSolidBrush(_backColor);
+		FillRect(hdc, &CAMERAMANAGER->getScreen(), brush);
+		DeleteObject(brush);
 
-	RECT rc = CAMERAMANAGER->getScreen();
-	Rectangle(hdc, rc);
-
-	SelectObject(hdc, oldbrush);
-	DeleteObject(brush);
-	//for (; iter != _renderTile.end(); ++iter)
-	//	IMAGEMANAGER->findImage(BASE)->render(hdc, (*iter)->x, (*iter)->y);
-
-
-	tileIter iter = _renderTile.begin();
+		_BTileIter = _renderBTile.begin();
+		_GTileIter = _renderGTile.begin();
+	}
 
 	//객체 뿌리기
-	for (; iter != _renderTile.end(); ++iter) {
-		switch ((*iter)->b) {
-		case PLAYER:
-			//디버깅
-			if (PRINTMANAGER->isDebug()) {
-				RECT rc = _player->getBody();
-				Rectangle(hdc, rc);
-			}
-			STATEMANAGER->render(hdc);
-			break;
+	for (; _BTileIter != _renderBTile.end(); ++_BTileIter) {
+		if ((*_BTileIter)->z > z) break;
 
-		default:
-			if ((*iter)->img == nullptr) continue;
-
-			//디버깅
-			if (PRINTMANAGER->isDebug()) {
-				Rectangle(hdc, (*iter)->body);
-			}
-			(*iter)->img->render(hdc, (*iter)->x, (*iter)->y);
-			break;
+		//디버깅
+		if (PRINTMANAGER->isDebug()) {
+			Rectangle(hdc, (*_BTileIter)->body);
 		}
+
+		(*_BTileIter)->img->render(hdc, (*_BTileIter)->x, (*_BTileIter)->y);
+	}
+
+
+	//객체 뿌리기
+	for (; _GTileIter != _renderGTile.end(); ++_GTileIter) {
+		if ((*_GTileIter)->z > z) break;
+
+		//디버깅
+		if (PRINTMANAGER->isDebug()) {
+			Rectangle(hdc, (*_GTileIter)->body);
+		}
+
+		(*_GTileIter)->img->render(hdc, (*_GTileIter)->x, (*_GTileIter)->y);
 	}
 }
 
-void tileManager::addTileImages()
-{
-	char str[128];
-
-	//========= bush =========//
-	IMAGEMANAGER->addImage(BUSH, "img/tile/bush/bush.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(BUSHOFF, "img/tile/bush/bush_off.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(GRASS, "img/tile/bush/grass.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(GRASSOFF, "img/tile/bush/grass_off.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(WEED, "img/tile/bush/weed.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(RUG, "img/tile/bush/rug.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
-
-	//========= tree =========//
-	for (int i = 1, j = TREELEAF1; j <= TREELEAF8; i++, j++) {
-		sprintf_s(str, "img/tile/tree/treeLeaf%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
-	}
-	for (int i = 1, j = TREELEAFINTER1; j <= TREELEAFINTER2; i++, j++) {
-		sprintf_s(str, "img/tile/tree/treeLeafInter%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
-	}
-	for (int i = 1, j = TREESTUMP1; j <= TREESTUMP12; i++, j++) {
-		sprintf_s(str, "img/tile/tree/treeStump%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
-	}
-	for (int i = 1, j = TREESTUMPINTER1; j <= TREESTUMPINTER3; i++, j++) {
-		sprintf_s(str, "img/tile/tree/treeStumpInter%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
-	}
-
-	//========= stone =========//
-	IMAGEMANAGER->addImage(STONE, "img/tile/stone/stone.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(STONEB, "img/tile/stone/stoneBlack.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
-	for (int i = 1, j = BIGSTONE1; j <= BIGSTONE4; i++, j++) {
-		sprintf_s(str, "img/tile/stone/bigStone%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
-	}
-	for (int i = 1, j = BIGSTONEB1; j <= BIGSTONEB4; i++, j++) {
-		sprintf_s(str, "img/tile/stone/bigStoneBlack%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
-	}
-	for (int i = 1, j = ST5NE1; j <= ST5NE4; i++, j++) {
-		sprintf_s(str, "img/tile/stone/st5ne%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
-	}
-
-	//========= house =========//
-	for (int i = 1, j = HOUSE1; j <= HOUSE38; i++, j++) {
-		sprintf_s(str, "img/tile/house/%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
-	}
-
-
-
-	//========= ground =========//
-	for (int i = 1, j = FENCE1; j <= FENCE5; i++, j++) {
-		sprintf_s(str, "img/tile/ground/fence%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
-	}
-
-	for (int i = 1, j = CLIFF1; j <= CLIFF27; i++, j++) {
-		sprintf_s(str, "img/tile/ground/cliff%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
-	}
-	for (int i = 1, j = CLIFFIN1; j <= CLIFFIN10; i++, j++) {
-		sprintf_s(str, "img/tile/ground/cliffIn%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
-	}
-}
 
 void tileManager::createTile(float x, float y)
 {
 	COLORREF rgb = GetPixel(_background->getMemDC(), x, y);
 
-	_mapGTile.push_back(makeTile(x * TILEX, y * TILEY, GetGValue(rgb)));
-	_mapBTile.push_back(makeTile(x * TILEX, y * TILEY, GetBValue(rgb)));
+	_mapGTile.push_back(makeTile(x * TILEX, y * TILEY, GetGValue(rgb), GetRValue(rgb)));
+	_mapBTile.push_back(makeTile(x * TILEX, y * TILEY, GetBValue(rgb), GetRValue(rgb)));
 }
 
 void tileManager::updateTile()
 {
 	RECT _screen = CAMERAMANAGER->getScreen();
 
-	//카메라 기준으로 랜더할 타일 인덱스
-	int initY = _screen.top / TILEY;
-	int endY = _screen.bottom / TILEY;
-	int initX = _screen.left / TILEX;
-	int endX = _screen.right / TILEX;
 
-	int cols = _screen.right / TILEX - _screen.left / TILEX + 1;
+	//렌더 범위 계산(이미지 클리핑)
+	int initY = _screen.top / TILEY - 7;
+	int endY = _screen.bottom / TILEY + 7;
+	int initX = _screen.left / TILEX - 7;
+	int endX = _screen.right / TILEX + 7;
+
+
+	//예외처리
+	if (initY < 0)
+		initY = 0;
+	if (endY >= _background->getHeight())
+		endY = _background->getHeight() - 1;
+	if (initX < 0)
+		initX = 0;
+	if (endX >= _background->getWidth())
+		endX = _background->getWidth() - 1;
+
+	//출력할 타일 벡터 초기화
+	_renderBTile.clear();
+	_renderGTile.clear();
+	int width = _background->getWidth();
+
+	for (int i = initY; i <= endY; i++) {
+		for (int j = initX; j <= endX; j++) {
+			int index = i * width + j;
+			if (_mapBTile[index]->img == nullptr) continue;
+
+			_renderBTile.push_back(_mapBTile[index]);
+		}
+	}
+	for (int i = initY; i <= endY; i++) {
+		for (int j = initX; j <= endX; j++) {
+			int index = i * width + j;
+			if (_mapGTile[index]->img == nullptr) continue;
+
+			_renderGTile.push_back(_mapGTile[index]);
+		}
+	}
+
+	/*int cols = endX - initX + 1;
 	int width = _background->getWidth();
 
 	int size = (endY - initY + 1) * cols;
 
-	//초기화
 	_renderTile.clear();
 	_renderTile.resize(size * 2);
 
-	//맵 타일 벡터에서 복사해오는 코드
 	tileIter iter;
 	for (int i = initY, j = 0; i <= endY; i++, j++) {
 		iter = _mapBTile.begin() + (i * width + initX);
-		//라이브러리 함수 (복사하는)
 		copy(iter, iter + cols, _renderTile.begin() + j * cols);
 	}
 	for (int i = initY, j = 0; i <= endY; i++, j++) {
 		iter = _mapGTile.begin() + (i * width + initX);
-		//라이브러리 함수 (복사하는)
 		copy(iter, iter + cols, _renderTile.begin() + size + j * cols);
-	}
+	}*/
 }
 
 bool tileManager::compare(PTILE a, PTILE b)

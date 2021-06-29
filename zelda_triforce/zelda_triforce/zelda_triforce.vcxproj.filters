@@ -171,6 +171,9 @@
     <ClInclude Include="mushroom.h">
       <Filter>playGround\item</Filter>
     </ClInclude>
+    <ClInclude Include="stage1.h">
+      <Filter>playGround\stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="zelda_triforce.rc">
@@ -278,6 +281,12 @@
     </ClCompile>
     <ClCompile Include="mushroom.cpp">
       <Filter>playGround\item</Filter>
+    </ClCompile>
+    <ClCompile Include="addTileImages.cpp">
+      <Filter>playGround\tile</Filter>
+    </ClCompile>
+    <ClCompile Include="stage1.cpp">
+      <Filter>playGround\stage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

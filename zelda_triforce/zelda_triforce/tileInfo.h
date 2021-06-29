@@ -1,30 +1,34 @@
 #pragma once
 #include "stdafx.h"
 
-#define TILEX	64
-#define TILEY	64
+#define TILEX	32
+#define TILEY	32
 
 typedef struct tagTile {
 	int r, g, b;
 	float x, y, z;
 
-	int sizeX;
-	int sizeY;
+	int sizeX, sizeY;
+	int alpha;
 
 	image* img;
 	RECT body;
 
 	tagTile(int R, int G, int B,
 		float X, float Y, float Z,
-		image* IMG) {
+		int SX, int SY,
+		image* IMG, int blend = 0) {
 		r = R;
 		g = G;
 		b = B;
 		x = X;
 		y = Y;
 		z = Z;
+		sizeX = SX;
+		sizeY = SY;
 		img = IMG;
-		body = RectMake(X, Y, TILEX, TILEY);
+		alpha = blend;
+		body = RectMake(X, Y, sizeX, sizeY);
 	}
 } TILE, *PTILE;
 
@@ -32,10 +36,13 @@ typedef struct tagTile {
 #define Z0	0
 #define Z1	1
 #define Z2	2
+#define Z3	3
+#define Z4	4
 
 /********** RED(COLLISION) **********/
 #define PASSABLE	0		//지나갈 수 있음
 //#define HALFPASSABLE
+#define UPDOWN		100		//이동시 Z축 변경
 #define IMPASSABLE	255		//지나갈 수 없음
 
 
@@ -53,136 +60,246 @@ typedef struct tagTile {
 //========= bush =========//
 #define BUSH		1
 #define BUSHOFF		2
-#define GRASS		3
-#define GRASSOFF	4
-#define WEED		5
-#define RUG			6
+#define WEED		3
+#define RUG			4
+#define GRASSTILE	5
 
 //========= tree =========//
-#define TREELEAF1		7
-#define TREELEAF2		8
-#define TREELEAF3		9
-#define TREELEAF4		10
-#define TREELEAF5		11
-#define TREELEAF6		12
-#define TREELEAF7		13
-#define TREELEAF8		14
-#define TREESTUMP1		15
-#define TREESTUMP2		16
-#define TREESTUMP3		17
-#define TREESTUMP4		18
-#define TREESTUMP5		19
-#define TREESTUMP6		20
-#define TREESTUMP7		21
-#define TREESTUMP8		22
-#define TREESTUMP9		23
-#define TREESTUMP10		24
-#define TREESTUMP11		25
-#define TREESTUMP12		26
-#define TREELEAFINTER1	27
-#define TREELEAFINTER2	28
-#define TREESTUMPINTER1	29
-#define TREESTUMPINTER2	30
-#define TREESTUMPINTER3	31
+#define TREEUP1			7
+#define TREEUP2			8
+#define TREEUP3			9
+#define TREEUP4			10
+#define TREEUP5			11
+#define TREEDOWN1		12
+#define TREEDOWN2		13
+#define TREEDOWN3		14
+#define TREEDOWN4		15
+#define TREEDOWN5		16
+#define TREEDOWN6		17
+#define TREETILE1		18
+#define TREETILE2		19
+#define TREETILE3		20
+#define TREETILE4		21
+#define TREEUPINTER		22
+#define TREEDOWNINTER	23
 
 //========= stone =========//
-#define STONE			32
-#define STONEB			33
-#define BIGSTONE1		34
-#define BIGSTONE2		35
-#define BIGSTONE3		36
-#define BIGSTONE4		37
-#define BIGSTONEB1		38
-#define BIGSTONEB2		39
-#define BIGSTONEB3		40
-#define BIGSTONEB4		41
-#define ST5NE1			42
-#define ST5NE2			43
-#define ST5NE3			44
-#define ST5NE4			45
+#define STONE			24
+#define STONEB			25
+#define BIGSTONE		26
+#define BIGSTONEB		27
+#define ST5NE			28
 
 //========= house =========//
-#define HOUSE1		46
-#define HOUSE2		47
-#define HOUSE3		48
-#define HOUSE4		49
-#define HOUSE5		50
-#define HOUSE6		51
-#define HOUSE7		52
-#define HOUSE8		53
-#define HOUSE9		54
-#define HOUSE10		55
-#define HOUSE11		56
-#define HOUSE12		57
-#define HOUSE13		58
-#define HOUSE14		59
-#define HOUSE15		60
-#define HOUSE16		61
-#define HOUSE17		62
-#define HOUSE18		63
-#define HOUSE19		64
-#define HOUSE20		65
-#define HOUSE21		66
-#define HOUSE22		67
-#define HOUSE23		68
-#define HOUSE24		69
-#define HOUSE25		70
-#define HOUSE26		71
-#define HOUSE27		72
-#define HOUSE28		73
-#define HOUSE29		74
-#define HOUSE30		75
-#define HOUSE31		76
-#define HOUSE32		77
-#define HOUSE33		78
-#define HOUSE34		79
-#define HOUSE35		80
-#define HOUSE36		81
-#define HOUSE37		82
-#define HOUSE38		83
+#define HOUSE1		29
+#define HOUSE2		30
+#define HOUSE3		31
+#define HOUSE4		32
+#define HOUSE5		33
+#define HOUSE6		34
+#define HOUSE7		35
 
-//========= ground =========//
-#define FENCE1		84
-#define FENCE2		85
-#define FENCE3		86
-#define FENCE4		87
-#define FENCE5		88
+//========= cliff =========//
+#define CLIFF1			36
+#define CLIFF2			37
+#define CLIFF3			38
+#define CLIFF4			39
+#define CLIFF5			40
+#define CLIFF6			41
+#define CLIFF7			42
+#define CLIFF8			43
+#define CLIFF9			44
+#define CLIFF10			45
+#define CLIFF11			46
+#define CLIFF12			47
+#define CLIFF13			48
+#define CLIFF14			49
+#define CLIFF15			50
+#define CLIFF16			51
+#define CLIFF17			52
+#define CLIFF18			53
+#define CLIFF19			54
 
-#define CLIFF1		89
-#define CLIFF2		90
-#define CLIFF3		91
-#define CLIFF4		92
-#define CLIFF5		93
-#define CLIFF6		94
-#define CLIFF7		95
-#define CLIFF8		96
-#define CLIFF9		97
-#define CLIFF10		98
-#define CLIFF11		99
-#define CLIFF12		100
-#define CLIFF13		101
-#define CLIFF14		102
-#define CLIFF15		103
-#define CLIFF16		104
-#define CLIFF17		105
-#define CLIFF18		106
-#define CLIFF19		107
-#define CLIFF20		108
-#define CLIFF21		109
-#define CLIFF22		110
-#define CLIFF23		111
-#define CLIFF24		112
-#define CLIFF25		113
-#define CLIFF26		114
-#define CLIFF27		115
+#define CLIFFTILE1		55
+#define CLIFFTILE2		56
+#define CLIFFTILE3		57
+#define CLIFFTILE4		58
+#define CLIFFTILE5		59
+#define CLIFFTILE6		60
+#define CLIFFTILE7		61
+#define CLIFFTILE8		62
+#define CLIFFTILE9		63
+#define CLIFFTILE10		64
+#define CLIFFTILE11		65
+#define CLIFFTILE12		66
+#define CLIFFTILE13		67
+#define CLIFFTILE14		68
+#define CLIFFTILE15		69
 
-#define CLIFFIN1	116
-#define CLIFFIN2	117
-#define CLIFFIN3	118
-#define CLIFFIN4	119
-#define CLIFFIN5	120
-#define CLIFFIN6	121
-#define CLIFFIN7	122
-#define CLIFFIN8	123
-#define CLIFFIN9	124
-#define CLIFFIN10	125
+#define CLIFFIN1		70
+#define CLIFFIN2		71
+#define CLIFFIN3		72
+#define CLIFFIN4		73
+#define CLIFFIN5		74
+#define CLIFFIN6		75
+
+#define CHURCH1		76
+#define CHURCH2		77
+#define CHURCH3		78
+#define CHURCH4		79
+#define CHURCH5		80
+#define CHURCH6		81
+#define CHURCH7		82
+#define CHURCH8		83
+#define CHURCH9		84
+
+//========= road =========//
+#define ROAD1		85
+#define ROAD2		86
+#define ROAD3		87
+#define ROAD4		88
+#define ROAD5		89
+#define ROAD6		90
+#define ROAD7		91
+#define ROAD8		92
+#define ROAD9		93
+#define ROAD10		94
+#define ROAD11		95
+#define ROAD12		96
+#define ROAD13		97
+#define ROAD14		98
+
+#define FENCE1		99
+#define FENCE2		100
+#define FENCE3		101
+
+
+
+
+/*********** dungeon ***********/
+//========= wall =========//
+#define HARDRAIL1	102
+#define HARDRAIL2	103
+#define HARDRAIL3	104
+
+#define WALLIN1		105
+#define WALLIN2		106
+#define WALLIN3		107
+#define WALLIN4		108
+#define WALLIN5		109
+#define WALLIN6		110
+#define WALLIN7		111
+#define WALLIN8		112
+#define WALLIN9		113
+#define WALLIN10	114
+#define WALLIN11	115
+#define WALLIN12	116
+#define WALLIN13	117
+#define WALLIN14	118
+#define WALLIN15	119
+#define WALLIN16	120
+#define WALLIN17	121
+#define WALLIN18	122
+#define WALLIN19	123
+#define WALLIN20	124
+
+#define WALLOUT1	125
+#define WALLOUT2	126
+#define WALLOUT3	127
+#define WALLOUT4	128
+#define WALLOUT5	129
+#define WALLOUT6	130
+#define WALLOUT7	131
+#define WALLOUT8	132
+#define WALLOUT9	133
+#define WALLOUT10	134
+#define WALLOUT11	135
+#define WALLOUT12	136
+#define WALLOUT13	137
+#define WALLOUT14	138
+#define WALLOUT15	139
+#define WALLOUT16	140
+#define WALLOUT17	141
+#define WALLOUT18	142
+#define WALLOUT19	143
+#define WALLOUT20	144
+
+#define WALL1		145
+#define WALL2		146
+#define WALL3		147
+#define WALL4		148
+#define WALL5		149
+#define WALL6		150
+#define WALL7		151
+#define WALL8		152
+
+
+//========= tile =========//
+#define BORDER1			153
+#define BORDER2			154
+#define BORDER3			155
+#define BORDER4			156
+#define BORDER5			157
+#define BORDER6			158
+#define BORDER7			159
+#define BORDER8			160
+
+#define BOTTOMTILE		161
+#define ROOFTILE		162
+
+#define BORDER2F1		163
+#define BORDER2F2		164
+#define BORDER2F3		165
+#define BORDER2F4		166
+#define BORDER2F5		167
+#define BORDER2F6		168
+#define BORDER2F7		169
+#define BORDER2F8		170
+
+#define BOTTOMTILE2F	171
+
+//========= path =========//
+#define DOORUP1			172
+#define DOORUP2			173
+
+#define DOORRIGHT1		174
+#define DOORRIGHT2		175
+
+#define DOORDOWN1		176
+#define DOORDOWN2		177
+
+#define DOORLEFT1		178
+#define DOORLEFT2		179
+
+#define LADDER1			180
+#define LADDER2			181
+#define LADDER3			182
+#define LADDER4			183
+
+#define UPSTAIR1		184
+#define UPSTAIR2		185
+#define UPSTAIR3		186
+#define UPSTAIR4		187
+#define DOWNSTAIR1		188
+#define DOWNSTAIR2		189
+#define DOWNSTAIR3		190
+#define DOWNSTAIR4		191
+
+
+//========= object =========//
+#define BOX			192
+
+#define CANDLE1		193
+#define CANDLE2		194
+#define CANDLE3		195
+#define CANDLE4		196
+
+#define JAR			197
+#define JARBOTTOM	198
+
+#define PILLAR1		199
+#define PILLAR2		200
+#define PILLAR3		201
+
+#define STATUE1		202
+#define STATUE2		203

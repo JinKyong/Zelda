@@ -16,10 +16,15 @@ private:
 	Player* _player;
 
 	image*		_background;
+	COLORREF	_backColor;
+
 	tileList	_mapGTile;
 	tileList	_mapBTile;
 
-	tileList	_renderTile;
+	tileList	_renderGTile;
+	tileIter	_GTileIter;
+	tileList	_renderBTile;
+	tileIter	_BTileIter;
 
 	int _width;
 
@@ -28,10 +33,10 @@ public:
 	~tileManager() {};
 
 	HRESULT init(Player* player);
-	HRESULT initMap(image* img);
+	HRESULT initMap(image* img, COLORREF rgb);
 	void release();
 	void update();
-	void render(HDC hdc);
+	void render(HDC hdc, int z);
 
 	//사용하는 타일 이미지 등록
 	void addTileImages();
@@ -40,6 +45,6 @@ public:
 	void createTile(float x, float y);
 	void updateTile();
 
-	PTILE makeTile(float x, float y, int ID);
+	PTILE makeTile(float x, float y, int ID, int z = 0);
 	static bool compare(PTILE a, PTILE b);
 };

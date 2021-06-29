@@ -17,6 +17,7 @@ private:
 
 	image* _bgImg;
 
+	int _a, _b;
 	//RECT _bagRC;
 	//image* _bagImg;
 

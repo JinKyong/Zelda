@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "playGround.h"
 #include "testStage.h"
+#include "stage1.h"
 #include "inventory.h"
 
 playGround::playGround()
@@ -28,12 +29,12 @@ HRESULT playGround::init()
 	IMAGEMANAGER->addImage("mushroom", "img/equip/mushroom.bmp", 64, 64, true, PINK);
 
 	TILEMANAGER->init(_player);
+
 	SCENEMANAGER->init(_player);
-
 	SCENEMANAGER->addScene("test", new testStage);
-	//SCENEMANAGER->addScene("inven", new inventory);
+	SCENEMANAGER->addScene("stage1", new stage1);
 
-	SCENEMANAGER->changeScene("test");
+	SCENEMANAGER->changeScene("stage1");
 
 	_invOpen = false;
 	_debug = false;

@@ -1,14 +1,13 @@
 #pragma once
 #include "Scene.h"
 
-#define MAPWIDTH	64
-#define MAPHEIGHT	64
+#define MAPWIDTH	160
+#define MAPHEIGHT	160
 
 class testStage : public Scene
 {
 private:
 	image* _background;
-	//에너미매니저 추가되야 함
 
 public:
 	virtual HRESULT init(Player* player);
