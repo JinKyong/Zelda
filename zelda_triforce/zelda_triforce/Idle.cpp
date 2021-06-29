@@ -41,6 +41,7 @@ void Idle::updateRect()
 
 void Idle::controlKey()
 {
+	/**** 이동 ***/
 	if (KEYMANAGER->isStayKeyDown(KEY_RIGHT))
 	{
 		_player->setDirect(RIGHT);
@@ -61,6 +62,8 @@ void Idle::controlKey()
 		_player->setDirect(DOWN);
 		STATEMANAGER->changeState(RUN);
 	}
+
+	//공격
 	if (KEYMANAGER->isOnceKeyDown(KEY_SLASH))
 	{
 		STATEMANAGER->changeState(SLASH);

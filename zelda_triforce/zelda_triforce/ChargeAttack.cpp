@@ -42,7 +42,7 @@ void ChargeAttack::render(HDC hdc)
 		DeleteObject(brush);
 	}
 		if (_direct == DOWN)			_img->frameRender(hdc, _player->getBody().left - 57, _player->getBody().top - 92);
-		else if (_direct == UP)		_img->frameRender(hdc, _player->getBody().left - 56, _player->getBody().top - 55);
+		else if (_direct == UP)			_img->frameRender(hdc, _player->getBody().left - 56, _player->getBody().top - 55);
 		else if (_direct == RIGHT)		_img->frameRender(hdc, _player->getBody().left - 68, _player->getBody().top - 75);
 		else							_img->frameRender(hdc, _player->getBody().left - 47, _player->getBody().top - 73);
 }

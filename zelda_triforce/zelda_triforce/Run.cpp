@@ -69,10 +69,12 @@ void Run::controlKey()
 		_player->move(DOWN);
 	}
 
+
 	if (KEYMANAGER->isOnceKeyUp(KEY_RIGHT)) 	STATEMANAGER->changeState(IDLE);
 	if (KEYMANAGER->isOnceKeyUp(KEY_LEFT))		STATEMANAGER->changeState(IDLE);
 	if (KEYMANAGER->isOnceKeyUp(KEY_UP))		STATEMANAGER->changeState(IDLE);
 	if (KEYMANAGER->isOnceKeyUp(KEY_DOWN))		STATEMANAGER->changeState(IDLE);
+
 
 	if (KEYMANAGER->isOnceKeyDown(KEY_SLASH))
 	{
@@ -84,7 +86,7 @@ void Run::controlFrame()
 {
 	_count++;
 
-	if (_count >= 3)
+	if (_count >= 6)
 	{
 		if (_img->getFrameX() >= _img->getMaxFrameX())
 			_img->setFrameX(0);

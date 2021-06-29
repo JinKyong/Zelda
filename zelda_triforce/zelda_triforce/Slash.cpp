@@ -15,6 +15,7 @@ HRESULT Slash::init(Player * player)
 	if (_direct == DOWN)
 	{
 		_slashBox = RectMakeCenter(_player->getX(), _player->getY() + 64, 64, 64);
+		//effectManager-> addEffect(_slashBox);
 		_img->setFrameY(0);
 	}
 	else if (_direct == UP)
@@ -51,7 +52,7 @@ void Slash::update()
 void Slash::render(HDC hdc)
 {
 	if (PRINTMANAGER->isDebug()) {
-		HBRUSH brush = CreateSolidBrush(RGB(255, 255, 255));
+		HBRUSH brush = CreateSolidBrush(RGB(50, 50, 50));
 		HBRUSH OldBrush = (HBRUSH)SelectObject(hdc, brush);
 		HPEN pen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
 		HPEN OldPen = (HPEN)SelectObject(hdc, pen);
@@ -63,7 +64,7 @@ void Slash::render(HDC hdc)
 	}
 
 	if (_direct == DOWN)		_img->frameRender(hdc, _player->getBody().left - 28, _player->getBody().top - 24);
-	else if (_direct == UP)	_img->frameRender(hdc, _player->getBody().left - 52, _player->getBody().top - 67);
+	else if (_direct == UP)		_img->frameRender(hdc, _player->getBody().left - 52, _player->getBody().top - 67);
 	else if (_direct == RIGHT)	_img->frameRender(hdc, _player->getBody().left, _player->getBody().top - 39);
 	else						_img->frameRender(hdc, _player->getBody().left - 75, _player->getBody().top - 39);
 }
@@ -84,7 +85,7 @@ void Slash::controlKey()
 {
 	if (KEYMANAGER->isOnceKeyDown('A'))
 	{
-		_img->setFrameX(0);
+		this->init(_player);
 	}
 }
 
@@ -98,7 +99,7 @@ void Slash::controlFrame()
 			{
 				STATEMANAGER->changeState(CHARGING);
 			}
-			else STATEMANAGER->setState(STATEMANAGER->getPrevState());
+			else STATEMANAGER->changeState(IDLE);
 			_count = 0;
 		}
 		else _img->setFrameX(_img->getFrameX() + 1);

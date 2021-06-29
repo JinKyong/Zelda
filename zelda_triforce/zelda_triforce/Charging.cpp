@@ -46,7 +46,7 @@ void Charging::release()
 
 void Charging::update()
 {
-	updateRect();
+	//updateRect();
 	charge();
 
 	controlKey();
@@ -95,8 +95,8 @@ void Charging::updateDirect(int direct)
 
 void Charging::updateRect()
 {
-	float x = _player->getX();
-	float y = _player->getY();
+	//float x = _player->getX();
+	//float y = _player->getY();
 
 	//_player->setRect(x, y, WIDTH, HEIGHT);
 }
@@ -111,45 +111,45 @@ void Charging::controlKey()
 		_isComplete = false;
 	}
 
-	if (KEYMANAGER->isStayKeyDown(VK_DOWN))
+	if (KEYMANAGER->isStayKeyDown(KEY_DOWN))
 	{
 		_player->move(DOWN);
 		_isMove = true;
 	}
-	if (KEYMANAGER->isOnceKeyUp(VK_DOWN))
+	if (KEYMANAGER->isOnceKeyUp(KEY_DOWN))
 	{
 		_img->setFrameX(0);
 		_isMove = false;
 	}
 
-	if (KEYMANAGER->isStayKeyDown(VK_UP))
+	if (KEYMANAGER->isStayKeyDown(KEY_UP))
 	{
 		_player->move(UP);
 		_isMove = true;
 	}
-	if (KEYMANAGER->isOnceKeyUp(VK_UP))
+	if (KEYMANAGER->isOnceKeyUp(KEY_UP))
 	{
 		_img->setFrameX(0);
 		_isMove = false;
 	}
 
-	if (KEYMANAGER->isStayKeyDown(VK_RIGHT))
+	if (KEYMANAGER->isStayKeyDown(KEY_RIGHT))
 	{
 		_player->move(RIGHT);
 		_isMove = true;
 	}
-	if (KEYMANAGER->isOnceKeyUp(VK_RIGHT))
+	if (KEYMANAGER->isOnceKeyUp(KEY_RIGHT))
 	{
 		_img->setFrameX(0);
 		_isMove = false;
 	}
 
-	if (KEYMANAGER->isStayKeyDown(VK_LEFT))
+	if (KEYMANAGER->isStayKeyDown(KEY_LEFT))
 	{
 		_player->move(LEFT);
 		_isMove = true;
 	}
-	if (KEYMANAGER->isOnceKeyUp(VK_LEFT))
+	if (KEYMANAGER->isOnceKeyUp(KEY_LEFT))
 	{
 		_img->setFrameX(0);
 		_isMove = false;
@@ -158,8 +158,7 @@ void Charging::controlKey()
 
 void Charging::controlFrame()
 {
-	if (_isMove)
-	{
+	if (_isMove) {
 		_count++;
 		if (_count >= 5)
 		{
@@ -202,9 +201,6 @@ void Charging::charge()
 	if (_isComplete)
 	{
 		_img = IMAGEMANAGER->findImage("complete");
-		if (_direct == DOWN)		_img->setFrameY(0);
-		else if (_direct == UP)		_img->setFrameY(1);
-		else if (_direct == RIGHT)	_img->setFrameY(2);
-		else						_img->setFrameY(3);
+		_img->setFrameY(_direct);
 	}
 }
