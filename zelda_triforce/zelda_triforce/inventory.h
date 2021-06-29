@@ -17,11 +17,8 @@ private:
 
 	int _a, _b;
 
-	RECT _bagRC;
-	image* _bagImg;
-
-	RECT _toolRc;
-	image* _toolImg;
+	//RECT _bagRC;
+	//image* _bagImg;
 
 	RECT _selItemRc;
 	image* _selImg;
