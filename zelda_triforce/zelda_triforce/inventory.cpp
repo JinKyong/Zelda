@@ -45,14 +45,13 @@ void inventory::release()
 
 void inventory::update()
 {
-	RECT rc = CAMERAMANAGER->getScreen();
 	controlKey();
 	controlFrame();
 
-	for (_viItem = _vItem.begin(); _viItem != _vItem.end(); ++_viItem)
+	/*for (_viItem = _vItem.begin(); _viItem != _vItem.end(); ++_viItem)
 	{
 		(*_viItem)->update();
-	}
+	}*/
 }
 
 void inventory::render()
@@ -66,6 +65,7 @@ void inventory::render()
 	for (_viItem = _vItem.begin(); _viItem != _vItem.end(); ++_viItem)
 	{
 		(*_viItem)->render(getMemDC());
+		//(*_viItem)->render(getMemDC(), rc.left + (*_viItem)->getx(), );
 	}
 
 	_selItemRc = RectMakeCenter(_vItem[_index]->getX(), _vItem[_index]->getY(), 104, 104);
@@ -74,16 +74,21 @@ void inventory::render()
 	_vItem[_index]->getImage()->render(getMemDC(), rc.left + 800, rc.top + 100);
 }
 
+void inventory::addItem(item * item)
+{
+	_vItem.push_back(item);
+}
+
 void inventory::controlKey()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_LEFT) && _index > 0)
+	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 	{
-		_index--;
+		_index = (_index - 1 + _vItem.size()) % _vItem.size();
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT) && _index < _vItem.size() - 1)
+	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
 	{
-		_index++;
+		_index = (_index + 1) % _vItem.size();
 	}
 }
 
@@ -91,7 +96,7 @@ void inventory::controlFrame()
 {
 	_count += TIMEMANAGER->getElapsedTime();
 
-	if (_count >= RENDERCOUNT2 * 5)
+	if (_count >= RENDERCOUNT2 * 2)
 	{
 		if (_selImg->getFrameX() >= _selImg->getMaxFrameX())
 			_selImg->setFrameX(0);

@@ -1,4 +1,5 @@
 #pragma once
+//#include "singletonBase.h"
 #include "gameNode.h"
 #include "item.h"
 
@@ -9,13 +10,12 @@ class inventory : public gameNode
 private:
 	typedef vector<item*>			itemList;
 	typedef vector<item*>::iterator itemIter;
+
 private:
 	itemList _vItem;
 	itemIter _viItem;
 
 	image* _bgImg;
-
-	int _a, _b;
 
 	//RECT _bagRC;
 	//image* _bagImg;
@@ -33,6 +33,8 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
+	void addItem(item* item);
 
 	void controlKey();
 	void controlFrame();

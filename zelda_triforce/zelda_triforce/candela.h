@@ -8,7 +8,7 @@ public:
 	candela() {};
 	~candela() {};
 
-	virtual HRESULT init(float x, float y);
+	virtual HRESULT init(float x, float y, float z = 0);
 	virtual void release();
 	virtual void update();
 	virtual void render(HDC hdc);

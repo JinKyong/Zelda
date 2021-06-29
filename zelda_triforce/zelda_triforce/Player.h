@@ -14,6 +14,7 @@ private:
 
 	//상태
 
+
 	//이펙트
 
 public:
