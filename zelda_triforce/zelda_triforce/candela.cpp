@@ -18,6 +18,10 @@ void candela::release()
 
 void candela::update()
 {
+	RECT camera = CAMERAMANAGER->getScreen();
+	_x = camera.left + 160;
+	_y = camera.top + 154 + 96 * 2;
+	_rc = RectMakeCenter(_x, _y, 64, 64);
 }
 
 void candela::render(HDC hdc)

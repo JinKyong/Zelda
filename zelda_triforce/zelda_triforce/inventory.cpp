@@ -45,8 +45,14 @@ void inventory::release()
 
 void inventory::update()
 {
+	RECT rc = CAMERAMANAGER->getScreen();
 	controlKey();
 	controlFrame();
+
+	for (_viItem = _vItem.begin(); _viItem != _vItem.end(); ++_viItem)
+	{
+		(*_viItem)->update();
+	}
 }
 
 void inventory::render()

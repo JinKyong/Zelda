@@ -17,6 +17,10 @@ void boomerang::release()
 
 void boomerang::update()
 {
+	RECT camera = CAMERAMANAGER->getScreen();
+	_x = camera.left + 160 + 96 * 2;
+	_y = camera.top + 154;
+	_rc = RectMakeCenter(_x, _y, 64, 64);
 }
 
 void boomerang::render(HDC hdc)
