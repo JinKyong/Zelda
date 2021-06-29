@@ -45,8 +45,6 @@ void Slash::update()
 {
 	controlKey();
 	controlFrame();
-
-	updateRect();
 }
 
 void Slash::render(HDC hdc)
@@ -75,15 +73,11 @@ void Slash::updateDirect(int direct)
 
 void Slash::updateRect()
 {
-	float x = _player->getX();
-	float y = _player->getY();
-
-	//_player->setRect(x, y, WIDTH, HEIGHT);
 }
 
 void Slash::controlKey()
 {
-	if (KEYMANAGER->isOnceKeyDown('A'))
+	if (KEYMANAGER->isOnceKeyDown(KEY_SLASH))
 	{
 		this->init(_player);
 	}
@@ -95,7 +89,7 @@ void Slash::controlFrame()
 	if (_count % 2 == 0) {
 		if (_img->getFrameX() >= _img->getMaxFrameX()) {
 
-			if (KEYMANAGER->isStayKeyDown('A'))
+			if (KEYMANAGER->isStayKeyDown(KEY_SLASH))
 			{
 				STATEMANAGER->changeState(CHARGING);
 			}

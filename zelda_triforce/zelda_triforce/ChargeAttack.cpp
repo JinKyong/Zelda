@@ -9,10 +9,7 @@ HRESULT ChargeAttack::init(Player* player)
 	_direct = _player->getDirect();
 
 	_img->setFrameX(0);
-	if (_direct == DOWN)			 _img->setFrameY(0);
-	else if (_direct == UP)			 _img->setFrameY(1);
-	else if (_direct == RIGHT)		 _img->setFrameY(2);
-	else							 _img->setFrameY(3);
+	_img->setFrameY(_direct);
 
 	_attackBox = RectMakeCenter(_player->getX(), _player->getY(), 192, 192);
 	return S_OK;

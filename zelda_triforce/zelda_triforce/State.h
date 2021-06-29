@@ -9,6 +9,7 @@ class Player;
 #define KEY_DOWN	VK_DOWN
 
 #define KEY_SLASH   'A'
+#define KEY_CARRY	'S'
 /***********************************/
 
 enum PLAYERSTATE {
@@ -16,7 +17,9 @@ enum PLAYERSTATE {
 	RUN,
 	SLASH,
 	CHARGING,
-	CHARGEATTACK
+	CHARGEATTACK,
+	CARRY,
+	THROW
 };
 
 class State

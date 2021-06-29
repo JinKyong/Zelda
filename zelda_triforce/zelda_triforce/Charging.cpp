@@ -46,7 +46,6 @@ void Charging::release()
 
 void Charging::update()
 {
-	//updateRect();
 	charge();
 
 	controlKey();
@@ -95,15 +94,11 @@ void Charging::updateDirect(int direct)
 
 void Charging::updateRect()
 {
-	//float x = _player->getX();
-	//float y = _player->getY();
-
-	//_player->setRect(x, y, WIDTH, HEIGHT);
 }
 
 void Charging::controlKey()
 {
-	if (KEYMANAGER->isOnceKeyUp('A'))
+	if (KEYMANAGER->isOnceKeyUp(KEY_SLASH))
 	{
 		_cCount = 0;
 		if (!_isComplete)	STATEMANAGER->changeState(IDLE);

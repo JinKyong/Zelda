@@ -25,13 +25,11 @@ void Run::update()
 {
 	controlKey();
 	controlFrame();
-
-	updateRect();
 }
 
 void Run::render(HDC hdc)
 {
-	_img->frameRender(hdc, _player->getX() - _img->getFrameWidth() / 2, _player->getY() - _img->getFrameHeight() / 2);
+	_img->frameRender(hdc, _player->getBody().left - 3, _player->getBody().top - 33);
 }
 
 void Run::updateDirect(int direct)
@@ -40,10 +38,6 @@ void Run::updateDirect(int direct)
 
 void Run::updateRect()
 {
-	float x = _player->getX();
-	float y = _player->getY();
-
-	_player->setRect(x, y, 64, 64);
 }
 
 void Run::controlKey()

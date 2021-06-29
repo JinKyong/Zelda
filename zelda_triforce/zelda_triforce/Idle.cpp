@@ -28,7 +28,7 @@ void Idle::update()
 
 void Idle::render(HDC hdc)
 {
-	_img->frameRender(hdc, _player->getX() - _img->getFrameWidth() / 2, _player->getY() - _img->getFrameHeight() / 2);
+	_img->frameRender(hdc, _player->getBody().left, _player->getBody().top - 28);
 }
 
 void Idle::updateDirect(int direct)
@@ -67,6 +67,12 @@ void Idle::controlKey()
 	if (KEYMANAGER->isOnceKeyDown(KEY_SLASH))
 	{
 		STATEMANAGER->changeState(SLASH);
+	}
+	
+	//물건잡기, 상자열기
+	if (KEYMANAGER->isOnceKeyDown(KEY_CARRY))
+	{
+		STATEMANAGER->changeState(CARRY);
 	}
 }
 

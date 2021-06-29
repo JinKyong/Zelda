@@ -7,6 +7,8 @@
 #include "Slash.h"
 #include "Charging.h"
 #include "ChargeAttack.h"
+#include "Carry.h"
+#include "Throw.h"
 
 Player* stateManager::_player = NULL;
 State* stateManager::_currentState = NULL;
@@ -22,6 +24,8 @@ HRESULT stateManager::init(Player * player)
 	addState(SLASH, new Slash);
 	addState(CHARGING, new Charging);
 	addState(CHARGEATTACK, new ChargeAttack);
+	addState(CARRY, new Carry);
+	addState(THROW, new Throw);
 
 	/**** ป๓ลย ****/
 	changeState(IDLE);

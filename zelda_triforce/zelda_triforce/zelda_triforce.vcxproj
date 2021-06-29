@@ -154,6 +154,7 @@
     <ClInclude Include="boomerang.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="candela.h" />
+    <ClInclude Include="Carry.h" />
     <ClInclude Include="ChargeAttack.h" />
     <ClInclude Include="Charging.h" />
     <ClInclude Include="collisionManager.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="testStage.h" />
+    <ClInclude Include="Throw.h" />
     <ClInclude Include="tileInfo.h" />
     <ClInclude Include="tileManager.h" />
     <ClInclude Include="timeManager.h" />
@@ -194,6 +196,7 @@
     <ClCompile Include="boomerang.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="candela.cpp" />
+    <ClCompile Include="Carry.cpp" />
     <ClCompile Include="ChargeAttack.cpp" />
     <ClCompile Include="Charging.cpp" />
     <ClCompile Include="collisionManager.cpp" />
@@ -217,6 +220,7 @@
     <ClCompile Include="State.cpp" />
     <ClCompile Include="stateManager.cpp" />
     <ClCompile Include="testStage.cpp" />
+    <ClCompile Include="Throw.cpp" />
     <ClCompile Include="tileManager.cpp" />
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timer.cpp" />
