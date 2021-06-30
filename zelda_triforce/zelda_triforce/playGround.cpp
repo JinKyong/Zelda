@@ -30,8 +30,9 @@ HRESULT playGround::init()
 	IMAGEMANAGER->addImage("mushroom", "img/equip/mushroom.bmp", 64, 64, true, PINK);
 
 	TILEMANAGER->init(_player);
-
 	SCENEMANAGER->init(_player);
+	UIMANAGER->init(_player);
+
 	SCENEMANAGER->addScene("test", new testStage);
 	SCENEMANAGER->addScene("stage1", new stage1);
 
@@ -59,6 +60,9 @@ void playGround::release()
 
 	TILEMANAGER->release();
 	TILEMANAGER->releaseSingleton();
+
+	UIMANAGER->release();
+	UIMANAGER->releaseSingleton();
 
 	SCENEMANAGER->release();
 	SCENEMANAGER->releaseSingleton();
@@ -109,8 +113,9 @@ void playGround::render()
 
 	//_player->render();
 	SCENEMANAGER->render();
+	UIMANAGER->render(getMemDC());
 
-	if (_invOpen) _inven->render();
+	if (_invOpen) _inven->render(getMemDC());
 
 	//투명 브러쉬
 	/*HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
@@ -123,7 +128,7 @@ void playGround::render()
 	DeleteObject(myPen);
 	DeleteObject(myBrush);*/
 
-	//==================================================
+	//==================================================s
 	//this->getBackBuffer()->render(getHDC(), 0, 0);
 	CAMERAMANAGER->render(getHDC(), 0, 0, getMemDC());
 }

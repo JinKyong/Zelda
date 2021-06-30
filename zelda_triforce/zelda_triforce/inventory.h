@@ -1,11 +1,10 @@
 #pragma once
-//#include "singletonBase.h"
-#include "gameNode.h"
+#include "singletonBase.h"
 #include "item.h"
 
 class item;
 
-class inventory : public gameNode
+class inventory : public singletonBase<inventory>
 {
 private:
 	typedef vector<item*>			itemList;
@@ -17,9 +16,11 @@ private:
 
 	image* _bgImg;
 
+	item* _boomerang;
+	item* _candela;
+	item* _mushroom;
+
 	int _a, _b;
-	//RECT _bagRC;
-	//image* _bagImg;
 
 	RECT _selItemRc;
 	image* _selImg;
@@ -33,7 +34,7 @@ public:
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();
-	virtual void render();
+	virtual void render(HDC hdc);
 
 	void addItem(item* item);
 

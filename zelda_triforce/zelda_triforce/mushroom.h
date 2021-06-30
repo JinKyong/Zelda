@@ -12,7 +12,7 @@ public:
 	virtual HRESULT init(float x, float y, float z = 0);
 	virtual void release();
 	virtual void update();
-	virtual void render(HDC hdc);
+	virtual void render(HDC hdc, float x, float y);
 
 	void useItem();
 

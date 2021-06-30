@@ -6,11 +6,8 @@
 
 HRESULT inventory::init()
 {
-	_bgImg = IMAGEMANAGER->addImage("bg", "img/equip/all.bmp", 1024, 896, true, PINK);
-	_selImg = IMAGEMANAGER->addFrameImage("select", "img/equip/select.bmp", 208, 104, 2, 1, true, PINK);
-
-	//_bagImg = IMAGEMANAGER->addImage("bag", "img/equip/5x4.bmp", 608, 480, true, PINK);
-	//_bagRC = RectMake(32, 60, 608, 480);
+	_bgImg = IMAGEMANAGER->addImage("bg", "img/equip/all.bmp", 1024, 896, true, RGB(255, 0, 255));
+	_selImg = IMAGEMANAGER->addFrameImage("select", "img/equip/select.bmp", 208, 104, 2, 1, true, RGB(255, 0, 255));
 
 	_selItemRc = RectMake(800, 100, 64, 64);
 
@@ -19,22 +16,23 @@ HRESULT inventory::init()
 
 	RECT rc = CAMERAMANAGER->getScreen();
 
+	//첫번째 아이템 (left, top)
 	_a = rc.left + 160;
 	_b = rc.top + 156;
 
-	boomerang* _boomerang = new boomerang;
-	_boomerang->init(_a + 96 * 2, _b);
+	_boomerang = new boomerang;
+	_boomerang->init(_a + 96 * 2, _b, 0);
 	_vItem.push_back(_boomerang);
 
-	mushroom* _mushroom = new mushroom;
-	_mushroom->init(_a + 96 * 4, _b);
+	_mushroom = new mushroom;
+	_mushroom->init(_a + 96 * 4, _b, 0);
 	_vItem.push_back(_mushroom);
 
-	candela* _candela = new candela;
-	_candela->init(_a, _b + 96 * 2);
+	_candela = new candela;
+	_candela->init(_a, _b + 96 * 2, 0);
 	_vItem.push_back(_candela);
 
-	_selItemRc = RectMake(_vItem[_index]->getX(), _vItem[_index]->getY(), 104, 104);
+	_selItemRc = RectMake(_vItem[_index]->getInvX(), _vItem[_index]->getInvY(), 104, 104);
 
 	return S_OK;
 }
@@ -47,31 +45,22 @@ void inventory::update()
 {
 	controlKey();
 	controlFrame();
-
-	/*for (_viItem = _vItem.begin(); _viItem != _vItem.end(); ++_viItem)
-	{
-		(*_viItem)->update();
-	}*/
 }
 
-void inventory::render()
+void inventory::render(HDC hdc)
 {
 	RECT rc = CAMERAMANAGER->getScreen();
-	_bgImg->render(getMemDC(), rc.left, rc.top);
-	//_bagImg->render(getMemDC(), _bagRC.left, _bagRC.top);
-
-	//Rectangle(getMemDC(), _selItemRc);
+	_bgImg->render(hdc, rc.left, rc.top);
 
 	for (_viItem = _vItem.begin(); _viItem != _vItem.end(); ++_viItem)
 	{
-		(*_viItem)->render(getMemDC());
-		//(*_viItem)->render(getMemDC(), rc.left + (*_viItem)->getx(), );
+		(*_viItem)->render(hdc, rc.left + (*_viItem)->getInvX(), rc.top + (*_viItem)->getInvY());
 	}
 
-	_selItemRc = RectMakeCenter(_vItem[_index]->getX(), _vItem[_index]->getY(), 104, 104);
-	_selImg->frameRender(getMemDC(), _selItemRc.left, _selItemRc.top);
+	_selItemRc = RectMake(rc.left + _vItem[_index]->getInvX() - 20, rc.top + _vItem[_index]->getInvY() - 20, 104, 104);
+	_selImg->frameRender(hdc, _selItemRc.left, _selItemRc.top);
 
-	_vItem[_index]->getImage()->render(getMemDC(), rc.left + 800, rc.top + 100);
+	_vItem[_index]->getImage()->render(hdc, rc.left + 800, rc.top + 100);
 }
 
 void inventory::addItem(item * item)
@@ -94,9 +83,9 @@ void inventory::controlKey()
 
 void inventory::controlFrame()
 {
-	_count += TIMEMANAGER->getElapsedTime();
+	_count++;
 
-	if (_count >= RENDERCOUNT2 * 2)
+	if (_count >= 10)
 	{
 		if (_selImg->getFrameX() >= _selImg->getMaxFrameX())
 			_selImg->setFrameX(0);
