@@ -1,0 +1,9 @@
+//가능성 높음
+spelunky
+
+//가능성 중간
+celeste
+
+//가능성 낮음
+ori
+zenonia
