@@ -18,7 +18,7 @@ public:
 	virtual void updateDirect(int direct);
 	virtual void updateRect();
 
-	virtual int getStateNum() { return RUN; }
+	virtual int getStateNum() { return CARRY; }
 
 	void controlKey();
 	void controlFrame();

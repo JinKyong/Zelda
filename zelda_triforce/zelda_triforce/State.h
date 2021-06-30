@@ -19,7 +19,8 @@ enum PLAYERSTATE {
 	CHARGING,
 	CHARGEATTACK,
 	CARRY,
-	THROW
+	THROW,
+	PUSH
 };
 
 class State

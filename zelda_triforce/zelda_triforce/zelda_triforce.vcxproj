@@ -158,6 +158,10 @@
     <ClInclude Include="ChargeAttack.h" />
     <ClInclude Include="Charging.h" />
     <ClInclude Include="collisionManager.h" />
+    <ClInclude Include="Effect.h" />
+    <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="E_CgAttack.h" />
+    <ClInclude Include="E_Slash.h" />
     <ClInclude Include="gameNode.h" />
     <ClInclude Include="Idle.h" />
     <ClInclude Include="image.h" />
@@ -170,6 +174,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="playGround.h" />
     <ClInclude Include="printManager.h" />
+    <ClInclude Include="Push.h" />
     <ClInclude Include="randomFunction.h" />
     <ClInclude Include="Run.h" />
     <ClInclude Include="Scene.h" />
@@ -200,6 +205,10 @@
     <ClCompile Include="ChargeAttack.cpp" />
     <ClCompile Include="Charging.cpp" />
     <ClCompile Include="collisionManager.cpp" />
+    <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="E_CgAttack.cpp" />
+    <ClCompile Include="E_Slash.cpp" />
     <ClCompile Include="gameNode.cpp" />
     <ClCompile Include="Idle.cpp" />
     <ClCompile Include="image.cpp" />
@@ -212,6 +221,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="playGround.cpp" />
     <ClCompile Include="printManager.cpp" />
+    <ClCompile Include="Push.cpp" />
     <ClCompile Include="Run.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="sceneManager.cpp" />

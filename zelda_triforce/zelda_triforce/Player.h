@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "EffectManager.h"
 
 class Player : public gameNode
 {
@@ -18,7 +19,7 @@ private:
 
 
 	//이펙트
-
+	EffectManager* _effect;
 public:
 	Player() {};
 	~Player() {};
@@ -47,4 +48,6 @@ public:
 
 	void setRect(float x, float y, int width, int height) { _body = RectMakeCenter(x, y, width, height); } //플레이어 바디 설정자
 	RECT getBody() { return _body; }
+
+	EffectManager* getEm() { return _effect; }
 };

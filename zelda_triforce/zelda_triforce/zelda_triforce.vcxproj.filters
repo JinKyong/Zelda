@@ -58,6 +58,12 @@
     <Filter Include="playGround\item\base">
       <UniqueIdentifier>{781ec8e8-0c85-4ce8-b4c6-a4bcc2e354f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\effect">
+      <UniqueIdentifier>{e3d6a8e8-e910-4d8f-9e38-dddf6bf40f2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\effect\base">
+      <UniqueIdentifier>{81b23c6f-2922-4db6-a4c2-cbf51a1cea01}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -176,6 +182,21 @@
     </ClInclude>
     <ClInclude Include="inventoryManager.h">
       <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Push.h">
+      <Filter>playGround\state</Filter>
+    </ClInclude>
+    <ClInclude Include="E_CgAttack.h">
+      <Filter>playGround\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="E_Slash.h">
+      <Filter>playGround\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>playGround\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect.h">
+      <Filter>playGround\effect\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -296,6 +317,21 @@
     </ClCompile>
     <ClCompile Include="inventoryManager.cpp">
       <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Push.cpp">
+      <Filter>playGround\state</Filter>
+    </ClCompile>
+    <ClCompile Include="E_CgAttack.cpp">
+      <Filter>playGround\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="E_Slash.cpp">
+      <Filter>playGround\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>playGround\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect.cpp">
+      <Filter>playGround\effect\base</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

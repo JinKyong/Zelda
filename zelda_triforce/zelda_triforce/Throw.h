@@ -18,7 +18,7 @@ public:
 	virtual void updateDirect(int direct);
 	virtual void updateRect();
 
-	virtual int getStateNum() { return IDLE; }
+	virtual int getStateNum() { return THROW; }
 
 	void controlKey();
 	void controlFrame();

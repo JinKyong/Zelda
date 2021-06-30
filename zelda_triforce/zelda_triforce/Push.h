@@ -1,14 +1,13 @@
 #pragma once
 #include "State.h"
-
-class Slash :
+class Push :
 	public State
 {
 private:
 
 public:
-	Slash() {};
-	~Slash() {};
+	Push() {};
+	~Push() {};
 
 	virtual HRESULT init(Player* player);
 	virtual void release();
@@ -17,8 +16,9 @@ public:
 	virtual void updateDirect(int direct);
 	virtual void updateRect();
 
-	virtual int getStateNum() { return SLASH; }
+	virtual int getStateNum() { return PUSH; }
 
 	void controlKey();
 	void controlFrame();
 };
+

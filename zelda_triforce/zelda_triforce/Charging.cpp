@@ -183,10 +183,10 @@ void Charging::effectFrame()
 
 void Charging::charge()
 {
-	if (_cCount < 120)
+	if (_cCount < 80)
 	{
 		_cCount++;
-		if (_cCount >= 120)
+		if (_cCount >= 80)
 		{
 			_isComplete = true;
 			_img->setFrameX(0);

@@ -4,7 +4,6 @@
 class ChargeAttack : public State
 {
 private:
-	RECT _attackBox;
 
 public:
 	ChargeAttack() {};

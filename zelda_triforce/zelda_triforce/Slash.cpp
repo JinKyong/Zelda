@@ -14,23 +14,22 @@ HRESULT Slash::init(Player * player)
 
 	if (_direct == DOWN)
 	{
-		_slashBox = RectMakeCenter(_player->getX(), _player->getY() + 64, 64, 64);
-		//effectManager-> addEffect(_slashBox);
+		_player->getEm()->setSlash(_player->getX(), _player->getY() + 64);
 		_img->setFrameY(0);
 	}
 	else if (_direct == UP)
 	{
-		_slashBox = RectMakeCenter(_player->getX(), _player->getY() - 64, 64, 64);
+		_player->getEm()->setSlash(_player->getX(), _player->getY() - 64);
 		_img->setFrameY(1);
 	}
 	else if (_direct == RIGHT)
 	{
-		_slashBox = RectMakeCenter(_player->getX() + 64, _player->getY(), 64, 64);
+		_player->getEm()->setSlash(_player->getX() + 64, _player->getY());
 		_img->setFrameY(2);
 	}
 	else
 	{
-		_slashBox = RectMakeCenter(_player->getX() - 64, _player->getY(), 64, 64);
+		_player->getEm()->setSlash(_player->getX() - 64, _player->getY());
 		_img->setFrameY(3);
 	}
 
@@ -54,7 +53,7 @@ void Slash::render(HDC hdc)
 		HBRUSH OldBrush = (HBRUSH)SelectObject(hdc, brush);
 		HPEN pen = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
 		HPEN OldPen = (HPEN)SelectObject(hdc, pen);
-		Rectangle(hdc, _slashBox);
+		_player->getEm()->getSlash()->render(hdc);
 		SelectObject(hdc, OldPen);
 		DeleteObject(pen);
 		SelectObject(hdc, OldBrush);

@@ -74,6 +74,12 @@ void Idle::controlKey()
 	{
 		STATEMANAGER->changeState(CARRY);
 	}
+
+	//밀기 테스트
+	if (KEYMANAGER->isStayKeyDown('D'))
+	{
+		STATEMANAGER->changeState(PUSH);
+	}
 }
 
 void Idle::controlFrame()
