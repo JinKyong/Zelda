@@ -11,7 +11,6 @@ private:
 	image* _bomb;
 	image* _arrow;
 	image* _lifeText;
-	image* _life;
 
 	image* _number[10];
 

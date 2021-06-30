@@ -13,9 +13,6 @@ HRESULT uiManager::init(Player* player)
 	_arrow = IMAGEMANAGER->addImage("arrow", "img/ui/arrow.bmp", 56, 32, true, PINK);
 	_lifeText = IMAGEMANAGER->addImage("life_text", "img/ui/life_text.bmp", 176, 28, true, PINK);
 
-	//임시로 여기 두긴 했는데 life는 아이템으로 가야할것같습니다용
-	_life = IMAGEMANAGER->addFrameImage("life", "img/ui/life.bmp", 84, 28, 3, 1, true, PINK);
-
 	//숫자
 	char str[128];
 	for (int i = 0; i < 10; i++)
@@ -45,5 +42,4 @@ void uiManager::render(HDC hdc)
 	_bomb->render(hdc, rc.left + 399, rc.top + 59);
 	_arrow->render(hdc, rc.left + 484, rc.top + 59);
 	_lifeText->render(hdc, rc.left + 711, rc.top + 59);
-	_life->frameRender(hdc, rc.left + 643, rc.top + 95);
 }
