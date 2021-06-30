@@ -15,7 +15,13 @@ private:
 	image* _lifeText;
 	image* _life[MAXLIFE];
 
+	RECT _rc;
+
 	image* _number[10];
+
+	int _moneyCount;
+	int _bombCount;
+	int _arrowCount;
 
 public:
 	uiManager() {};
@@ -23,6 +29,6 @@ public:
 
 	HRESULT init(Player* player);
 	void release();
+	void update();
 	void render(HDC hdc);
 };
-

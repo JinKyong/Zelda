@@ -16,13 +16,18 @@ HRESULT uiManager::init(Player* player)
 	for (int i = 0; i < MAXLIFE; i++) _life[i] = IMAGEMANAGER->addFrameImage("life", "img/ui/life.bmp", 84, 28, 3, 1, true, PINK);
 
 	//숫자
+	_moneyCount = 0;
+	_bombCount = 0;
+	_arrowCount = 0;
+
 	char str[128];
 	for (int i = 0; i < 10; i++)
 	{
 		_number[i] = new image;
-		sprintf_s(str, "img/%d.bmp", i);
+		sprintf_s(str, "img/ui/%d.bmp", i);
 		_number[i]->init(str, 28, 28, true, RGB(255, 0, 255));
 	}
+
 
 	//스탯
 
@@ -31,6 +36,24 @@ HRESULT uiManager::init(Player* player)
 
 void uiManager::release()
 {
+}
+
+void uiManager::update()
+{
+	//테스트용 코드
+	if (KEYMANAGER->isOnceKeyDown('1'))
+		_moneyCount += 6;
+
+	if (KEYMANAGER->isOnceKeyDown('2'))
+		_bombCount += 6;
+
+	if (KEYMANAGER->isOnceKeyDown('3'))
+		_arrowCount += 6;
+
+
+	if (_moneyCount > 999) _moneyCount = 999;
+	if (_bombCount > 99) _bombCount = 99;
+	if (_arrowCount > 99) _arrowCount = 99;
 }
 
 void uiManager::render(HDC hdc)
@@ -44,5 +67,24 @@ void uiManager::render(HDC hdc)
 	_bomb->render(hdc, rc.left + 399, rc.top + 59);
 	_arrow->render(hdc, rc.left + 484, rc.top + 59);
 	_lifeText->render(hdc, rc.left + 711, rc.top + 59);
+
 	for (int i = 0; i < MAXLIFE; i++)	_life[i]->frameRender(hdc, rc.left + 643 + i * 32, rc.top + 95);
+
+	//INVENTORYMANAGER->getvItem()[i]->getImage()->render(hdc, rc.left + 159, rc.top + 91);
+
+	_rc = RectMake(rc.left + 159, rc.top + 91, 64, 64);
+	Rectangle(hdc, _rc);
+
+	//money
+	_number[_moneyCount / 100]->render(hdc, rc.left + 260, rc.top + 95);
+	_number[_moneyCount % 100 / 10]->render(hdc, rc.left + 291, rc.top + 95);
+	_number[_moneyCount % 10]->render(hdc, rc.left + 323, rc.top + 95);
+
+	//bomb
+	_number[_bombCount % 100 / 10]->render(hdc, rc.left + 387, rc.top + 95);
+	_number[_bombCount % 10]->render(hdc, rc.left + 419, rc.top + 95);
+
+	//arrow
+	_number[_arrowCount % 100 / 10]->render(hdc, rc.left + 483, rc.top + 95);
+	_number[_arrowCount % 10]->render(hdc, rc.left + 515, rc.top + 95);
 }
