@@ -12,7 +12,9 @@ HRESULT Player::init()
 	_body = RectMakeCenter(_x, _y, 64, 64);
 
 	//스탯
+	_hp = 3;
 	_speed = 5.f;
+	_money = 0;
 
 	//상태
 
@@ -31,6 +33,12 @@ void Player::release()
 
 void Player::update()
 {
+	//테스트용
+	if (KEYMANAGER->isOnceKeyDown('F'))
+		changeMoney(50);
+	if (KEYMANAGER->isOnceKeyDown('D'))
+		changeMoney(-50);
+
 	STATEMANAGER->update();
 	//STATEMANAGER->getCurrentState()->updateRect();
 
@@ -44,6 +52,28 @@ void Player::render()
 	}
 
 	STATEMANAGER->render(getMemDC());
+}
+
+void Player::changeMoney(int num)
+{
+	_money += num;
+
+	if (_money > 999)
+		_money = 999;
+	else if (_money < 0)
+		_money = 0;
+
+	UIMANAGER->setMoney(_money);
+}
+
+void Player::changeHP(float damage)
+{
+	_hp -= damage;
+
+	if (_hp < 0)
+		_hp = 0;
+
+	UIMANAGER->setHP(_hp);
 }
 
 void Player::move(int direct)

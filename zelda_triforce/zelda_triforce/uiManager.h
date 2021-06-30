@@ -19,6 +19,8 @@ private:
 
 	image* _number[10];
 
+	float _hp;
+	int _mp;
 	int _moneyCount;
 	int _bombCount;
 	int _arrowCount;
@@ -31,4 +33,7 @@ public:
 	void release();
 	void update();
 	void render(HDC hdc);
+
+	void setHP(float hp) { _hp = hp; }
+	void setMoney(int money) { _moneyCount = money; }
 };

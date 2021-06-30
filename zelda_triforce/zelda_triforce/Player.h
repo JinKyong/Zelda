@@ -10,7 +10,9 @@ private:
 	RECT _body;
 
 	//스탯
+	float _hp;
 	float _speed;
+	int _money;
 
 	//상태
 
@@ -27,6 +29,8 @@ public:
 	virtual void render();			//그리기 함수
 
 	//스탯 증감
+	void changeMoney(int num);
+	void changeHP(float damage);
 
 	//동작
 	void move(int direct); //플레이어 이동함수

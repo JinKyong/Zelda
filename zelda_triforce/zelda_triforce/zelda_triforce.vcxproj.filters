@@ -52,9 +52,6 @@
     <Filter Include="playGround\tile">
       <UniqueIdentifier>{96c860bf-4cd5-439a-a544-e6f81d7b6745}</UniqueIdentifier>
     </Filter>
-    <Filter Include="playGround\inventory">
-      <UniqueIdentifier>{8dfea613-b9be-425b-8c0e-13109c6e8e88}</UniqueIdentifier>
-    </Filter>
     <Filter Include="playGround\item">
       <UniqueIdentifier>{56bb5400-f62b-4df1-947c-c39d1823647e}</UniqueIdentifier>
     </Filter>
@@ -147,9 +144,6 @@
     <ClInclude Include="testStage.h">
       <Filter>playGround\stage</Filter>
     </ClInclude>
-    <ClInclude Include="inventory.h">
-      <Filter>playGround\inventory</Filter>
-    </ClInclude>
     <ClInclude Include="Slash.h">
       <Filter>playGround\state</Filter>
     </ClInclude>
@@ -179,6 +173,9 @@
     </ClInclude>
     <ClInclude Include="Carry.h">
       <Filter>playGround\state</Filter>
+    </ClInclude>
+    <ClInclude Include="inventoryManager.h">
+      <Filter>2DFramework\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -264,9 +261,6 @@
     <ClCompile Include="makeTile.cpp">
       <Filter>playGround\tile</Filter>
     </ClCompile>
-    <ClCompile Include="inventory.cpp">
-      <Filter>playGround\inventory</Filter>
-    </ClCompile>
     <ClCompile Include="Slash.cpp">
       <Filter>playGround\state</Filter>
     </ClCompile>
@@ -299,6 +293,9 @@
     </ClCompile>
     <ClCompile Include="Throw.cpp">
       <Filter>playGround\state</Filter>
+    </ClCompile>
+    <ClCompile Include="inventoryManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -162,7 +162,7 @@
     <ClInclude Include="Idle.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
-    <ClInclude Include="inventory.h" />
+    <ClInclude Include="inventoryManager.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="macroFunc.h" />
@@ -204,7 +204,7 @@
     <ClCompile Include="Idle.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
-    <ClCompile Include="inventory.cpp" />
+    <ClCompile Include="inventoryManager.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="makeTile.cpp" />

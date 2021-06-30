@@ -23,6 +23,7 @@
 #include "collisionManager.h"
 #include "uiManager.h"
 #include "tileManager.h"
+#include "inventoryManager.h"
 
 using namespace std;
 using namespace MACRO_FUNC;
@@ -49,7 +50,7 @@ using namespace MACRO_FUNC;
 #define COLLISIONMANAGER collisionManager::getSingleton()
 //#define ITEMMANAGER itemManager::getSingleton()
 #define UIMANAGER uiManager::getSingleton()
-//#define INVENTORYMANAGER inventoryManager::getSingleton()
+#define INVENTORYMANAGER inventoryManager::getSingleton()
 #define TILEMANAGER tileManager::getSingleton()
 
 #define SAFE_DELETE(p) { if(p) { delete(p); (p) = nullptr; } }

@@ -1,10 +1,10 @@
 #include "stdafx.h"
-#include "inventory.h"
+#include "inventoryManager.h"
 #include "candela.h"
 #include "boomerang.h"
 #include "mushroom.h"
 
-HRESULT inventory::init()
+HRESULT inventoryManager::init()
 {
 	_bgImg = IMAGEMANAGER->addImage("bg", "img/equip/all.bmp", 1024, 896, true, RGB(255, 0, 255));
 	_selImg = IMAGEMANAGER->addFrameImage("select", "img/equip/select.bmp", 208, 104, 2, 1, true, RGB(255, 0, 255));
@@ -37,17 +37,17 @@ HRESULT inventory::init()
 	return S_OK;
 }
 
-void inventory::release()
+void inventoryManager::release()
 {
 }
 
-void inventory::update()
+void inventoryManager::update()
 {
 	controlKey();
 	controlFrame();
 }
 
-void inventory::render(HDC hdc)
+void inventoryManager::render(HDC hdc)
 {
 	RECT rc = CAMERAMANAGER->getScreen();
 	_bgImg->render(hdc, rc.left, rc.top);
@@ -63,12 +63,12 @@ void inventory::render(HDC hdc)
 	_vItem[_index]->getImage()->render(hdc, rc.left + 800, rc.top + 100);
 }
 
-void inventory::addItem(item * item)
+void inventoryManager::addItem(item * item)
 {
 	_vItem.push_back(item);
 }
 
-void inventory::controlKey()
+void inventoryManager::controlKey()
 {
 	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
 	{
@@ -81,7 +81,7 @@ void inventory::controlKey()
 	}
 }
 
-void inventory::controlFrame()
+void inventoryManager::controlFrame()
 {
 	_count++;
 

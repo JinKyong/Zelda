@@ -2,7 +2,6 @@
 #include "playGround.h"
 #include "testStage.h"
 #include "stage1.h"
-#include "inventory.h"
 
 playGround::playGround()
 {
@@ -22,12 +21,7 @@ HRESULT playGround::init()
 	_player = new Player;
 	_player->init();
 
-	_inven = new inventory;
-	_inven->init();
-
-	IMAGEMANAGER->addImage("bmrang", "img/equip/boomerang.bmp", 64, 64, true, PINK);
-	IMAGEMANAGER->addImage("candela", "img/equip/candela2.bmp", 64, 64, true, PINK);
-	IMAGEMANAGER->addImage("mushroom", "img/equip/mushroom.bmp", 64, 64, true, PINK);
+	INVENTORYMANAGER->init();
 
 	TILEMANAGER->init(_player);
 	SCENEMANAGER->init(_player);
@@ -58,6 +52,9 @@ void playGround::release()
 {
 	gameNode::release();
 
+	INVENTORYMANAGER->release();
+	INVENTORYMANAGER->releaseSingleton();
+
 	TILEMANAGER->release();
 	TILEMANAGER->releaseSingleton();
 
@@ -66,8 +63,6 @@ void playGround::release()
 
 	SCENEMANAGER->release();
 	SCENEMANAGER->releaseSingleton();
-
-	_inven->release();
 }
 
 
@@ -82,21 +77,23 @@ void playGround::update()
 
 	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
 	{
-		if (!_invOpen)
+		if (INVENTORYMANAGER->isOpen())
 		{
 			//SCENEMANAGER->changeScene("inven");
-			_invOpen = true;
+			INVENTORYMANAGER->setOpen(false);
 		}
 		else
 		{
 			//SCENEMANAGER->changeScene("젤다");
-			_invOpen = false;
+			INVENTORYMANAGER->setOpen(true);
 		}
 	}
 
-	if (_invOpen) _inven->update();
-	else _player->update();
+	if (INVENTORYMANAGER->isOpen()) INVENTORYMANAGER->update();
+	
+	_player->update();
 
+	UIMANAGER->update();
 	SCENEMANAGER->update();
 	//CAMERAMANAGER->updateScreen(_player->getX(), _player->getY());
 }
@@ -115,7 +112,7 @@ void playGround::render()
 	SCENEMANAGER->render();
 	UIMANAGER->render(getMemDC());
 
-	if (_invOpen) _inven->render(getMemDC());
+	if (INVENTORYMANAGER->isOpen()) INVENTORYMANAGER->render(getMemDC());
 
 	//투명 브러쉬
 	/*HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);

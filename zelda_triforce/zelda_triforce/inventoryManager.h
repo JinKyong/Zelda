@@ -4,7 +4,7 @@
 
 class item;
 
-class inventory : public singletonBase<inventory>
+class inventoryManager : public singletonBase<inventoryManager>
 {
 private:
 	typedef vector<item*>			itemList;
@@ -27,9 +27,11 @@ private:
 	float _count;
 	int _index;
 
+	bool _open;
+
 public:
-	inventory() {};
-	~inventory() {};
+	inventoryManager() {};
+	~inventoryManager() {};
 
 	virtual HRESULT init();
 	virtual void release();
@@ -40,4 +42,9 @@ public:
 
 	void controlKey();
 	void controlFrame();
+
+
+
+	void setOpen(bool open) { _open = open; }
+	bool isOpen() { return _open; }
 };
