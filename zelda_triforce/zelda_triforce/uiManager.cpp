@@ -13,6 +13,8 @@ HRESULT uiManager::init(Player* player)
 	_arrow = IMAGEMANAGER->addImage("arrow", "img/ui/arrow.bmp", 56, 32, true, PINK);
 	_lifeText = IMAGEMANAGER->addImage("life_text", "img/ui/life_text.bmp", 176, 28, true, PINK);
 
+	for (int i = 0; i < MAXLIFE; i++) _life[i] = IMAGEMANAGER->addFrameImage("life", "img/ui/life.bmp", 84, 28, 3, 1, true, PINK);
+
 	//¼ýÀÚ
 	char str[128];
 	for (int i = 0; i < 10; i++)
@@ -42,4 +44,5 @@ void uiManager::render(HDC hdc)
 	_bomb->render(hdc, rc.left + 399, rc.top + 59);
 	_arrow->render(hdc, rc.left + 484, rc.top + 59);
 	_lifeText->render(hdc, rc.left + 711, rc.top + 59);
+	for (int i = 0; i < MAXLIFE; i++)	_life[i]->frameRender(hdc, rc.left + 643 + i * 32, rc.top + 95);
 }
