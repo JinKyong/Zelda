@@ -3,8 +3,8 @@
 
 HRESULT scout::init(POINT position)
 {
-	scout[0] = IMAGEMANAGER->addFrameImage("scoutMX", "img/enemy/scout move mix.bmp", 135, 378, 2, 4, true, RGB(255, 0, 255));
-	scout[1] = IMAGEMANAGER->addFrameImage("scoutSMX", "img/enemy/scout shift mix.bmp", 270, 378, 4, 4, true, RGB(255, 0, 255));
+	scout[0] = IMAGEMANAGER->addFrameImage("scoutMX", "img/enemy/scout move mix.bmp", 136, 380, 2, 4, true, RGB(255, 0, 255));
+	scout[1] = IMAGEMANAGER->addFrameImage("scoutSMX", "img/enemy/scout shift mix.bmp", 272, 380, 4, 4, true, RGB(255, 0, 255));
 
 
 	_x = position.x;
@@ -64,7 +64,6 @@ void scout::update()
 		if (_state == SCOUT_SHIFT)
 		{
 			scout[1]->setFrameY(_indexY);
-			if (_findway == 3)_findway = RND->getInt(4);
 			scout[1]->setFrameX(_indexH);
 			_next--;
 			_count = 0;

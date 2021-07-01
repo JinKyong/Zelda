@@ -8,6 +8,7 @@
 #include "scout.h"
 #include "mouse.h"
 #include <vector>
+#include "magic.h"
 
 enum enemyType
 {
@@ -46,6 +47,9 @@ private:
 	snake* eSnake;
 	mouse* eMouse;
 	boss* eBoss;
+	fireball* _fire;
+	circulator* _circul;
+	spread* _spread;
 
 	RECT prc;
 
@@ -67,6 +71,11 @@ public:
 	void removeEnemy(int arrNum);
 	void removeBoss(int arrNum);
 	
+	void fire();
+	void circulfire();
+	void spread();
+
+
 	vector<boss*> getVBoss() { return _vBoss; }
 	vector<boss*>::iterator getVIBoss() { return _viBoss; }
 

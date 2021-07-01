@@ -21,7 +21,8 @@ HRESULT stage1::init(Player * player)
 	_change = false;
 	_em = new enemyManager;
 	_em->init();
-	_em->setEnemy(1, 2500, 2500);
+	_em->setEnemy(_Egreen, 2800, 3000);
+	_em->setEnemy(_Eboss, 3000, 3000);
 
 	return S_OK;
 }

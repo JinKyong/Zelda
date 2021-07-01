@@ -20,6 +20,7 @@ public:
 
 	void setSlash(float x, float y);
 	void setChargeAttack(float x, float y);
+	void setKnife(float x, float y);
 
 	Effect* getSlash() { return _slash; }
 	Effect* getCgAttack() { return _cgAttack; }

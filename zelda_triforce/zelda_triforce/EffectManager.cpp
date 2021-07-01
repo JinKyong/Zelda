@@ -29,3 +29,5 @@ void EffectManager::setChargeAttack(float x, float y)
 	_cgAttack = new E_CgAttack;
 	_cgAttack->init(x, y);
 }
+
+

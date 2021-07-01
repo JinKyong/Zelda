@@ -103,6 +103,22 @@ void green::update()
 		_findway = RND->getInt(4);
 	}
 	_action->update();
+	if (_direction == 0)
+	{
+		_sword = RectMake(_rc.left, _rc.bottom, 30, 40);
+	}
+	if (_direction == 1)
+	{
+		_sword = RectMake(_rc.right - 30, _rc.top - 40, 30, 40);
+	}
+	if (_direction == 2)
+	{
+		_sword = RectMake(_rc.left - 40, _rc.bottom - 40, 40, 30);
+	}
+	if (_direction == 3)
+	{
+		_sword = RectMake(_rc.right, _rc.bottom - 40, 40, 30);
+	}
 	_rc = RectMake(greenI->getX() + (greenI->getFrameWidth() / 4), greenI->getY() + (greenI->getFrameHeight() / 4), greenI->getFrameWidth() / 2, greenI->getFrameHeight() / 2);
 }
 
@@ -112,8 +128,9 @@ void green::render()
 	{
 		EllipseMakeCenter(getMemDC(), greenI->getX() + greenI->getFrameWidth() / 2, greenI->getY() + greenI->getFrameHeight() / 2, _radius * 2, _radius * 2);
 		Rectangle(getMemDC(), _rc);
-
+		Rectangle(getMemDC(), _sword);
 	}
+	
 	draw();
 }
 

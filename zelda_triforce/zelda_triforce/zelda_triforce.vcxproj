@@ -178,6 +178,7 @@
     <ClInclude Include="item.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="macroFunc.h" />
+    <ClInclude Include="magic.h" />
     <ClInclude Include="mouse.h" />
     <ClInclude Include="rupee.h" />
     <ClInclude Include="mushroom.h" />
@@ -240,6 +241,7 @@
     <ClCompile Include="inventoryManager.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="keyManager.cpp" />
+    <ClCompile Include="magic.cpp" />
     <ClCompile Include="makeTile.cpp" />
     <ClCompile Include="mouse.cpp" />
     <ClCompile Include="rupee.cpp" />

@@ -15,6 +15,8 @@ class green : public enemy
 private:
 	greenG _state;				//스테이트 이넘 선언
 
+	RECT _sword;				//검 렉트
+
 	image* green[3];				//각 이미지에 따른 선언
 	image* greenI;
 public:

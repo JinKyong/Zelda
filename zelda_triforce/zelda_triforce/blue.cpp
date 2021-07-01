@@ -82,10 +82,26 @@ void blue::update()
 	if (_movecount >= 20 && _next > 0)
 	{
 		_movecount = 0;
-		if (_direction == 0)_action->moveTo(blueI, blueI->getX(), blueI->getY() + 30, 0.3f);
-		if (_direction == 1)_action->moveTo(blueI, blueI->getX(), blueI->getY() - 30, 0.3f);
-		if (_direction == 2)_action->moveTo(blueI, blueI->getX() - 30, blueI->getY(), 0.3f);
-		if (_direction == 3)_action->moveTo(blueI, blueI->getX() + 30, blueI->getY(), 0.3f);
+		if (_direction == 0)
+		{	
+			//EFFECTMANAGER->setKnife(_rc.left + 10, _rc.bottom);
+			_action->moveTo(blueI, blueI->getX(), blueI->getY() + 30, 0.3f);
+		}
+		if (_direction == 1)
+		{
+			//EFFECTMANAGER->setKnife(_rc.right - 50, _rc.top - 40);
+			_action->moveTo(blueI, blueI->getX(), blueI->getY() - 30, 0.3f);
+		}
+		if (_direction == 2)
+		{
+			//EFFECTMANAGER->setKnife(_rc.left - 40, _rc.top - 10);
+			_action->moveTo(blueI, blueI->getX() - 30, blueI->getY(), 0.3f);
+		}
+		if (_direction == 3)
+		{
+			//EFFECTMANAGER->setKnife(_rc.right, _rc.bottom - 10);
+			_action->moveTo(blueI, blueI->getX() + 30, blueI->getY(), 0.3f);
+		}
 		_next--;
 	}
 
@@ -104,6 +120,22 @@ void blue::update()
 		_findway = RND->getInt(4);
 	}
 	_action->update();
+	if (_direction == 0)
+	{
+		_sword=RectMake(_rc.left , _rc.bottom,30,40);
+	}
+	if (_direction == 1)
+	{
+		_sword=RectMake(_rc.right - 30, _rc.top - 40,30,40);
+	}
+	if (_direction == 2)
+	{
+		_sword=RectMake(_rc.left - 40, _rc.bottom - 40,40,30);
+	}
+	if (_direction == 3)
+	{
+		_sword=RectMake(_rc.right, _rc.bottom - 40,40,30);
+	}
 	_rc = RectMake(blueI->getX() + (blueI->getFrameWidth() / 4), blueI->getY() + (blueI->getFrameHeight() / 4), blueI->getFrameWidth() / 2, blueI->getFrameHeight() / 2);
 }
 
@@ -113,7 +145,7 @@ void blue::render()
 	{
 		EllipseMakeCenter(getMemDC(), blueI->getX() + blueI->getFrameWidth() / 2, blueI->getY() + blueI->getFrameHeight() / 2, _radius * 2, _radius * 2);
 		Rectangle(getMemDC(), _rc);
-
+		Rectangle(getMemDC(), _sword);
 	}
 	draw();
 }
