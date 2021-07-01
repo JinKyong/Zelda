@@ -12,7 +12,7 @@ private:
 
 	//╫╨ех
 	float _hp;
-	float _mp;
+	int _mp;
 	float _speed;
 
 	int _moneyCount;

@@ -39,8 +39,6 @@ void uiManager::release()
 
 void uiManager::update()
 {
-	if (KEYMANAGER->isOnceKeyDown('7'))	_hp -= 0.5f;
-	if (KEYMANAGER->isOnceKeyDown('8'))	_hp += 0.5f;
 }
 
 void uiManager::render(HDC hdc)
@@ -52,9 +50,12 @@ void uiManager::render(HDC hdc)
 		_rc = RectMake(rc.left + 159, rc.top + 91, 64, 64);
 		Rectangle(hdc, _rc);
 
-		char str[128];
-		sprintf_s(str, "HP : %d", _hp);
-		TextOut(hdc, rc.left + 20, rc.top + 20, str, strlen(str));
+		char hp[128];
+		char mp[128];
+		sprintf_s(hp, "HP : %d", _hp);
+		sprintf_s(mp, "HP : %d", _mp);
+		TextOut(hdc, rc.left + 20, rc.top + 20, hp, strlen(hp));
+		TextOut(hdc, rc.left + 20, rc.top + 40, mp, strlen(mp));
 	}
 
 	_gaugeBack->render(hdc, rc.left + 79 + 16, rc.top + 71 + 20 + (128 - _mp), 0, 0, 32, _mp);
