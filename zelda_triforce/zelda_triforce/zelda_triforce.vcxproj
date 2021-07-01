@@ -151,7 +151,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="action.h" />
     <ClInclude Include="boomerang.h" />
+    <ClInclude Include="boss.h" />
     <ClInclude Include="cameraManager.h" />
     <ClInclude Include="candela.h" />
     <ClInclude Include="Carry.h" />
@@ -160,6 +162,8 @@
     <ClInclude Include="collisionManager.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="EffectManager.h" />
+    <ClInclude Include="enemy.h" />
+    <ClInclude Include="enemyManager.h" />
     <ClInclude Include="E_CgAttack.h" />
     <ClInclude Include="E_Slash.h" />
     <ClInclude Include="gameNode.h" />
@@ -197,8 +201,10 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="action.cpp" />
     <ClCompile Include="addTileImages.cpp" />
     <ClCompile Include="boomerang.cpp" />
+    <ClCompile Include="boss.cpp" />
     <ClCompile Include="cameraManager.cpp" />
     <ClCompile Include="candela.cpp" />
     <ClCompile Include="Carry.cpp" />
@@ -207,6 +213,8 @@
     <ClCompile Include="collisionManager.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="EffectManager.cpp" />
+    <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="enemyManager.cpp" />
     <ClCompile Include="E_CgAttack.cpp" />
     <ClCompile Include="E_Slash.cpp" />
     <ClCompile Include="gameNode.cpp" />
