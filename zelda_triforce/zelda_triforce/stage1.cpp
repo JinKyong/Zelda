@@ -19,6 +19,9 @@ HRESULT stage1::init(Player * player)
 
 	_direct = ENDDIRECT;
 	_change = false;
+	_em = new enemyManager;
+	_em->init();
+	_em->setEnemy(1, 2500, 2500);
 
 	return S_OK;
 }
@@ -40,7 +43,7 @@ void stage1::update()
 
 	CAMERAMANAGER->updateScreen2(_player->getX(), _player->getY(), _current);
 	TILEMANAGER->update();
-
+	_em->update();
 	changeScene();
 }
 
@@ -51,6 +54,7 @@ void stage1::render()
 		if (_player->getZ() < i)
 			_player->render();
 		TILEMANAGER->render(getMemDC(), i);
+		_em->render(1);
 	}
 }
 

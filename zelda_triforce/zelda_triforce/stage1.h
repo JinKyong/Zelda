@@ -1,5 +1,6 @@
 #pragma once
 #include "Scene.h"
+#include "enemyManager.h"
 
 #define MAPWIDTH	128
 #define MAPHEIGHT	128
@@ -13,6 +14,8 @@ private:
 	RECT _div[2][2];
 	//0 ~ 128, 0 ~ 64
 	//0 ~ 128, 64 ~ 128
+
+	enemyManager* _em;
 
 	int _indexY;
 	int _indexX;

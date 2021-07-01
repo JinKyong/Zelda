@@ -2,6 +2,11 @@
 #include "gameNode.h"
 #include "enemy.h"
 #include "boss.h"
+#include "green.h"
+#include "blue.h"
+#include "snake.h"
+#include "scout.h"
+#include "mouse.h"
 #include <vector>
 
 enum enemyType
@@ -18,36 +23,18 @@ enum enemyType
 class enemyManager : public gameNode
 {
 private:
-	typedef vector<scout*>					vEScout;
-	typedef vector<scout*>::iterator		viEScout;
 
-	typedef vector<green*>					vEGreen;
-	typedef vector<green*>::iterator		viEGreen;
-
-	typedef vector<blue*>					vEBlue;
-	typedef vector<blue*>::iterator			viEBlue;
-
-	typedef vector<mouse*>					vEMouse;
-	typedef vector<mouse*>::iterator		viEMouse;
-
-	typedef vector<snake*>					vESnake;
-	typedef vector<snake*>::iterator   	    viESnake;
+	typedef vector<enemy*>					vEnemy;
+	typedef vector<enemy*>::iterator		viEnemy;
 
 	typedef vector<boss*>					vEBoss;
 	typedef vector<boss*>::iterator		    viEBoss;
 
 private:
 
-	vEScout _vScout;
-	viEScout _viScout;
-	vEGreen _vGreen;
-	viEGreen _viGreen;
-	vEBlue _vBlue;
-	viEBlue _viBlue;
-	vEMouse _vMouse;
-	viEMouse _viMouse;
-	vESnake _vSnake;
-	viESnake _viSnake;
+	
+	vEnemy _vEnemy;
+	viEnemy _viEnemy;
 
 
 	vEBoss _vBoss;
@@ -77,30 +64,13 @@ public:
 
 	void setEnemy(int ET, int i, int j);
 
-	void removeScout(int arrNum);
-	void removeBlue(int arrNum);
-	void removeGreen(int arrNum);
-	void removeSnake(int arrNum);
-	void removeMouse(int arrNum);
+	void removeEnemy(int arrNum);
 	void removeBoss(int arrNum);
-
-	vector<scout*> getVScout() { return _vScout; }
-	vector<scout*>::iterator getVIScout() { return _viScout; }
-
-	vector<green*> getVGreen() { return _vGreen; }
-	vector<green*>::iterator getVIGreen() { return _viGreen; }
-
-	vector<blue*> getVBlue() { return _vBlue; }
-	vector<blue*>::iterator getVIBlue() { return _viBlue; }
-
-	vector<snake*> getVSnake() { return _vSnake; }
-	vector<snake*>::iterator getVISnake() { return _viSnake; }
-
-	vector<mouse*> getVMouse() { return _vMouse; }
-	vector<mouse*>::iterator getVIMouse() { return _viMouse; }
-
+	
 	vector<boss*> getVBoss() { return _vBoss; }
 	vector<boss*>::iterator getVIBoss() { return _viBoss; }
 
+	vector<enemy*> getVEnemy() { return _vEnemy; }
+	vector<enemy*>::iterator getVIEnemy() { return _viEnemy; }
 };
 

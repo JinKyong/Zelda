@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="action.h" />
+    <ClInclude Include="blue.h" />
     <ClInclude Include="boomerang.h" />
     <ClInclude Include="boss.h" />
     <ClInclude Include="cameraManager.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="E_CgAttack.h" />
     <ClInclude Include="E_Slash.h" />
     <ClInclude Include="gameNode.h" />
+    <ClInclude Include="green.h" />
     <ClInclude Include="halfHeart.h" />
     <ClInclude Include="heart.h" />
     <ClInclude Include="Idle.h" />
@@ -176,6 +178,7 @@
     <ClInclude Include="item.h" />
     <ClInclude Include="keyManager.h" />
     <ClInclude Include="macroFunc.h" />
+    <ClInclude Include="mouse.h" />
     <ClInclude Include="rupee.h" />
     <ClInclude Include="mushroom.h" />
     <ClInclude Include="Player.h" />
@@ -186,8 +189,10 @@
     <ClInclude Include="Run.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="sceneManager.h" />
+    <ClInclude Include="scout.h" />
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="Slash.h" />
+    <ClInclude Include="snake.h" />
     <ClInclude Include="stage0.h" />
     <ClInclude Include="stage1.h" />
     <ClInclude Include="State.h" />
@@ -210,6 +215,7 @@
   <ItemGroup>
     <ClCompile Include="action.cpp" />
     <ClCompile Include="addTileImages.cpp" />
+    <ClCompile Include="blue.cpp" />
     <ClCompile Include="boomerang.cpp" />
     <ClCompile Include="boss.cpp" />
     <ClCompile Include="cameraManager.cpp" />
@@ -225,6 +231,7 @@
     <ClCompile Include="E_CgAttack.cpp" />
     <ClCompile Include="E_Slash.cpp" />
     <ClCompile Include="gameNode.cpp" />
+    <ClCompile Include="green.cpp" />
     <ClCompile Include="halfHeart.cpp" />
     <ClCompile Include="heart.cpp" />
     <ClCompile Include="Idle.cpp" />
@@ -234,6 +241,7 @@
     <ClCompile Include="item.cpp" />
     <ClCompile Include="keyManager.cpp" />
     <ClCompile Include="makeTile.cpp" />
+    <ClCompile Include="mouse.cpp" />
     <ClCompile Include="rupee.cpp" />
     <ClCompile Include="mushroom.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -243,7 +251,9 @@
     <ClCompile Include="Run.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="sceneManager.cpp" />
+    <ClCompile Include="scout.cpp" />
     <ClCompile Include="Slash.cpp" />
+    <ClCompile Include="snake.cpp" />
     <ClCompile Include="stage0.cpp" />
     <ClCompile Include="stage1.cpp" />
     <ClCompile Include="State.cpp" />
