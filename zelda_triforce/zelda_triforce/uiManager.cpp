@@ -19,6 +19,8 @@ HRESULT uiManager::init(Player* player)
 		
 	//루피테스트
 	_frametest = IMAGEMANAGER->addFrameImage("rupee", "img/item/rupee.bmp", 128, 56, 4, 1, true, RGB(255, 0, 255));
+	_count = 0;
+	_frametest->setFrameX(0);
 
 	char key[128], str[128];
 	for (int i = 0; i < 10; i++)
@@ -90,22 +92,19 @@ void uiManager::render(HDC hdc)
 
 	
 	//=====================루피 렌더링 테스트중===========================
-	int count = 0;
-	_frametest->setFrameX(0);
 
-	
-	if (count <= 4)
+
+	_count++;
+	if (_count > 4)
 	{
-		if (_frametest->getFrameX() <= _frametest->getMaxFrameX())
+		if (_frametest->getFrameX() < _frametest->getMaxFrameX())
 		{
 			_frametest->setFrameX(_frametest->getFrameX() + 1);
-			count++;
 		}
-
 		else
 		{
 			_frametest->setFrameX(0);
-			count = 0;
+			_count = 0;
 		}
 	}
 

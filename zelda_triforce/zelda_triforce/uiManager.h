@@ -29,6 +29,8 @@ private:
 	int _bombCount;
 	int _arrowCount;
 
+	int _count;
+
 public:
 	uiManager() {};
 	~uiManager() {};

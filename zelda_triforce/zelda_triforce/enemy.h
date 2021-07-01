@@ -62,7 +62,6 @@ private:
 	float x, y, z;				//X,Y,Z값
 	float bodyDMG;				//몸박 데미지
 
-
 	bool way;					//길을 갈 수 있는가 없는가.
 
 public:
@@ -154,6 +153,7 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
 	void draw();
 	void hitDamage(float damage);
 	float getHP() { return currentHP; }
@@ -161,6 +161,7 @@ public:
 	float getbodYDMG() { return bodyDMG; }
 	int getN() { return next; }
 	int getI() { return idle; }
+	int getZ() { return z; }
 };
 
 class blue :public gameNode
@@ -197,6 +198,7 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
 	void draw();
 	void hitDamage(float damage);
 	float getHP() { return currentHP; }
@@ -204,6 +206,7 @@ public:
 	float getbodYDMG() { return bodyDMG; }
 	int getN() { return next; }
 };
+
 class green : public gameNode
 {
 	greenG _state;				//스테이트 이넘 선언
@@ -238,6 +241,7 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
+
 	void draw();
 	void hitDamage(float damage);
 	float getHP() { return currentHP; }

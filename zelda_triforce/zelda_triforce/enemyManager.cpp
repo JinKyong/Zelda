@@ -45,8 +45,10 @@ void enemyManager::update()
 	}
 }
 
-void enemyManager::render()
+void enemyManager::render(int z)
 {
+	RECT rc = CAMERAMANAGER->getScreen();
+
 	for (_viScout = _vScout.begin(); _viScout != _vScout.end(); ++_viScout)
 	{
 		(*_viScout)->render();
@@ -61,7 +63,12 @@ void enemyManager::render()
 	}
 	for (_viMouse = _vMouse.begin(); _viMouse != _vMouse.end(); ++_viMouse)
 	{
-		(*_viMouse)->render();
+		RECT tmp;
+		if (IntersectRect(&tmp, &rc, &(*_viMouse)->getRect())) {
+
+			if ((*_viMouse)->getZ() < z)
+				(*_viMouse)->render();
+		}
 	}
 	for (_viSnake = _vSnake.begin(); _viSnake != _vSnake.end(); ++_viSnake)
 	{
@@ -77,7 +84,7 @@ void enemyManager::setEnemy(int ET, int i, int j)
 {
 	switch (ET)
 	{
-	case 0:
+	case 0://stage1 : ¹ÚÁã2 ¸¶¸®, ½ºÄ«¿ô 3¸¶¸®
 		eScout = new scout;
 		eScout->init(PointMake(i, j));
 		_vScout.push_back(eScout);

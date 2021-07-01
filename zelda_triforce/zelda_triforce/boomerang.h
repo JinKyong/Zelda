@@ -1,7 +1,6 @@
 #pragma once
 #include "item.h"
-class boomerang :
-	public item
+class boomerang : public item
 {
 private:
 
