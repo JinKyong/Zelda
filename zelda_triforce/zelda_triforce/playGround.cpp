@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "playGround.h"
-#include "testStage.h"
+#include "title.h"
+#include "stage0.h"
 #include "stage1.h"
 
 playGround::playGround()
@@ -27,10 +28,11 @@ HRESULT playGround::init()
 	SCENEMANAGER->init(_player);
 	UIMANAGER->init(_player);
 
-	SCENEMANAGER->addScene("test", new testStage);
+	SCENEMANAGER->addScene("title", new title);
+	SCENEMANAGER->addScene("stage0", new stage0);
 	SCENEMANAGER->addScene("stage1", new stage1);
 
-	SCENEMANAGER->changeScene("stage1");
+	SCENEMANAGER->changeScene("title");
 
 	_invOpen = false;
 	_debug = false;
@@ -88,7 +90,6 @@ void playGround::update()
 	}
 
 	if (INVENTORYMANAGER->isOpen()) INVENTORYMANAGER->update();	
-	else _player->update();
 
 	UIMANAGER->update();
 	SCENEMANAGER->update();
@@ -98,6 +99,9 @@ void playGround::update()
 
 void playGround::render()
 {
+	if (STREAMMANAGER->getPosition("title") < STREAMMANAGER->getLenthEnd("title"))
+		return;
+
 	PatBlt(getMemDC(), 0, 0, WINSIZEX, WINSIZEY, BLACKNESS);
 	//================제발 이 사이에 좀 그립시다==========================
 

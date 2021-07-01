@@ -4,13 +4,6 @@
 
 class Player;
 
-enum CAMERAFADE {
-	FADEOUT = -1,
-	NORMAL,
-	FADEIN,
-	ENDFADE
-};
-
 class Scene : public gameNode
 {
 protected:

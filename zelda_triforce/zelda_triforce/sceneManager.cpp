@@ -75,7 +75,7 @@ HRESULT sceneManager::changeScene(string sceneName)
 		//바꾸려는 씬을 현재씬으로 체인지
 		_currentScene = find->second;
 
-		//CAMERAMANAGER->setFade(FADEIN);
+		CAMERAMANAGER->setFade(FADEIN);
 
 		return S_OK;
 	}

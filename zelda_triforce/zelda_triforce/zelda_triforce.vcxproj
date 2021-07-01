@@ -188,20 +188,24 @@
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="singletonBase.h" />
     <ClInclude Include="Slash.h" />
+    <ClInclude Include="stage0.h" />
     <ClInclude Include="stage1.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="stateManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="streamManager.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="testStage.h" />
     <ClInclude Include="Throw.h" />
     <ClInclude Include="tileInfo.h" />
     <ClInclude Include="tileManager.h" />
     <ClInclude Include="timeManager.h" />
     <ClInclude Include="timer.h" />
+    <ClInclude Include="title.h" />
+    <ClInclude Include="txtData.h" />
     <ClInclude Include="uiManager.h" />
     <ClInclude Include="utils.h" />
+    <ClInclude Include="video.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="action.cpp" />
@@ -240,16 +244,20 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="Slash.cpp" />
+    <ClCompile Include="stage0.cpp" />
     <ClCompile Include="stage1.cpp" />
     <ClCompile Include="State.cpp" />
     <ClCompile Include="stateManager.cpp" />
-    <ClCompile Include="testStage.cpp" />
+    <ClCompile Include="streamManager.cpp" />
     <ClCompile Include="Throw.cpp" />
     <ClCompile Include="tileManager.cpp" />
     <ClCompile Include="timeManager.cpp" />
     <ClCompile Include="timer.cpp" />
+    <ClCompile Include="title.cpp" />
+    <ClCompile Include="txtData.cpp" />
     <ClCompile Include="uiManager.cpp" />
     <ClCompile Include="utils.cpp" />
+    <ClCompile Include="video.cpp" />
     <ClCompile Include="winMain.cpp" />
   </ItemGroup>
   <ItemGroup>

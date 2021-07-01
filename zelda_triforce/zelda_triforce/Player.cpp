@@ -63,6 +63,14 @@ void Player::render()
 {
 	if (PRINTMANAGER->isDebug()) {
 		Rectangle(getMemDC(), _body);
+
+		char str[128];
+		sprintf_s(str, "x : %f", _x);
+		TextOut(getMemDC(), _x - 50, _y - 120, str, strlen(str));
+		sprintf_s(str, "y : %f", _y);
+		TextOut(getMemDC(), _x - 50, _y - 100, str, strlen(str));
+		sprintf_s(str, "z : %f", _z);
+		TextOut(getMemDC(), _x - 50, _y - 80, str, strlen(str));
 	}
 
 	STATEMANAGER->render(getMemDC());

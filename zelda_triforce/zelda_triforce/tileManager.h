@@ -4,7 +4,7 @@
 #include <vector>
 #include <algorithm>
 
-#define MARGIN	7
+#define MARGIN	10
 
 class Player;
 

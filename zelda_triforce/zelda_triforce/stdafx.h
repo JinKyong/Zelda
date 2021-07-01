@@ -10,6 +10,7 @@
 #include <memory.h>
 #include <tchar.h>
 #include <iostream>
+#include "Resource.h"
 #include "macroFunc.h"
 #include "randomFunction.h"
 #include "keyManager.h"
@@ -22,8 +23,10 @@
 #include "printManager.h"
 #include "collisionManager.h"
 #include "uiManager.h"
-#include "tileManager.h"
 #include "inventoryManager.h"
+#include "tileManager.h"
+#include "txtData.h"
+#include "streamManager.h"
 
 using namespace std;
 using namespace MACRO_FUNC;
@@ -32,7 +35,7 @@ using namespace MACRO_FUNC;
 // ## 매크로 처리 ##
 //==================================
 
-#define WINNAME (LPTSTR)(TEXT("ZELDA"))
+#define WINNAME (LPTSTR)(TEXT("THE LEGEND OF ZELDA : A LINK TO THE PAST"))
 #define WINSTARTX 50	//윈도우 창 시작좌표 (left)
 #define WINSTARTY 50	//윈도우 창 시작좌표 (top)
 #define WINSIZEX 1024	//윈도우 가로크기
@@ -52,6 +55,8 @@ using namespace MACRO_FUNC;
 #define UIMANAGER uiManager::getSingleton()
 #define INVENTORYMANAGER inventoryManager::getSingleton()
 #define TILEMANAGER tileManager::getSingleton()
+#define TXTDATA txtData::getSingleton()
+#define STREAMMANAGER streamManager::getSingleton()
 
 #define SAFE_DELETE(p) { if(p) { delete(p); (p) = nullptr; } }
 #define SAFE_DELETE_ARRAY(p) { if(p) { delete[](p); (p) = nullptr; } }

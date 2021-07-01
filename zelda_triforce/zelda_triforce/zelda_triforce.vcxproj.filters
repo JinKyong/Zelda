@@ -67,6 +67,9 @@
     <Filter Include="playGround\enemy">
       <UniqueIdentifier>{7179df20-d5dd-4e64-8d7c-387eefa990c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="2DFramework\video">
+      <UniqueIdentifier>{0a6c8094-7272-4757-9e53-432539f27fbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -150,9 +153,6 @@
     <ClInclude Include="tileManager.h">
       <Filter>playGround\tile</Filter>
     </ClInclude>
-    <ClInclude Include="testStage.h">
-      <Filter>playGround\stage</Filter>
-    </ClInclude>
     <ClInclude Include="Slash.h">
       <Filter>playGround\state</Filter>
     </ClInclude>
@@ -221,6 +221,21 @@
     </ClInclude>
     <ClInclude Include="halfHeart.h">
       <Filter>playGround\item</Filter>
+    </ClInclude>
+    <ClInclude Include="streamManager.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="txtData.h">
+      <Filter>2DFramework\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="video.h">
+      <Filter>2DFramework\video</Filter>
+    </ClInclude>
+    <ClInclude Include="stage0.h">
+      <Filter>playGround\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="title.h">
+      <Filter>playGround\stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -300,9 +315,6 @@
     <ClCompile Include="tileManager.cpp">
       <Filter>playGround\tile</Filter>
     </ClCompile>
-    <ClCompile Include="testStage.cpp">
-      <Filter>playGround\stage</Filter>
-    </ClCompile>
     <ClCompile Include="makeTile.cpp">
       <Filter>playGround\tile</Filter>
     </ClCompile>
@@ -377,6 +389,21 @@
     </ClCompile>
     <ClCompile Include="halfHeart.cpp">
       <Filter>playGround\item</Filter>
+    </ClCompile>
+    <ClCompile Include="streamManager.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="txtData.cpp">
+      <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="video.cpp">
+      <Filter>2DFramework\video</Filter>
+    </ClCompile>
+    <ClCompile Include="stage0.cpp">
+      <Filter>playGround\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="title.cpp">
+      <Filter>playGround\stage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

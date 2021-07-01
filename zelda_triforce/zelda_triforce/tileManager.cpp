@@ -18,6 +18,9 @@ HRESULT tileManager::initMap(image * img, COLORREF rgb)
 	_background = img;
 	_backColor = rgb;
 
+	_mapBTile.clear();
+	_mapGTile.clear();
+
 	//타일 생성
 	for (int i = 0; i < _background->getHeight(); i++)
 		for (int j = 0; j < _background->getWidth(); j++)
@@ -56,11 +59,6 @@ void tileManager::update()
 {
 	//이미지클리핑
 	updateTile();
-	//플레이어 추가
-	//_renderTile.push_back(new TILE(0, 0, PLAYER, _player->getX(), _player->getY(), _player->getZ(), 
-	//	TILEX * 2, TILEY * 2, nullptr));
-	//에너미 추가
-	//
 
 	//sort(_renderTile.begin(), _renderTile.end(), compare);
 	sort(_renderBTile.begin(), _renderBTile.end(), compare);
@@ -126,20 +124,16 @@ void tileManager::updateTile()
 
 	//렌더 범위 계산(이미지 클리핑)
 	int initY = _screen.top / TILEY - MARGIN;
-	int endY = _screen.bottom / TILEY + MARGIN;
+	int endY = _screen.bottom / TILEY;
 	int initX = _screen.left / TILEX - MARGIN;
-	int endX = _screen.right / TILEX + MARGIN;
+	int endX = _screen.right / TILEX;
 
 
 	//예외처리
 	if (initY < 0)
 		initY = 0;
-	if (endY >= _background->getHeight())
-		endY = _background->getHeight() - 1;
 	if (initX < 0)
 		initX = 0;
-	if (endX >= _background->getWidth())
-		endX = _background->getWidth() - 1;
 
 	//출력할 타일 벡터 초기화
 	_renderBTile.clear();

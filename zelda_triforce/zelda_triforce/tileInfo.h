@@ -304,3 +304,9 @@ typedef struct tagTile {
 
 #define STATUE1		202
 #define STATUE2		203
+
+
+
+
+
+#define COLLISION	255

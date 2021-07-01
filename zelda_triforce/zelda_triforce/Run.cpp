@@ -29,6 +29,7 @@ void Run::update()
 
 void Run::render(HDC hdc)
 {
+	_player->setRect(_player->getX(), _player->getY(), 64, 64);
 	_img->frameRender(hdc, _player->getBody().left - 3, _player->getBody().top - 33);
 }
 

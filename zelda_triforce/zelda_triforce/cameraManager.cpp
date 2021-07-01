@@ -10,7 +10,7 @@ cameraManager::~cameraManager()
 }
 
 HRESULT cameraManager::init(int width, int height)
-{	
+{
 	//backDC와 frontDC크기 설정
 	_backWidth = width;
 	_backHeight = height;
@@ -18,9 +18,11 @@ HRESULT cameraManager::init(int width, int height)
 	_frontHeight = WINSIZEY;
 	//화면 Rect 생성
 	_screen = RectMake(0, 0, WINSIZEX, WINSIZEY);
+	_divScreen = RectMake(0, 0, WINSIZEX, WINSIZEY);
 	//fade화면
-	//_fadeScreen = IMAGEMANAGER->addImage("fade_B", "image/fade_B.bmp",
-	//	WINSIZEX, WINSIZEY, true, RGB(255, 0, 255), true);
+	_fadeScreen = IMAGEMANAGER->addImage("fade_B", "img/fade_B.bmp",
+		WINSIZEX, WINSIZEY, true, RGB(255, 0, 255), true);
+
 	_alpha = 255;
 	_fade = 0;
 
@@ -56,6 +58,23 @@ void cameraManager::updateScreen(float standardX, float standardY)
 	_screen = RectMake(x, y, _frontWidth / _zoom, _frontHeight / _zoom);
 }
 
+void cameraManager::updateScreen2(float standardX, float standardY, RECT rc)
+{
+	//플레이어 기준으로 화면(_screen)갱신
+	//playground.cpp의 update()에서 계속 갱신해주면 됨
+	//인수로 기준이 되는 객체의 x, y좌표를 받음(현재는 player의 x, y)
+
+	if (!_onMove)
+		resetCam();
+
+	float x = standardX;
+	float y = standardY + _camY;
+
+	onWindow2(x, y, rc.left, rc.right, rc.top, rc.bottom);
+	//갱신
+	_screen = RectMake(x, y, _frontWidth / _zoom, _frontHeight / _zoom);
+}
+
 void cameraManager::moveCam(int direct)
 {
 	_onMove = true;
@@ -74,7 +93,7 @@ void cameraManager::moveCam(int direct)
 
 void cameraManager::resetCam()
 {
-	if(_camY > 0)
+	if (_camY > 0)
 		_camY = _camY - 40 > 0 ? _camY - 40 : 0;
 	else if (_camY < 0)
 		_camY = _camY + 40 < 0 ? _camY + 40 : 0;
@@ -84,8 +103,8 @@ void cameraManager::fadeIn(HDC hdc)
 {
 	_alpha -= FADE * TIMEMANAGER->getElapsedTime();
 	if (_alpha < 0) _alpha = 0;
-	
-	if (_alpha == 0) _fade = 0;
+
+	if (_alpha == 0) _fade = NORMAL;
 
 	_fadeScreen->alphaRender(hdc, _screen.left, _screen.top, _alpha);
 }
@@ -94,8 +113,8 @@ void cameraManager::fadeOut(HDC hdc)
 {
 	_alpha += FADE * TIMEMANAGER->getElapsedTime();
 	if (_alpha > 255) _alpha = 255;
-	
-	if (_alpha == 255) _fade = 0;
+
+	if (_alpha == 255) _fade = NORMAL;
 
 	_fadeScreen->alphaRender(hdc, _screen.left, _screen.top, _alpha);
 }
@@ -125,7 +144,7 @@ void cameraManager::vibrateScreenOut(float standardX, float standardY, float mag
 	}
 }
 
-void cameraManager::render(HDC frontDC, int destX, int destY, HDC backDC)
+void cameraManager::render(HDC frontDC, int destX, int destY, HDC backDC, int ver)
 {
 	/********* 인수 설명 *********/ /*
 	HDC frontDC: 복사를 받을 DC (실제로 우리가 보는 화면)
@@ -135,6 +154,7 @@ void cameraManager::render(HDC frontDC, int destX, int destY, HDC backDC)
 	bool map: true면 전체맵 출력, false면 안 출력
 	bool mini: true면 미니맵 출력, false면 안 출력
 	*/
+
 
 	if (_zoom != 1.0) {
 		StretchBlt(
@@ -151,8 +171,8 @@ void cameraManager::render(HDC frontDC, int destX, int destY, HDC backDC)
 			SRCCOPY);
 	}
 
-	if (_fade == 1)			fadeIn(backDC);
-	else if(_fade == -1)	fadeOut(backDC);
+	if (_fade == FADEIN)		fadeIn(backDC);
+	else if (_fade == FADEOUT)	fadeOut(backDC);
 
 #ifdef _DEBUG
 	//PRINTMANAGER->print(backDC, 1700, 2000, "_fade : %d", _fade);
@@ -190,6 +210,27 @@ void cameraManager::onWindow(float & x, float & y)
 		y = 0;
 	else if (y + height * (1 - _ratioY) > _backHeight)
 		y = _backHeight - height;
+	else
+		y -= height * _ratioY;
+}
+
+void cameraManager::onWindow2(float & x, float & y, float initX, float endX, float initY, float endY)
+{
+	float width = _frontWidth / _zoom;
+	float height = _frontHeight / _zoom;
+
+	//X축 (좌, 우)
+	if (x - width * _ratioX < initX)
+		x = initX;
+	else if (x + width * (1 - _ratioX) > endX)
+		x = endX - width;
+	else
+		x -= width * _ratioX;
+	//Y축 (상, 하)
+	if (y - height * _ratioY < initY)
+		y = initY;
+	else if (y + height * (1 - _ratioY) > endY)
+		y = endY - height;
 	else
 		y -= height * _ratioY;
 }

@@ -2,13 +2,22 @@
 #include "singletonBase.h"
 #include "image.h"
 
-#define FADE	500
+#define FADE	300
+
+enum CAMERAFADE {
+	FADEOUT = -1,
+	NORMAL,
+	FADEIN,
+	ENDFADE
+};
 
 class cameraManager : public singletonBase<cameraManager>
 {
 private:
 	//카메라가 비추는 화면 크기(WINSIZEX, WINSIZEY)와 좌표(left, right, top, bottom)
 	RECT _screen;
+	RECT _divScreen;
+
 	int _backWidth, _backHeight;	//backDC 크기
 	int _frontWidth, _frontHeight;	//frontDC 크기
 	//fade
@@ -33,6 +42,7 @@ public:
 
 	//카메라 위치(screen) 갱신
 	void updateScreen(float standardX, float standardY);
+	void updateScreen2(float standardX, float standardY, RECT rc);
 	void moveCam(int direct);
 	void resetCam();
 
@@ -47,10 +57,11 @@ public:
 		float magnitude = 5.0f, float interval = 0);
 
 	//카메라 출력
-	void render(HDC frontDC, int destX, int destY, HDC backDC);
+	void render(HDC frontDC, int destX, int destY, HDC backDC, int ver = 1);
 
 	//카메라 예외처리
 	void onWindow(float& x, float& y);
+	void onWindow2(float& x, float& y, float initX, float endX, float initY, float endY);
 
 	//============ 접근자 ============//
 	RECT getScreen() { return _screen; }

@@ -17,8 +17,6 @@ void addObject();
 
 void tileManager::addTileImages()
 {
-	char str[128];
-
 	addBush();
 	addTree();
 	addStone();
@@ -31,6 +29,10 @@ void tileManager::addTileImages()
 	addTile();
 	addPath();
 	addObject();
+
+
+
+	IMAGEMANAGER->addImage(COLLISION, "img/tile/collisionTile.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
 }
 
 
@@ -151,7 +153,7 @@ void addRoad()
 	//road
 	for (int i = 1, j = ROAD1; j <= ROAD14; i++, j++) {
 		sprintf_s(str, "img/tile/ground/road%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
+		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
 	}
 	//fence
 	IMAGEMANAGER->addImage(FENCE1, "img/tile/ground/fence1.bmp", TILEX, TILEY * 2, true, RGB(255, 0, 255));
