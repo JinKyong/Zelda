@@ -12,7 +12,7 @@ HRESULT Player::init()
 	_body = RectMakeCenter(_x, _y, 64, 64);
 
 	//½ºÅÈ
-	_hp = 3;
+	_hp = 96;
 	_mp = 128;
 	_speed = 5.f;
 	_moneyCount = _bombCount = _arrowCount = 0;
@@ -47,8 +47,8 @@ void Player::update()
 	
 	//////////////////////////////////////////
 
-	if (KEYMANAGER->isOnceKeyDown('7'))	changeHP(0.5f);
-	if (KEYMANAGER->isOnceKeyDown('8'))	changeHP(-0.5f);
+	if (KEYMANAGER->isOnceKeyDown('7'))	changeHP(32);
+	if (KEYMANAGER->isOnceKeyDown('8'))	changeHP(-32);
 	if (KEYMANAGER->isOnceKeyDown('9'))	changeMP(5);
 	if (KEYMANAGER->isOnceKeyDown('0'))	changeMP(-5);
 	//========================================
@@ -73,7 +73,7 @@ void Player::changeHP(float damage)
 	_hp -= damage;
 
 	if (_hp < 0) _hp = 0;
-	if (_hp > 3) _hp = 3;
+	if (_hp > 96) _hp = 96;
 
 	UIMANAGER->setHP(_hp);
 }

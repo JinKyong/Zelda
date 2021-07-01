@@ -20,7 +20,7 @@ private:
 
 	image* _number[10];
 
-	float _hp;
+	int _hp;
 	int _mp;
 	int _moneyCount;
 	int _bombCount;

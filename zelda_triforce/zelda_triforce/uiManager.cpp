@@ -13,9 +13,9 @@ HRESULT uiManager::init(Player* player)
 	_arrow = IMAGEMANAGER->addImage("arrow", "img/ui/arrow.bmp", 56, 32, true, PINK);
 	_lifeText = IMAGEMANAGER->addImage("life_text", "img/ui/life_text.bmp", 176, 28, true, PINK);
 
-	_life = IMAGEMANAGER->addImage("life", "img/ui/life.bmp", 92, 28, true, PINK);
-	_halfLife = IMAGEMANAGER->addImage("lifeHalf", "img/ui/life_half.bmp", 92, 28, true, PINK);
-	_zeroLife = IMAGEMANAGER->addImage("lifeZero", "img/ui/life_zero.bmp", 92, 28, true, PINK);
+	_life = IMAGEMANAGER->addImage("life", "img/ui/life2.bmp", 96, 28, true, PINK);
+	_halfLife = IMAGEMANAGER->addImage("lifeHalf", "img/ui/life_half2.bmp", 96, 28, true, PINK);
+	_zeroLife = IMAGEMANAGER->addImage("lifeZero", "img/ui/life_zero2.bmp", 96, 28, true, PINK);
 		
 	char key[128], str[128];
 	for (int i = 0; i < 10; i++)
@@ -26,7 +26,7 @@ HRESULT uiManager::init(Player* player)
 	}
 	
 	//스탯
-	_hp = 3;
+	_hp = 96;
 	_mp = 128;
 	_moneyCount = _bombCount = _arrowCount = 0;
 
@@ -52,7 +52,7 @@ void uiManager::render(HDC hdc)
 
 		char hp[128];
 		char mp[128];
-		sprintf_s(hp, "HP : %d", _hp); //왜 계속 0일까요?>??????????????
+		sprintf_s(hp, "HP : %d", _hp);
 		sprintf_s(mp, "MP : %d", _mp);
 		TextOut(hdc, rc.left + 20, rc.top + 20, hp, strlen(hp));
 		TextOut(hdc, rc.left + 20, rc.top + 40, mp, strlen(mp));
@@ -66,9 +66,14 @@ void uiManager::render(HDC hdc)
 	_arrow->render(hdc, rc.left + 484, rc.top + 59);
 	_lifeText->render(hdc, rc.left + 711, rc.top + 59);
 
+	//363
+
 	_zeroLife->render(hdc, rc.left + 643, rc.top + 95);
-	_halfLife->render(hdc, rc.left + 643, rc.top + 95);
-	_life->render(hdc, rc.left + 643, rc.top + 95);
+	if (_hp > 0)
+	{
+		_halfLife->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp + 32, 28);
+		_life->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp, 28);
+	}
 
 	//money
 	_number[_moneyCount / 100]->render(hdc, rc.left + 260, rc.top + 95);

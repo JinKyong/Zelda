@@ -11,7 +11,7 @@ private:
 	RECT _body;
 
 	//╫╨ех
-	float _hp;
+	int _hp;
 	int _mp;
 	float _speed;
 
