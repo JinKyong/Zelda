@@ -52,8 +52,8 @@ void uiManager::render(HDC hdc)
 
 		char hp[128];
 		char mp[128];
-		sprintf_s(hp, "HP : %d", _hp);
-		sprintf_s(mp, "HP : %d", _mp);
+		sprintf_s(hp, "HP : %d", _hp); //왜 계속 0일까요?>??????????????
+		sprintf_s(mp, "MP : %d", _mp);
 		TextOut(hdc, rc.left + 20, rc.top + 20, hp, strlen(hp));
 		TextOut(hdc, rc.left + 20, rc.top + 40, mp, strlen(mp));
 	}
