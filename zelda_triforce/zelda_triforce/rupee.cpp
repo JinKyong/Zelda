@@ -24,5 +24,4 @@ void rupee::update()
 
 void rupee::render(HDC hdc, float x, float y)
 {
-	_img->frameRender(hdc, x, y);
 }

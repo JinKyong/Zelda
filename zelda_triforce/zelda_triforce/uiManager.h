@@ -16,6 +16,9 @@ private:
 	image* _halfLife;
 	image* _zeroLife;
 
+	//루피 테스트중
+	image* _frametest;
+
 	RECT _rc;
 
 	image* _number[10];

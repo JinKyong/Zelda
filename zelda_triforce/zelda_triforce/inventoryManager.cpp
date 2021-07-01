@@ -32,6 +32,8 @@ HRESULT inventoryManager::init()
 	_candela->init(_a, _b + 96 * 2, 0);
 	_vItem.push_back(_candela);
 
+	
+
 	_selItemRc = RectMake(_vItem[_index]->getInvX(), _vItem[_index]->getInvY(), 104, 104);
 
 	return S_OK;
