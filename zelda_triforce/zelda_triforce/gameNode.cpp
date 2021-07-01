@@ -32,6 +32,7 @@ HRESULT gameNode::init(bool managerInit)
 		TIMEMANAGER->init();
 		PRINTMANAGER->init();
 		COLLISIONMANAGER->init();
+		EFFECTMANAGER->init();
 	}
 
 	return S_OK;
@@ -59,6 +60,9 @@ void gameNode::release()
 
 		COLLISIONMANAGER->release();
 		COLLISIONMANAGER->releaseSingleton();
+
+		EFFECTMANAGER->release();
+		EFFECTMANAGER->releaseSingleton();
 	}
 
 	ReleaseDC(_hWnd, _hdc);

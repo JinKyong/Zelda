@@ -23,6 +23,7 @@
 #include "printManager.h"
 #include "collisionManager.h"
 #include "uiManager.h"
+#include "EffectManager.h"
 #include "inventoryManager.h"
 #include "tileManager.h"
 #include "txtData.h"
@@ -53,6 +54,7 @@ using namespace MACRO_FUNC;
 #define COLLISIONMANAGER collisionManager::getSingleton()
 //#define ITEMMANAGER itemManager::getSingleton()
 #define UIMANAGER uiManager::getSingleton()
+#define EFFECTMANAGER EffectManager::getSingleton()
 #define INVENTORYMANAGER inventoryManager::getSingleton()
 #define TILEMANAGER tileManager::getSingleton()
 #define TXTDATA txtData::getSingleton()

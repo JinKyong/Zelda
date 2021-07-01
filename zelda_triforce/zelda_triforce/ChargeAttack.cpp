@@ -11,7 +11,7 @@ HRESULT ChargeAttack::init(Player* player)
 	_img->setFrameX(0);
 	_img->setFrameY(_direct);
 
-	_player->getEm()->setChargeAttack(_player->getX(), _player->getY());
+	EFFECTMANAGER->setChargeAttack(_player->getX(), _player->getY());
 	return S_OK;
 }
 
@@ -32,7 +32,7 @@ void ChargeAttack::render(HDC hdc)
 		HBRUSH OldBrush = (HBRUSH)SelectObject(hdc, brush);
 		HPEN pen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
 		HPEN OldPen = (HPEN)SelectObject(hdc, pen);
-		_player->getEm()->getCgAttack()->render(hdc);
+		EFFECTMANAGER->getCgAttack()->render(hdc);
 		SelectObject(hdc, OldPen);
 		DeleteObject(pen);
 		SelectObject(hdc, OldBrush);

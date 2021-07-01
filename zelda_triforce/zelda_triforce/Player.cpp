@@ -22,7 +22,6 @@ HRESULT Player::init()
 
 	//ÀÌÆåÆ®
 	STATEMANAGER->init(this);
-	_effect = new EffectManager;
 
 	return S_OK;
 }

@@ -1,8 +1,9 @@
 #pragma once
+#include "singletonBase.h"
 #include "E_Slash.h"
 #include "E_CgAttack.h"
 
-class EffectManager
+class EffectManager : public singletonBase<EffectManager>
 {
 private:
 	Effect* _slash;
