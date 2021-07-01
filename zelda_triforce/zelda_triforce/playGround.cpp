@@ -79,19 +79,16 @@ void playGround::update()
 	{
 		if (INVENTORYMANAGER->isOpen())
 		{
-			//SCENEMANAGER->changeScene("inven");
 			INVENTORYMANAGER->setOpen(false);
 		}
 		else
 		{
-			//SCENEMANAGER->changeScene("Á©´Ù");
 			INVENTORYMANAGER->setOpen(true);
 		}
 	}
 
-	if (INVENTORYMANAGER->isOpen()) INVENTORYMANAGER->update();
-	
-	_player->update();
+	if (INVENTORYMANAGER->isOpen()) INVENTORYMANAGER->update();	
+	else _player->update();
 
 	UIMANAGER->update();
 	SCENEMANAGER->update();

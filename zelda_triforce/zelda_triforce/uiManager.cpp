@@ -13,16 +13,10 @@ HRESULT uiManager::init(Player* player)
 	_arrow = IMAGEMANAGER->addImage("arrow", "img/ui/arrow.bmp", 56, 32, true, PINK);
 	_lifeText = IMAGEMANAGER->addImage("life_text", "img/ui/life_text.bmp", 176, 28, true, PINK);
 
-	for (int i = 0; i < MAXLIFE; i++) _life[i] = IMAGEMANAGER->addFrameImage("life", "img/ui/life.bmp", 84, 28, 3, 1, true, PINK);
-
-	//mp
-	_mp = 128;
-
-	//숫자
-	_moneyCount = 0;
-	_bombCount = 0;
-	_arrowCount = 0;
-
+	_life = IMAGEMANAGER->addImage("life", "img/ui/life.bmp", 92, 28, true, PINK);
+	_halfLife = IMAGEMANAGER->addImage("lifeHalf", "img/ui/life_half.bmp", 92, 28, true, PINK);
+	_zeroLife = IMAGEMANAGER->addImage("lifeZero", "img/ui/life_zero.bmp", 92, 28, true, PINK);
+		
 	char key[128], str[128];
 	for (int i = 0; i < 10; i++)
 	{
@@ -31,6 +25,9 @@ HRESULT uiManager::init(Player* player)
 		_number[i] = IMAGEMANAGER->addImage(key, str, 28, 28, true, RGB(255, 0, 255));
 	}
 
+	_hp = 3;
+	_mp = 128;
+	_moneyCount = _bombCount = _arrowCount = 0;
 
 	//스탯
 
@@ -43,41 +40,21 @@ void uiManager::release()
 
 void uiManager::update()
 {
-	//테스트용 코드
-	//if (KEYMANAGER->isOnceKeyDown('1'))
-	//	_moneyCount += 6;
-
-	//if (KEYMANAGER->isOnceKeyDown('2'))
-	//	_bombCount += 6;
-
-	//if (KEYMANAGER->isOnceKeyDown('3'))
-	//	_arrowCount += 6;
-
-
-	//if (KEYMANAGER->isOnceKeyDown('4')) {
-	//	_mp += 10;
-	//	if (_mp > 128)
-	//		_mp = 128;
-	//}
-
-	//if (KEYMANAGER->isOnceKeyDown('5')) {
-	//	_mp -= 10;
-	//	if (_mp < 0)
-	//		_mp = 0;
-	//}
-
-	//if (_moneyCount > 999) _moneyCount = 999;
-	//if (_bombCount > 99) _bombCount = 99;
-	//if (_arrowCount > 99) _arrowCount = 99;
 }
 
 void uiManager::render(HDC hdc)
 {
 	RECT rc = CAMERAMANAGER->getScreen();
 
-	char str[128];
-	sprintf_s(str, "MP : %d", _mp);
-	TextOut(hdc, rc.left + 20, rc.top + 20, str, strlen(str));
+	//디버깅
+	if (PRINTMANAGER->isDebug()) {
+		_rc = RectMake(rc.left + 159, rc.top + 91, 64, 64);
+		Rectangle(hdc, _rc);
+
+		char str[128];
+		sprintf_s(str, "HP : %d", _hp);
+		TextOut(hdc, rc.left + 20, rc.top + 20, str, strlen(str));
+	}
 
 	_gaugeBack->render(hdc, rc.left + 79 + 16, rc.top + 71 + 20 + (128 - _mp), 0, 0, 32, _mp);
 	_gauge->render(hdc, rc.left + 79, rc.top + 71);
@@ -87,14 +64,9 @@ void uiManager::render(HDC hdc)
 	_arrow->render(hdc, rc.left + 484, rc.top + 59);
 	_lifeText->render(hdc, rc.left + 711, rc.top + 59);
 
-	for (int i = 0; i < MAXLIFE; i++)	_life[i]->frameRender(hdc, rc.left + 643 + i * 32, rc.top + 95);
-
-	//INVENTORYMANAGER->getvItem()[i]->getImage()->render(hdc, rc.left + 159, rc.top + 91);
-
-	if (PRINTMANAGER->isDebug()) {
-		_rc = RectMake(rc.left + 159, rc.top + 91, 64, 64);
-		Rectangle(hdc, _rc);
-	}
+	_zeroLife->render(hdc, rc.left + 643, rc.top + 95);
+	_halfLife->render(hdc, rc.left + 643, rc.top + 95);
+	_life->render(hdc, rc.left + 643, rc.top + 95);
 
 	//money
 	_number[_moneyCount / 100]->render(hdc, rc.left + 260, rc.top + 95);

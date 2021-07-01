@@ -43,8 +43,6 @@ public:
 	void controlKey();
 	void controlFrame();
 
-
-
 	void setOpen(bool open) { _open = open; }
 	bool isOpen() { return _open; }
 };

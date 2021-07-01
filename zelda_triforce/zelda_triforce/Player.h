@@ -12,8 +12,12 @@ private:
 
 	//스탯
 	float _hp;
+	float _mp;
 	float _speed;
-	int _money;
+
+	int _moneyCount;
+	int _bombCount;
+	int _arrowCount;
 
 	//상태
 
@@ -30,8 +34,12 @@ public:
 	virtual void render();			//그리기 함수
 
 	//스탯 증감
-	void changeMoney(int num);
 	void changeHP(float damage);
+	void changeMP(float useskill);
+
+	void changeMoney(int num);
+	void changeBomb(int num);
+	void changeArrow(int num);
 
 	//동작
 	void move(int direct); //플레이어 이동함수

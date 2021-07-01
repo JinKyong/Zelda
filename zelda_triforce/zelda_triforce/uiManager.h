@@ -1,8 +1,6 @@
 #pragma once
 #include "singletonBase.h"
 
-#define MAXLIFE 3
-
 class uiManager : public singletonBase<uiManager>
 {
 private:
@@ -12,8 +10,11 @@ private:
 	image* _money;
 	image* _bomb;
 	image* _arrow;
+
 	image* _lifeText;
-	image* _life[MAXLIFE];
+	image* _life;
+	image* _halfLife;
+	image* _zeroLife;
 
 	RECT _rc;
 
@@ -35,5 +36,9 @@ public:
 	void render(HDC hdc);
 
 	void setHP(float hp) { _hp = hp; }
+	void setMP(float mp) { _mp = mp; }
+
 	void setMoney(int money) { _moneyCount = money; }
+	void setBomb(int bomb) { _bombCount = bomb; }
+	void setArrow(int arrow) { _arrowCount = arrow; }
 };
