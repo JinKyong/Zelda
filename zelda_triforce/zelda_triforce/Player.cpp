@@ -97,6 +97,8 @@ void Player::changeMoney(int num)
 
 	UIMANAGER->setMoney(_moneyCount);
 }
+
+//생각해보니 bomb랑 arrow 아이템 구현을 안할건데... 이 함수가 필요가 있나요?
 void Player::changeBomb(int num)
 {
 	_bombCount += num;
