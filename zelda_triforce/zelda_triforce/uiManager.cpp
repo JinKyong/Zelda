@@ -93,6 +93,7 @@ void uiManager::render(HDC hdc)
 	int count = 0;
 	_frametest->setFrameX(0);
 
+	
 	if (count <= 4)
 	{
 		if (_frametest->getFrameX() <= _frametest->getMaxFrameX())
