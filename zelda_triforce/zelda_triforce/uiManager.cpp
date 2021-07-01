@@ -24,12 +24,11 @@ HRESULT uiManager::init(Player* player)
 		sprintf_s(str, "img/ui/%d.bmp", i);
 		_number[i] = IMAGEMANAGER->addImage(key, str, 28, 28, true, RGB(255, 0, 255));
 	}
-
+	
+	//½ºÅÈ
 	_hp = 3;
 	_mp = 128;
 	_moneyCount = _bombCount = _arrowCount = 0;
-
-	//½ºÅÈ
 
 	return S_OK;
 }
@@ -40,6 +39,8 @@ void uiManager::release()
 
 void uiManager::update()
 {
+	if (KEYMANAGER->isOnceKeyDown('7'))	_hp -= 0.5f;
+	if (KEYMANAGER->isOnceKeyDown('8'))	_hp += 0.5f;
 }
 
 void uiManager::render(HDC hdc)
