@@ -47,8 +47,8 @@ void Player::update()
 	
 	//////////////////////////////////////////
 
-	if (KEYMANAGER->isOnceKeyDown('7'))	changeHP(32);
-	if (KEYMANAGER->isOnceKeyDown('8'))	changeHP(-32);
+	if (KEYMANAGER->isOnceKeyDown('7'))	changeHP(16);
+	if (KEYMANAGER->isOnceKeyDown('8'))	changeHP(-16);
 	if (KEYMANAGER->isOnceKeyDown('9'))	changeMP(5);
 	if (KEYMANAGER->isOnceKeyDown('0'))	changeMP(-5);
 	//========================================

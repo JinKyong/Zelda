@@ -66,13 +66,22 @@ void uiManager::render(HDC hdc)
 	_arrow->render(hdc, rc.left + 484, rc.top + 59);
 	_lifeText->render(hdc, rc.left + 711, rc.top + 59);
 
-	//363
 
 	_zeroLife->render(hdc, rc.left + 643, rc.top + 95);
-	if (_hp > 0)
+
+	if (_hp >= 92)
 	{
-		_halfLife->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp + 32, 28);
-		_life->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp, 28);
+		_halfLife->render(hdc, rc.left + 643, rc.top + 95);
+		_life->render(hdc, rc.left + 643, rc.top + 95);
+	}
+	if (_hp < 92 && _hp > 0)
+	{
+		if (!(_hp % 32 == 0))
+		{
+			_halfLife->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp + 16, 28);
+			_life->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp - 16, 28);
+		}
+		if (_hp % 32 == 0)_life->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp, 28);
 	}
 
 	//money
