@@ -1,13 +1,13 @@
 #pragma once
 #include "item.h"
 
-class heart : public item
+class rupee : public item
 {
 private:
 
 public:
-	heart() {};
-	~heart() {};
+	rupee() {};
+	~rupee() {};
 
 	virtual HRESULT init(float x, float y, float z = 0);
 	virtual void release();

@@ -213,10 +213,13 @@
     <ClInclude Include="enemyManager.h">
       <Filter>playGround\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="money.h">
+    <ClInclude Include="heart.h">
       <Filter>playGround\item</Filter>
     </ClInclude>
-    <ClInclude Include="heart.h">
+    <ClInclude Include="rupee.h">
+      <Filter>playGround\item</Filter>
+    </ClInclude>
+    <ClInclude Include="halfHeart.h">
       <Filter>playGround\item</Filter>
     </ClInclude>
   </ItemGroup>
@@ -366,10 +369,13 @@
     <ClCompile Include="enemyManager.cpp">
       <Filter>playGround\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="money.cpp">
+    <ClCompile Include="heart.cpp">
       <Filter>playGround\item</Filter>
     </ClCompile>
-    <ClCompile Include="heart.cpp">
+    <ClCompile Include="rupee.cpp">
+      <Filter>playGround\item</Filter>
+    </ClCompile>
+    <ClCompile Include="halfHeart.cpp">
       <Filter>playGround\item</Filter>
     </ClCompile>
   </ItemGroup>

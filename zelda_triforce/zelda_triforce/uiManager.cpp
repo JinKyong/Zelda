@@ -45,6 +45,8 @@ void uiManager::render(HDC hdc)
 {
 	RECT rc = CAMERAMANAGER->getScreen();
 
+	_xitem->render(hdc, rc.left + 147, rc.top + 79);
+
 	//µð¹ö±ë
 	if (PRINTMANAGER->isDebug()) {
 		_rc = RectMake(rc.left + 159, rc.top + 91, 64, 64);
@@ -60,13 +62,11 @@ void uiManager::render(HDC hdc)
 
 	_gaugeBack->render(hdc, rc.left + 79 + 16, rc.top + 71 + 20 + (128 - _mp), 0, 0, 32, _mp);
 	_gauge->render(hdc, rc.left + 79, rc.top + 71);
-	_xitem->render(hdc, rc.left + 147, rc.top + 79);
 	_money->render(hdc, rc.left + 287, rc.top + 59);
 	_bomb->render(hdc, rc.left + 399, rc.top + 59);
 	_arrow->render(hdc, rc.left + 484, rc.top + 59);
+
 	_lifeText->render(hdc, rc.left + 711, rc.top + 59);
-
-
 	_zeroLife->render(hdc, rc.left + 643, rc.top + 95);
 
 	if (_hp >= 96)
