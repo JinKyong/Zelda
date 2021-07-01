@@ -69,12 +69,13 @@ void uiManager::render(HDC hdc)
 
 	_zeroLife->render(hdc, rc.left + 643, rc.top + 95);
 
-	if (_hp >= 92)
+	if (_hp >= 96)
 	{
 		_halfLife->render(hdc, rc.left + 643, rc.top + 95);
 		_life->render(hdc, rc.left + 643, rc.top + 95);
 	}
-	if (_hp < 92 && _hp > 0)
+
+	if (_hp < 96 && _hp > 0)
 	{
 		if (!(_hp % 32 == 0))
 		{

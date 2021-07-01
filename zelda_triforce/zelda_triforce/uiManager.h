@@ -35,7 +35,7 @@ public:
 	void update();
 	void render(HDC hdc);
 
-	void setHP(float hp) { _hp = hp; }
+	void setHP(int hp) { _hp = hp; }
 	void setMP(float mp) { _mp = mp; }
 
 	void setMoney(int money) { _moneyCount = money; }
