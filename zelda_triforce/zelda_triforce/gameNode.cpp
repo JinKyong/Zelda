@@ -64,6 +64,9 @@ void gameNode::release()
 
 		EFFECTMANAGER->release();
 		EFFECTMANAGER->releaseSingleton();
+
+		INVENTORYMANAGER->release();
+		INVENTORYMANAGER->releaseSingleton();
 	}
 
 	ReleaseDC(_hWnd, _hdc);

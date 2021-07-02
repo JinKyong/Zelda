@@ -53,9 +53,6 @@ void playGround::release()
 {
 	gameNode::release();
 
-	INVENTORYMANAGER->release();
-	INVENTORYMANAGER->releaseSingleton();
-
 	TILEMANAGER->release();
 	TILEMANAGER->releaseSingleton();
 
@@ -74,9 +71,7 @@ void playGround::update()
 	if (KEYMANAGER->isOnceKeyDown(VK_TAB)) {
 		_debug = !_debug;
 		PRINTMANAGER->setDebug(_debug);
-	}
-
-	
+	}	
 
 	INVENTORYMANAGER->update();
 

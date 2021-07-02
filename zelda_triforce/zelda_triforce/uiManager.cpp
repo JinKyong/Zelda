@@ -2,6 +2,8 @@
 #include "uiManager.h"
 #include "Player.h"
 
+#include "inventoryManager.h"
+
 HRESULT uiManager::init(Player* player)
 {
 	//이미지
@@ -47,9 +49,9 @@ void uiManager::render(HDC hdc)
 
 	_xitem->render(hdc, rc.left + 147, rc.top + 79);
 
+	_rc = RectMake(rc.left + 159, rc.top + 91, 64, 64);
 	//디버깅
 	if (PRINTMANAGER->isDebug()) {
-		_rc = RectMake(rc.left + 159, rc.top + 91, 64, 64);
 		Rectangle(hdc, _rc);
 
 		char hp[128];
@@ -62,6 +64,7 @@ void uiManager::render(HDC hdc)
 
 	_gaugeBack->render(hdc, rc.left + 79 + 16, rc.top + 71 + 20 + (128 - _mp), 0, 0, 32, _mp);
 	_gauge->render(hdc, rc.left + 79, rc.top + 71);
+
 	_money->render(hdc, rc.left + 287, rc.top + 59);
 	_bomb->render(hdc, rc.left + 399, rc.top + 59);
 	_arrow->render(hdc, rc.left + 484, rc.top + 59);
@@ -69,21 +72,22 @@ void uiManager::render(HDC hdc)
 	_lifeText->render(hdc, rc.left + 711, rc.top + 59);
 	_zeroLife->render(hdc, rc.left + 643, rc.top + 95);
 
+	INVENTORYMANAGER->getEquipItem()->render(hdc, _rc.left, _rc.top);
+
+
+	//====================================HP======================================
 	if (_hp >= 96)
 	{
 		_halfLife->render(hdc, rc.left + 643, rc.top + 95);
 		_life->render(hdc, rc.left + 643, rc.top + 95);
 	}
-
-	if (_hp < 96 && _hp > 0)
+	if (!(_hp % 32 == 0))
 	{
-		if (!(_hp % 32 == 0))
-		{
-			_halfLife->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp + 16, 28);
-			_life->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp - 16, 28);
-		}
-		if (_hp % 32 == 0)_life->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp, 28);
+		_halfLife->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp + 16, 28);
+		_life->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp - 16, 28);
 	}
+	if (_hp % 32 == 0)_life->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp, 28);
+	//============================================================================
 
 	//money
 	_number[_moneyCount / 100]->render(hdc, rc.left + 260, rc.top + 95);

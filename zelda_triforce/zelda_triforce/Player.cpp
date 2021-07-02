@@ -22,6 +22,7 @@ HRESULT Player::init()
 
 	//이펙트
 	STATEMANAGER->init(this);
+	INVENTORYMANAGER->init();
 
 	return S_OK;
 }
@@ -48,8 +49,8 @@ void Player::update()
 
 	if (KEYMANAGER->isOnceKeyDown('7'))	changeHP(16);
 	if (KEYMANAGER->isOnceKeyDown('8'))	changeHP(-16);
-	if (KEYMANAGER->isOnceKeyDown('9'))	changeMP(5);
-	if (KEYMANAGER->isOnceKeyDown('0'))	changeMP(-5);
+	if (KEYMANAGER->isOnceKeyDown('9'))	changeMP(4);  //CANDELA 32번 사용가능
+	if (KEYMANAGER->isOnceKeyDown('0'))	changeMP(-4);
 	//========================================
 
 	STATEMANAGER->update();
