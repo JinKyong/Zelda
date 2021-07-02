@@ -78,7 +78,7 @@ void playGround::update()
 
 	
 
-	if (INVENTORYMANAGER->isOpen()) INVENTORYMANAGER->update();
+	INVENTORYMANAGER->update();
 
 	UIMANAGER->update();
 	SCENEMANAGER->update();

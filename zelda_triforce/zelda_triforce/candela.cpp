@@ -47,7 +47,7 @@ void candela::controlFrame()
 	{
 		_count++;
 
-		if (_count >= 15)
+		if (_count >= 10)
 		{
 			if (_useImg->getFrameX() >= _useImg->getMaxFrameX())
 			{
