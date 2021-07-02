@@ -142,7 +142,7 @@ void circulator::fire(float x, float y, float angle, float speed)
 
 	tagCircul circulator;
 	ZeroMemory(&circulator, sizeof(tagCircul));
-	circulator._circulImage = IMAGEMANAGER->addFrameImage("circulator", "img/effect/circulator.bmp", 100, 50, 2, 1, true, PINK);
+	circulator._circulImage = IMAGEMANAGER->addFrameImage("circulator", "img/effect/circulator.bmp", 104, 51, 2, 1, true, PINK);
 	circulator._speed = speed;
 	circulator._radius = circulator._circulImage->getWidth() / 2;
 	circulator._x = circulator._fireX = x;
@@ -151,7 +151,7 @@ void circulator::fire(float x, float y, float angle, float speed)
 	circulator._angle = angle;
 
 	circulator._rc = RectMakeCenter(circulator._x, circulator._y,
-		33, 33);
+		52, 51);
 
 	_vCircul.push_back(circulator);
 
@@ -168,7 +168,7 @@ void circulator::move()
 
 
 		_viCircul->_rc = RectMakeCenter(_viCircul->_x, _viCircul->_y,
-			33,33);
+			52,51);
 
 		if (_range < getDistance(_viCircul->_x, _viCircul->_y, _viCircul->_fireX, _viCircul->_fireY))
 		{

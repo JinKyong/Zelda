@@ -85,7 +85,7 @@ void stage1::setEnemy()
 	_em->setEnemy(_Escout, 3200, 3200,2);
 	_em->setEnemy(_Esnake, 3400, 3200,3);
 	_em->setEnemy(_Emouse, 3500, 3200,4);
-	//_em->setBoss(3000, 3000);
+	_em->setBoss(3000, 2500);
 }
 
 void stage1::setDivRect()

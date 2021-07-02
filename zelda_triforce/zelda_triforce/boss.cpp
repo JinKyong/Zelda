@@ -89,21 +89,23 @@ void boss::update()
 	//
 	//	_state = BOSS_MOVE;
 	//}
-	//if (_mPossible&&_lightning)
-	//{
-	//	_action->moveTo(bossI, _midW - (bossI->getFrameWidth() / 2), _censor.top + 20, 2.1f);
-	//	_state = BOSS_MOVE;
-	//	_lCount = 0;
-	//}
+	if (_mPossible&&_lightning)
+	{
+		if (_x >= _midW-bossI->getFrameWidth()/2)_x -= _x - _midW-bossI->getFrameWidth()/2;
+		if (_x <= _midW-bossI->getFrameWidth()/2)_x += _midW - _x-bossI->getFrameWidth()/2;
+		if (_y >= _censor.top)_y -= _censor.top + 100 + _y;
+		_state = BOSS_MOVE;
+		_lCount = 0;
+	}
 	if (_aPossible)
 	{
 		_state = ATTACK;
 	}
 
-	if (bossI->getX() <= _censor.left)bossI->setX(_censor.left + 5);
-	if ((bossI->getX() + bossI->getFrameWidth()) >= _censor.right)bossI->setX(_censor.right - 5 - bossI->getFrameWidth());
-	if (bossI->getY() <= _censor.top)bossI->setY(_censor.top + 5);
-	if ((bossI->getY() + bossI->getFrameHeight()) >= _censor.bottom)bossI->setY(_censor.bottom - 5 - bossI->getFrameHeight());
+	if (_rc.left <= _censor.left)_x=_censor.left + 5;
+	if (_rc.right >= _censor.right)_x=_censor.right - 5 - bossI->getFrameWidth();
+	if (_rc.top <= _censor.top)_y=_censor.top + 5;
+	if (_y+ bossI->getFrameHeight() >= _censor.bottom)_y=_censor.bottom - 5 - bossI->getFrameHeight();
 
 	if (_count >= 9)
 	{
@@ -124,7 +126,7 @@ void boss::update()
 				_mPossible = true;
 			}
 			if (_indexX > boss[0]->getMaxFrameX())_indexX = 0;
-			_rc = RectMake(bossI->getX() + 10, bossI->getY() + 5, bossI->getFrameWidth() - 20, bossI->getFrameHeight() - 5);
+			_rc = RectMake(_x + 10, _y + 5, bossI->getFrameWidth() - 20, bossI->getFrameHeight() - 5);
 		}
 
 		if (_state == BOSS_MOVE)
@@ -142,7 +144,7 @@ void boss::update()
 				_aPossible = true;
 			}
 			if (_indexX > boss[1]->getMaxFrameX())_indexX = 0;
-			_rc = RectMake(bossI->getX() + 10, bossI->getY() + 5, boss[1]->getFrameWidth(), boss[1]->getFrameHeight());
+			_rc = RectMake(_x + 10, _y + 5, boss[1]->getFrameWidth(), boss[1]->getFrameHeight());
 		}
 	}
 	
@@ -162,11 +164,11 @@ void boss::draw()
 {
 	if (_state == BOSS_MOVE)
 	{
-		boss[1]->frameRender(getMemDC(), bossI->getX() + 10, bossI->getY() + 5, _indexX, 0);
+		boss[1]->frameRender(getMemDC(), _x + 10, _y + 5, _indexX, 0);
 	}
 	if (_state == ATTACK)
 	{
-		boss[0]->frameRender(getMemDC(), bossI->getX(), bossI->getY(), _indexX, _indexY);
+		boss[0]->frameRender(getMemDC(), _x, _y, _indexX, _indexY);
 	}
 }
 
