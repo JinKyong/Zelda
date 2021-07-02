@@ -1,6 +1,5 @@
 #pragma once
 #include "gameNode.h"
-#include "action.h"
 
 enum agahnim
 {
@@ -19,7 +18,6 @@ private:
 	image* boss[3];				//각 이미지에 따른 선언
 	image* bossI;
 
-	action* _action;			//액션 콜백
 
 	int _count;					//스테이트 끌어오기 카운트
 	int _indexX;					//프레임 순서 인덱스

@@ -1,6 +1,7 @@
 #pragma once
 #include "enemy.h"
 
+
 enum greenG
 {
 	GREEN_MOVE,
@@ -25,8 +26,8 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
-
 	virtual void draw();
+
 	virtual void hitDamage(float damage);
 };
 

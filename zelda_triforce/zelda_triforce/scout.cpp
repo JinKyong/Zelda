@@ -14,8 +14,7 @@ HRESULT scout::init(POINT position)
 	scoutI->setX(_x);
 	scoutI->setY(_y);
 	_state = SCOUT_MOVE;
-	_action = new action;
-	_action->init();
+	
 
 
 	_next = RND->getFromIntTo(5, 8);
@@ -74,10 +73,10 @@ void scout::update()
 	if (_movecount >= 20 && _next > 0)
 	{
 		_movecount = 0;
-		if (_direction == 0)_action->moveTo(scoutI, scoutI->getX(), scoutI->getY() + 30, 0.3f);
-		if (_direction == 1)_action->moveTo(scoutI, scoutI->getX(), scoutI->getY() - 30, 0.3f);
-		if (_direction == 2)_action->moveTo(scoutI, scoutI->getX() - 30, scoutI->getY(), 0.3f);
-		if (_direction == 3)_action->moveTo(scoutI, scoutI->getX() + 30, scoutI->getY(), 0.3f);
+		if (_direction == 0)_y += 30;
+		if (_direction == 1)_y -= 30;
+		if (_direction == 2)_x -= 30;
+		if (_direction == 3)_x += 30;
 		_next--;
 	}
 
@@ -91,8 +90,8 @@ void scout::update()
 		_direction = _findway;
 		_findway = RND->getInt(4);
 	}
-	_action->update();
-	_rc = RectMake(scoutI->getX(), scoutI->getY(), scoutI->getFrameWidth(), scoutI->getFrameHeight());
+	
+	_rc = RectMake(_x, _y, scoutI->getFrameWidth(), scoutI->getFrameHeight());
 }
 
 void scout::render()
@@ -109,11 +108,11 @@ void scout::draw()
 
 	if (_state == SCOUT_MOVE)
 	{
-		scout[0]->frameRender(getMemDC(), scoutI->getX(), scoutI->getY(), _indexX, _indexY);
+		scout[0]->frameRender(getMemDC(), _x, _y, _indexX, _indexY);
 	}
 	if (_state == SCOUT_SHIFT)
 	{
-		scout[1]->frameRender(getMemDC(), scoutI->getX(), scoutI->getY(), _indexH, _indexY);
+		scout[1]->frameRender(getMemDC(), _x, _y, _indexH, _indexY);
 	}
 }
 

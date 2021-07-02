@@ -83,9 +83,17 @@ private:
 	vector<tagCircul>				 _vCircul;
 	vector<tagCircul>::iterator		_viCircul;
 
+	vector<tagSpread>				 _vSpread;
+	vector<tagSpread>::iterator		_viSpread;
+
 	float _range;
 	int _fireMax;
+	int _index=0;
+	float innerX;
+	float innerY;
+
 	boss* _boss;
+	
 public:
 	circulator() {};
 	~circulator() {};
@@ -96,6 +104,7 @@ public:
 	void render();
 
 	void fire(float x, float y, float angle, float speed);
+	void spreadfire(float x, float y, float angle, float speed);
 
 	void move();
 
@@ -110,43 +119,43 @@ public:
 
 };
 
-class spread : public gameNode
-{
-private:
-	vector<tagSpread>				 _vSpread;
-	vector<tagSpread>::iterator		_viSpread;
-
-	float _range;
-	int _fireMax;
-	int _indexY = 0;
-	boss* _boss;
-public:
-	spread() {};
-	~spread() {};
-
-	HRESULT init(int bulletMax, float range);
-	void release();
-	void update();
-	void render();
-
-	void fire(float x, float y, float angle, float speed);
-
-	void move();
-
-	void setIndexY(int IndexY) { _indexY = IndexY; }
-
-	//총알을 지워달라고 소통하는 함수
-	void removeBullet(int arrNum);
-
-
-
-	vector<tagSpread> getVSpread() { return _vSpread; }
-	vector<tagSpread>::iterator getViSpread() { return _viSpread; }
-
-};
-
-
-class magic
-{
-};
+//class spread : public gameNode
+//{
+//private:
+//	vector<tagSpread>				 _vSpread;
+//	vector<tagSpread>::iterator		_viSpread;
+//
+//	float _range;
+//	int _fireMax;
+//	int _indexY = 0;
+//	boss* _boss;
+//public:
+//	spread() {};
+//	~spread() {};
+//
+//	HRESULT init(int bulletMax, float range);
+//	void release();
+//	void update();
+//	void render();
+//
+//	void fire(float x, float y, float angle, float speed);
+//
+//	void move();
+//
+//	void setIndexY(int IndexY) { _indexY = IndexY; }
+//
+//	//총알을 지워달라고 소통하는 함수
+//	void removeBullet(int arrNum);
+//
+//
+//
+//	vector<tagSpread> getVSpread() { return _vSpread; }
+//	vector<tagSpread>::iterator getViSpread() { return _viSpread; }
+//
+//};
+//
+//
+//class magic
+//{
+//};
 

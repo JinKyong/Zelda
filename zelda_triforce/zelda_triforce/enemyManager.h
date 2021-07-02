@@ -43,11 +43,12 @@ private:
 
 	fireball* _fire;
 	circulator* _circul;
-	spread* _spread;
+	//spread* _spread;
 
 	RECT prc;
 
 	int r;
+	int index;
 	float x2;
 	float y2;
 
@@ -60,7 +61,7 @@ public:
 	virtual void update();
 	virtual void render(int z);
 
-	void setEnemy(int ET, int i, int j);
+	void setEnemy(int ET, int i, int j,int k);
 	void setBoss(int i, int j);
 
 	void removeEnemy(int arrNum);
@@ -68,7 +69,6 @@ public:
 	
 	void fire();
 	void circulfire();
-	void spread();
 
 
 	vector<boss*> getVBoss() { return _vBoss; }

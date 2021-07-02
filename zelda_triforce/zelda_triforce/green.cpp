@@ -14,8 +14,7 @@ HRESULT green::init(POINT position)
 	greenI->setX(_x);
 	greenI->setY(_y);
 	_state = GREEN_MOVE;
-	_action = new action;
-	_action->init();
+	
 
 
 	_next = RND->getFromIntTo(5, 8);
@@ -51,7 +50,7 @@ void green::update()
 
 	_count++;
 	_movecount++;
-	if (_count >= 20)
+	if (_count >= 15)
 	{
 		if (_state == GREEN_MOVE)
 		{
@@ -81,10 +80,10 @@ void green::update()
 	if (_movecount >= 20 && _next > 0)
 	{
 		_movecount = 0;
-		if (_direction == 0)_action->moveTo(greenI, greenI->getX(), greenI->getY() + 30, 0.3f);
-		if (_direction == 1)_action->moveTo(greenI, greenI->getX(), greenI->getY() - 30, 0.3f);
-		if (_direction == 2)_action->moveTo(greenI, greenI->getX() - 30, greenI->getY(), 0.3f);
-		if (_direction == 3)_action->moveTo(greenI, greenI->getX() + 30, greenI->getY(), 0.3f);
+		if (_direction == 0)_y += 30;
+		if (_direction == 1)_y-=30;
+		if (_direction == 2)_x-=30;
+		if (_direction == 3)_x+=30;
 		_next--;
 	}
 
@@ -102,7 +101,6 @@ void green::update()
 		else if (_direction == 3)_direction = 2;
 		_findway = RND->getInt(4);
 	}
-	_action->update();
 	if (_direction == 0)
 	{
 		_sword = RectMake(_rc.left, _rc.bottom, 30, 40);
@@ -119,14 +117,14 @@ void green::update()
 	{
 		_sword = RectMake(_rc.right, _rc.bottom - 40, 40, 30);
 	}
-	_rc = RectMake(greenI->getX() + (greenI->getFrameWidth() / 4), greenI->getY() + (greenI->getFrameHeight() / 4), greenI->getFrameWidth() / 2, greenI->getFrameHeight() / 2);
+	_rc = RectMake(_x+ (greenI->getFrameWidth() / 4), _y + (greenI->getFrameHeight() / 4), greenI->getFrameWidth() / 2, greenI->getFrameHeight() / 2);
 }
 
 void green::render()
 {
 	if (PRINTMANAGER->isDebug())
 	{
-		EllipseMakeCenter(getMemDC(), greenI->getX() + greenI->getFrameWidth() / 2, greenI->getY() + greenI->getFrameHeight() / 2, _radius * 2, _radius * 2);
+		EllipseMakeCenter(getMemDC(), _x + greenI->getFrameWidth() / 2, _y + greenI->getFrameHeight() / 2, _radius * 2, _radius * 2);
 		Rectangle(getMemDC(), _rc);
 		Rectangle(getMemDC(), _sword);
 	}
@@ -138,11 +136,11 @@ void green::draw()
 {
 	if (_state == GREEN_MOVE)
 	{
-		green[0]->frameRender(getMemDC(), greenI->getX(), greenI->getY(), _indexX, _indexY);
+		green[0]->frameRender(getMemDC(), _x, _y, _indexX, _indexY);
 	}
 	if (_state == GREEN_SEARCH)
 	{
-		green[1]->frameRender(getMemDC(), greenI->getX(), greenI->getY(), _indexH, _indexY);
+		green[1]->frameRender(getMemDC(), _x, _y, _indexH, _indexY);
 	}
 }
 

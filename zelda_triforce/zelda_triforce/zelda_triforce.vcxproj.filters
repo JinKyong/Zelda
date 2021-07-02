@@ -207,9 +207,6 @@
     <ClInclude Include="enemy.h">
       <Filter>playGround\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="action.h">
-      <Filter>playGround\enemy</Filter>
-    </ClInclude>
     <ClInclude Include="enemyManager.h">
       <Filter>playGround\enemy</Filter>
     </ClInclude>
@@ -391,9 +388,6 @@
       <Filter>playGround\enemy</Filter>
     </ClCompile>
     <ClCompile Include="enemy.cpp">
-      <Filter>playGround\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="action.cpp">
       <Filter>playGround\enemy</Filter>
     </ClCompile>
     <ClCompile Include="enemyManager.cpp">

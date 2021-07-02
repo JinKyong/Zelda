@@ -14,8 +14,7 @@ HRESULT blue::init(POINT position)
 	blueI->setX(_x);
 	blueI->setY(_y);
 	_state = BLUE_MOVE;
-	_action = new action;
-	_action->init();
+	
 
 
 	_next = RND->getFromIntTo(5, 8);
@@ -82,26 +81,11 @@ void blue::update()
 	if (_movecount >= 20 && _next > 0)
 	{
 		_movecount = 0;
-		if (_direction == 0)
-		{	
-			//EFFECTMANAGER->setKnife(_rc.left + 10, _rc.bottom);
-			_action->moveTo(blueI, blueI->getX(), blueI->getY() + 30, 0.3f);
-		}
-		if (_direction == 1)
-		{
-			//EFFECTMANAGER->setKnife(_rc.right - 50, _rc.top - 40);
-			_action->moveTo(blueI, blueI->getX(), blueI->getY() - 30, 0.3f);
-		}
-		if (_direction == 2)
-		{
-			//EFFECTMANAGER->setKnife(_rc.left - 40, _rc.top - 10);
-			_action->moveTo(blueI, blueI->getX() - 30, blueI->getY(), 0.3f);
-		}
-		if (_direction == 3)
-		{
-			//EFFECTMANAGER->setKnife(_rc.right, _rc.bottom - 10);
-			_action->moveTo(blueI, blueI->getX() + 30, blueI->getY(), 0.3f);
-		}
+		if (_direction == 0)_y += 30;
+		if (_direction == 1)_y -= 30;
+		if (_direction == 2)_x -= 30;
+		if (_direction == 3)_x += 30;
+		
 		_next--;
 	}
 
@@ -119,7 +103,6 @@ void blue::update()
 		else if (_direction == 3)_direction = 2;
 		_findway = RND->getInt(4);
 	}
-	_action->update();
 	if (_direction == 0)
 	{
 		_sword=RectMake(_rc.left , _rc.bottom,30,40);
@@ -136,14 +119,14 @@ void blue::update()
 	{
 		_sword=RectMake(_rc.right, _rc.bottom - 40,40,30);
 	}
-	_rc = RectMake(blueI->getX() + (blueI->getFrameWidth() / 4), blueI->getY() + (blueI->getFrameHeight() / 4), blueI->getFrameWidth() / 2, blueI->getFrameHeight() / 2);
+	_rc = RectMake(_x + (blueI->getFrameWidth() / 4), _y + (blueI->getFrameHeight() / 4), blueI->getFrameWidth() / 2, blueI->getFrameHeight() / 2);
 }
 
 void blue::render()
 {
 	if (PRINTMANAGER->isDebug())
 	{
-		EllipseMakeCenter(getMemDC(), blueI->getX() + blueI->getFrameWidth() / 2, blueI->getY() + blueI->getFrameHeight() / 2, _radius * 2, _radius * 2);
+		EllipseMakeCenter(getMemDC(), _x + blueI->getFrameWidth() / 2, _y + blueI->getFrameHeight() / 2, _radius * 2, _radius * 2);
 		Rectangle(getMemDC(), _rc);
 		Rectangle(getMemDC(), _sword);
 	}
@@ -154,11 +137,11 @@ void blue::draw()
 {
 	if (_state == BLUE_MOVE)
 	{
-		blue[0]->frameRender(getMemDC(), blueI->getX(), blueI->getY(), _indexX, _indexY);
+		blue[0]->frameRender(getMemDC(), _x, _y, _indexX, _indexY);
 	}
 	if (_state == BLUE_SEARCH)
 	{
-		blue[1]->frameRender(getMemDC(), blueI->getX(), blueI->getY(), _indexH, _indexY);
+		blue[1]->frameRender(getMemDC(), _x, _y, _indexH, _indexY);
 	}
 }
 

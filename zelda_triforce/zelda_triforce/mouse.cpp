@@ -15,8 +15,7 @@ HRESULT mouse::init(POINT position)
 	mouseI->setX(_x);
 	mouseI->setY(_y);
 	_state = MOUSE_IDLE;
-	_action = new action;
-	_action->init();
+	
 
 	_next = RND->getFromIntTo(4, 10);
 	_findway = RND->getInt(4);
@@ -27,7 +26,7 @@ HRESULT mouse::init(POINT position)
 	_z = 1;
 	_idle = _next + 2;
 
-	_rc = RectMake(mouseI->getX(), mouseI->getY(), mouseI->getFrameWidth(), mouseI->getFrameHeight());
+	_rc = RectMake(_x, _y, mouseI->getFrameWidth(), mouseI->getFrameHeight());
 
 	_indexX = 0;
 	_indexH = 0;
@@ -76,10 +75,10 @@ void mouse::update()
 	if (_movecount > 20 && _next > 0 && _next >= _idle)
 	{
 		_movecount = 0;
-		if (_direction == 0)_action->moveTo(mouseI, mouseI->getX(), mouseI->getY() + 30, 0.3f);
-		if (_direction == 1)_action->moveTo(mouseI, mouseI->getX(), mouseI->getY() - 30, 0.3f);
-		if (_direction == 2)_action->moveTo(mouseI, mouseI->getX() - 30, mouseI->getY(), 0.3f);
-		if (_direction == 3)_action->moveTo(mouseI, mouseI->getX() + 30, mouseI->getY(), 0.3f);
+		if (_direction == 0)_y += 30;
+		if (_direction == 1)_y -= 30;
+		if (_direction == 2)_x -= 30;
+		if (_direction == 3)_x += 30;
 		_next--;
 		_idle--;
 	}
@@ -90,8 +89,7 @@ void mouse::update()
 		_findway = RND->getInt(4);
 		_idle = _next + 2;
 	}
-	_action->update();
-	_rc = RectMake(mouseI->getX(), mouseI->getY(), mouseI->getFrameWidth(), mouseI->getFrameHeight());
+	_rc = RectMake(_x, _y, mouseI->getFrameWidth(), mouseI->getFrameHeight());
 }
 
 void mouse::render()
@@ -107,11 +105,11 @@ void mouse::draw()
 {
 	if (_state == MOUSE_MOVE)
 	{
-		mouse[0]->frameRender(getMemDC(), mouseI->getX(), mouseI->getY(), _indexX, _indexY);
+		mouse[0]->frameRender(getMemDC(), _x, _y, _indexX, _indexY);
 	}
 	if (_state == MOUSE_IDLE)
 	{
-		mouse[1]->frameRender(getMemDC(), mouseI->getX(), mouseI->getY(), _indexH, _indexY);
+		mouse[1]->frameRender(getMemDC(), _x, _y, _indexH, _indexY);
 	}
 }
 

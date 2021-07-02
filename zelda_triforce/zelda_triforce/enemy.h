@@ -1,15 +1,13 @@
 #pragma once
 #include "gameNode.h"
-#include "action.h"
+#define ENEMYMAX 10
 
 class enemy : public gameNode
 {
 protected:
 
 	RECT _rc;					//각 이미지의 렉트
-
-	action* _action;			//액션 콜백
-
+	
 	int _state;					//스테이트 현재상태 불러오기
 	int _next;					//다음 움직이는 횟수
 	int _findway;				//다음 움직이는 방향
@@ -33,7 +31,7 @@ public:
 	virtual void update()=0;
 	virtual void render()=0;
 	virtual void draw()=0;
-	virtual void hitDamage(float damage)=0;
+
 
 	float getHP() { return _currentHP; }
 	RECT getRC() { return _rc; }

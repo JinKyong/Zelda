@@ -23,7 +23,6 @@ public:
 	virtual void release();
 	virtual void update();
 	virtual void render();
-
 	virtual void draw();
 	virtual void hitDamage(float damage);
 

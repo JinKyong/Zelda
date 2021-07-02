@@ -23,8 +23,7 @@ HRESULT boss::init(POINT position)
 	bossI->setX(_x - 44);
 	bossI->setY(_y - 35);
 	_state = ATTACK;
-	_action = new action;
-	_action->init();
+	
 
 	_aPossible = true;
 	_mPossible = false;
@@ -77,25 +76,25 @@ void boss::update()
 	else
 		_indexY = 0;
 
-	if (_mPossible && !_lightning)
-	{
-		if (_ptMouse.x + CAMERAMANAGER->getScreen().left < _midW&&
-			_ptMouse.y + CAMERAMANAGER->getScreen().top < _midH)_action->moveTo(bossI, _censor.right - bossI->getFrameWidth() - RND->getFromIntTo(5, 20), _ptMouse.y + RND->getInt(30), 2.1f);
-		if (_ptMouse.x + CAMERAMANAGER->getScreen().left > _midW&&
-			_ptMouse.y + CAMERAMANAGER->getScreen().top > _midH)_action->moveTo(bossI, _censor.left + RND->getFromIntTo(5, 20), _ptMouse.y + RND->getFromIntTo(-30, 0), 2.1f);
-		if (_ptMouse.x + CAMERAMANAGER->getScreen().left > _midW&&
-			_ptMouse.y + CAMERAMANAGER->getScreen().top < _midH)_action->moveTo(bossI, _ptMouse.x + RND->getFromIntTo(-30, 0), _censor.bottom - bossI->getFrameHeight() - RND->getInt(30), 2.1f);
-		if (_ptMouse.x + CAMERAMANAGER->getScreen().left<_midW&&
-			_ptMouse.y + CAMERAMANAGER->getScreen().top > _midH)_action->moveTo(bossI, _ptMouse.x + RND->getInt(30), _censor.top + RND->getInt(30), 2.1f);
-
-		_state = BOSS_MOVE;
-	}
-	if (_mPossible&&_lightning)
-	{
-		_action->moveTo(bossI, _midW - (bossI->getFrameWidth() / 2), _censor.top + 20, 2.1f);
-		_state = BOSS_MOVE;
-		_lCount = 0;
-	}
+	//if (_mPossible && !_lightning)
+	//{
+	//	if (_ptMouse.x + CAMERAMANAGER->getScreen().left < _midW&&
+	//		_ptMouse.y + CAMERAMANAGER->getScreen().top < _midH)_action->moveTo(bossI, _censor.right - bossI->getFrameWidth() - RND->getFromIntTo(5, 20), _ptMouse.y + RND->getInt(30), 2.1f);
+	//	if (_ptMouse.x + CAMERAMANAGER->getScreen().left > _midW&&
+	//		_ptMouse.y + CAMERAMANAGER->getScreen().top > _midH)_action->moveTo(bossI, _censor.left + RND->getFromIntTo(5, 20), _ptMouse.y + RND->getFromIntTo(-30, 0), 2.1f);
+	//	if (_ptMouse.x + CAMERAMANAGER->getScreen().left > _midW&&
+	//		_ptMouse.y + CAMERAMANAGER->getScreen().top < _midH)_action->moveTo(bossI, _ptMouse.x + RND->getFromIntTo(-30, 0), _censor.bottom - bossI->getFrameHeight() - RND->getInt(30), 2.1f);
+	//	if (_ptMouse.x + CAMERAMANAGER->getScreen().left<_midW&&
+	//		_ptMouse.y + CAMERAMANAGER->getScreen().top > _midH)_action->moveTo(bossI, _ptMouse.x + RND->getInt(30), _censor.top + RND->getInt(30), 2.1f);
+	//
+	//	_state = BOSS_MOVE;
+	//}
+	//if (_mPossible&&_lightning)
+	//{
+	//	_action->moveTo(bossI, _midW - (bossI->getFrameWidth() / 2), _censor.top + 20, 2.1f);
+	//	_state = BOSS_MOVE;
+	//	_lCount = 0;
+	//}
 	if (_aPossible)
 	{
 		_state = ATTACK;
@@ -146,7 +145,7 @@ void boss::update()
 			_rc = RectMake(bossI->getX() + 10, bossI->getY() + 5, boss[1]->getFrameWidth(), boss[1]->getFrameHeight());
 		}
 	}
-	_action->update();
+	
 }
 
 void boss::render()

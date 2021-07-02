@@ -21,6 +21,7 @@ void enemyManager::update()
 	
 	for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); ++_viEnemy)
 	{
+		
 		(*_viEnemy)->update();
 	}
 	
@@ -67,7 +68,7 @@ void enemyManager::render(int z)
 	_circul->render();
 }
 
-void enemyManager::setEnemy(int ET, int i, int j)
+void enemyManager::setEnemy(int ET, int i, int j, int k)
 {
 	enemy* Enemy;
 
