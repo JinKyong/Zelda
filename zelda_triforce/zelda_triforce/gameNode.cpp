@@ -33,6 +33,7 @@ HRESULT gameNode::init(bool managerInit)
 		PRINTMANAGER->init();
 		COLLISIONMANAGER->init();
 		EFFECTMANAGER->init();
+		INVENTORYMANAGER->init();
 	}
 
 	return S_OK;
