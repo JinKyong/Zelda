@@ -16,11 +16,6 @@ HRESULT uiManager::init(Player* player)
 	_life = IMAGEMANAGER->addImage("life", "img/ui/life2.bmp", 96, 28, true, PINK);
 	_halfLife = IMAGEMANAGER->addImage("lifeHalf", "img/ui/life_half2.bmp", 96, 28, true, PINK);
 	_zeroLife = IMAGEMANAGER->addImage("lifeZero", "img/ui/life_zero2.bmp", 96, 28, true, PINK);
-		
-	//루피테스트
-	_frametest = IMAGEMANAGER->addFrameImage("rupee", "img/item/rupee.bmp", 128, 56, 4, 1, true, RGB(255, 0, 255));
-	_count = 0;
-	_frametest->setFrameX(0);
 
 	char key[128], str[128];
 	for (int i = 0; i < 10; i++)
@@ -89,27 +84,6 @@ void uiManager::render(HDC hdc)
 		}
 		if (_hp % 32 == 0)_life->render(hdc, rc.left + 643, rc.top + 95, 0, 0, _hp, 28);
 	}
-
-	
-	//=====================루피 렌더링 테스트중===========================
-
-
-	_count++;
-	if (_count > 4)
-	{
-		if (_frametest->getFrameX() < _frametest->getMaxFrameX())
-		{
-			_frametest->setFrameX(_frametest->getFrameX() + 1);
-		}
-		else
-		{
-			_frametest->setFrameX(0);
-			_count = 0;
-		}
-	}
-
-	_frametest->frameRender(hdc, rc.left + 500, rc.top + 500);
-	//==================================================================
 
 	//money
 	_number[_moneyCount / 100]->render(hdc, rc.left + 260, rc.top + 95);

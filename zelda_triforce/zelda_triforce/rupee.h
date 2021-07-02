@@ -4,6 +4,7 @@
 class rupee : public item
 {
 private:
+	int _count;
 
 public:
 	rupee() {};
