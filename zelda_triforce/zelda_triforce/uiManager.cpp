@@ -53,13 +53,17 @@ void uiManager::render(HDC hdc)
 	//µð¹ö±ë
 	if (PRINTMANAGER->isDebug()) {
 		Rectangle(hdc, _rc);
+		int _type = INVENTORYMANAGER->getEquipItem()->getType();
 
 		char hp[128];
 		char mp[128];
+		char type[128];
 		sprintf_s(hp, "HP : %d", _hp);
 		sprintf_s(mp, "MP : %d", _mp);
+		sprintf_s(type, "TYPE : %d", _type);
 		TextOut(hdc, rc.left + 20, rc.top + 20, hp, strlen(hp));
 		TextOut(hdc, rc.left + 20, rc.top + 40, mp, strlen(mp));
+		TextOut(hdc, rc.left + 20, rc.top + 60, type, strlen(type));
 	}
 
 	_gaugeBack->render(hdc, rc.left + 79 + 16, rc.top + 71 + 20 + (128 - _mp), 0, 0, 32, _mp);
