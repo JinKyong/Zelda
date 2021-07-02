@@ -42,7 +42,8 @@ void enemyManager::render(int z)
 	
 	for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); ++_viEnemy)
 	{
-		(*_viEnemy)->render();
+		if((*_viEnemy)->getZ() < z)
+			(*_viEnemy)->render();
 	}
 	
 	
@@ -59,7 +60,8 @@ void enemyManager::render(int z)
 	
 	for (_viBoss = _vBoss.begin(); _viBoss != _vBoss.end(); ++_viBoss)
 	{
-		(*_viBoss)->render();
+		if ((*_viBoss)->getZ() < z)
+			(*_viBoss)->render();
 	}
 	_fire->render();
 	_circul->render();
@@ -67,38 +69,38 @@ void enemyManager::render(int z)
 
 void enemyManager::setEnemy(int ET, int i, int j)
 {
+	enemy* Enemy;
+
 	switch (ET)
 	{
-	case 0://stage1 : ¹ÚÁã2 ¸¶¸®, ½ºÄ«¿ô 3¸¶¸®
-		eScout = new scout;
-		eScout->init(PointMake(i, j));
-		_vEnemy.push_back(eScout);
+	case _Escout://stage1 : ¹ÚÁã2 ¸¶¸®, ½ºÄ«¿ô 3¸¶¸®
+		Enemy = new scout;
 		break;
-	case 1:
-		eGreen = new green;
-		eGreen->init(PointMake(i, j));
-		_vEnemy.push_back(eGreen);
+	case _Egreen:
+		Enemy = new green;
 		break;
-	case 2:
-		eBlue = new blue;
-		eBlue->init(PointMake(i, j));
-		_vEnemy.push_back(eBlue);
+	case _Eblue:
+		Enemy = new blue;
 		break;
-	case 3:
-		eMouse = new mouse;
-		eMouse->init(PointMake(i, j));
-		_vEnemy.push_back(eMouse);
+	case _Emouse:
+		Enemy = new mouse;
 		break;
-	case 4:
-		eSnake = new snake;
-		eSnake->init(PointMake(i, j));
-		_vEnemy.push_back(eSnake);
+	case _Esnake:
+		Enemy = new snake;
 		break;
-	case 5:
-		eBoss = new boss;
-		eBoss->init(PointMake(i, j));
-		_vBoss.push_back(eBoss);
+	default:
+		return;
 	}
+
+	Enemy->init(PointMake(i, j));
+	_vEnemy.push_back(Enemy);
+}
+
+void enemyManager::setBoss(int i, int j)
+{
+	boss* Boss = new boss;
+	Boss->init(PointMake(i, j));
+	_vBoss.push_back(Boss);
 }
 
 void enemyManager::removeEnemy(int arrNum)

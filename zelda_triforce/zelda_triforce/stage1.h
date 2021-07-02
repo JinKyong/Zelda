@@ -30,6 +30,8 @@ public:
 
 	virtual void changeScene();
 
+	void setEnemy();
+
 	void setDivRect();
 	void updateDivRect();
 

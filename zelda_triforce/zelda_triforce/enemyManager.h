@@ -41,12 +41,6 @@ private:
 	vEBoss _vBoss;
 	viEBoss _viBoss;
 
-	scout* eScout;
-	blue* eBlue;
-	green* eGreen;
-	snake* eSnake;
-	mouse* eMouse;
-	boss* eBoss;
 	fireball* _fire;
 	circulator* _circul;
 	spread* _spread;
@@ -67,6 +61,7 @@ public:
 	virtual void render(int z);
 
 	void setEnemy(int ET, int i, int j);
+	void setBoss(int i, int j);
 
 	void removeEnemy(int arrNum);
 	void removeBoss(int arrNum);

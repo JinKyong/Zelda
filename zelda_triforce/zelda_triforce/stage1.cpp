@@ -21,8 +21,8 @@ HRESULT stage1::init(Player * player)
 	_change = false;
 	_em = new enemyManager;
 	_em->init();
-	_em->setEnemy(_Egreen, 2800, 3000);
-	_em->setEnemy(_Eboss, 3000, 3000);
+
+	setEnemy();
 
 	return S_OK;
 }
@@ -54,8 +54,8 @@ void stage1::render()
 	for (int i = Z0; i <= Z2; i += 2) {
 		if (_player->getZ() < i)
 			_player->render();
+		_em->render(i);
 		TILEMANAGER->render(getMemDC(), i);
-		_em->render(1);
 	}
 }
 
@@ -76,6 +76,16 @@ void stage1::changeScene()
 			SCENEMANAGER->changeScene("stage0");
 		}
 	}
+}
+
+void stage1::setEnemy()
+{
+	_em->setEnemy(_Egreen, 2800, 3000);
+	_em->setEnemy(_Egreen, 3000, 3200);
+	_em->setEnemy(_Egreen, 3200, 3200);
+	_em->setEnemy(_Egreen, 3400, 3200);
+	_em->setEnemy(_Egreen, 3500, 3200);
+	_em->setBoss(3000, 3000);
 }
 
 void stage1::setDivRect()

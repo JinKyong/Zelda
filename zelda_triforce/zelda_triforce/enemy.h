@@ -34,8 +34,12 @@ public:
 	virtual void render()=0;
 	virtual void draw()=0;
 	virtual void hitDamage(float damage)=0;
-	virtual float getHP() = 0;
-	virtual float getBodyDMG() = 0;
-	virtual int getN() = 0;
+
+	float getHP() { return _currentHP; }
+	RECT getRC() { return _rc; }
+	float getBodyDMG() { return _bodyDMG; }
+	int getN() { return _next; }
+
+	float getZ() { return _z; }
 };
 

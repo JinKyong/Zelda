@@ -63,4 +63,6 @@ public:
 	bool getLightning() { return _lightning; }
 	image* getI() { return bossI; }
 	int getPattern(){ return _pattern; }
+
+	float getZ() { return _z; }
 };
