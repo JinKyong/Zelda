@@ -48,9 +48,9 @@ void uiManager::render(HDC hdc)
 	RECT rc = CAMERAMANAGER->getScreen();
 
 	_xitem->render(hdc, rc.left + 147, rc.top + 79);
-
 	_rc = RectMake(rc.left + 159, rc.top + 91, 64, 64);
-	//µð¹ö±ë
+
+	//===================================µð¹ö±ë===================================
 	if (PRINTMANAGER->isDebug()) {
 		Rectangle(hdc, _rc);
 		int _type = INVENTORYMANAGER->getEquipItem()->getType();
@@ -65,6 +65,7 @@ void uiManager::render(HDC hdc)
 		TextOut(hdc, rc.left + 20, rc.top + 40, mp, strlen(mp));
 		TextOut(hdc, rc.left + 20, rc.top + 60, type, strlen(type));
 	}
+	//============================================================================
 
 	_gaugeBack->render(hdc, rc.left + 79 + 16, rc.top + 71 + 20 + (128 - _mp), 0, 0, 32, _mp);
 	_gauge->render(hdc, rc.left + 79, rc.top + 71);
@@ -75,9 +76,6 @@ void uiManager::render(HDC hdc)
 
 	_lifeText->render(hdc, rc.left + 711, rc.top + 59);
 	_zeroLife->render(hdc, rc.left + 643, rc.top + 95);
-
-	INVENTORYMANAGER->getEquipItem()->render(hdc, _rc.left, _rc.top);
-
 
 	//====================================HP======================================
 	if (_hp >= 96)
