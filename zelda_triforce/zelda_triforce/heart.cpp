@@ -8,7 +8,7 @@ HRESULT heart::init(float x, float y, float z)
 	_x = x;
 	_y = y;
 	_z = z;
-	_rc = RectMakeCenter(_x, _y, 32, 32);
+	_itemRC = RectMakeCenter(_x, _y, 32, 32);
 	_type = HEART;
 
 	return S_OK;
@@ -25,4 +25,16 @@ void heart::update()
 void heart::render(HDC hdc, float x, float y)
 {
 	_img->render(hdc, x, y);
+}
+
+void heart::useItem(float x, float y, float angle)
+{
+}
+
+void heart::itemMove(float x, float y, float angle)
+{
+}
+
+void heart::controlFrame()
+{
 }

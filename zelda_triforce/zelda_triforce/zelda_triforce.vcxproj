@@ -173,6 +173,7 @@
     <ClInclude Include="Idle.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="imageManager.h" />
+    <ClInclude Include="InvenOpen.h" />
     <ClInclude Include="inventoryManager.h" />
     <ClInclude Include="item.h" />
     <ClInclude Include="keyManager.h" />
@@ -236,6 +237,7 @@
     <ClCompile Include="Idle.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="imageManager.cpp" />
+    <ClCompile Include="InvenOpen.cpp" />
     <ClCompile Include="inventoryManager.cpp" />
     <ClCompile Include="item.cpp" />
     <ClCompile Include="keyManager.cpp" />

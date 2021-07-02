@@ -54,6 +54,11 @@ void Player::update()
 
 	STATEMANAGER->update();
 	//STATEMANAGER->getCurrentState()->updateRect();
+	if (INVENTORYMANAGER->getEquipItem() != nullptr)
+	{
+		INVENTORYMANAGER->getEquipItem()->itemMove(_x, _y, _angle);
+		INVENTORYMANAGER->getEquipItem()->controlFrame();
+	}
 
 	_body = RectMakeCenter(_x, _y, 64, 64);
 }
@@ -73,6 +78,11 @@ void Player::render()
 	}
 
 	STATEMANAGER->render(getMemDC());
+
+	if (INVENTORYMANAGER->getEquipItem() != nullptr)
+	{
+		INVENTORYMANAGER->getEquipItem()->render(getMemDC(), 50, 50);
+	}
 }
 
 void Player::changeHP(float damage)

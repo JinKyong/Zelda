@@ -22,7 +22,6 @@ HRESULT playGround::init()
 	_player = new Player;
 	_player->init();
 
-	INVENTORYMANAGER->init();
 
 	TILEMANAGER->init(_player);
 	SCENEMANAGER->init(_player);
@@ -77,19 +76,9 @@ void playGround::update()
 		PRINTMANAGER->setDebug(_debug);
 	}
 
-	if (KEYMANAGER->isOnceKeyDown(VK_SPACE))
-	{
-		if (INVENTORYMANAGER->isOpen())
-		{
-			INVENTORYMANAGER->setOpen(false);
-		}
-		else
-		{
-			INVENTORYMANAGER->setOpen(true);
-		}
-	}
+	
 
-	if (INVENTORYMANAGER->isOpen()) INVENTORYMANAGER->update();	
+	if (INVENTORYMANAGER->isOpen()) INVENTORYMANAGER->update();
 
 	UIMANAGER->update();
 	SCENEMANAGER->update();

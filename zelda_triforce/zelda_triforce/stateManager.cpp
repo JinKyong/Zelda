@@ -10,6 +10,7 @@
 #include "Carry.h"
 #include "Throw.h"
 #include "Push.h"
+#include "InvenOpen.h"
 
 Player* stateManager::_player = NULL;
 State* stateManager::_currentState = NULL;
@@ -28,6 +29,7 @@ HRESULT stateManager::init(Player * player)
 	addState(CARRY, new Carry);
 	addState(THROW, new Throw);
 	addState(PUSH, new Push);
+	addState(INVENOPEN, new InvenOpen);
 
 	/**** ป๓ลย ****/
 	changeState(IDLE);

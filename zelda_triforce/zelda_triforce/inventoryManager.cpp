@@ -3,6 +3,7 @@
 #include "candela.h"
 #include "boomerang.h"
 #include "mushroom.h"
+#include "Player.h"
 
 HRESULT inventoryManager::init()
 {
@@ -14,28 +15,32 @@ HRESULT inventoryManager::init()
 	_count = 0;
 	_index = 0;
 
+	_invOpen = false;
+
 	RECT rc = CAMERAMANAGER->getScreen();
 
-	//첫번째 아이템 (left, top)
 	_a = rc.left + 160;
 	_b = rc.top + 156;
 
-	_boomerang = new boomerang;
-	_boomerang->init(_a + 96 * 2, _b, 0);
+	
+	item* _boomerang = new boomerang;
+	_boomerang->init(0, 0, 0);
 	_vItem.push_back(_boomerang);
 
-	_mushroom = new mushroom;
-	_mushroom->init(_a + 96 * 4, _b, 0);
+	item* _mushroom = new mushroom;
+	_mushroom->init(0, 0, 0);
 	_vItem.push_back(_mushroom);
 
-	_candela = new candela;
-	_candela->init(_a, _b + 96 * 2, 0);
+	item* _candela = new candela;
+	_candela->init(0, 0, 0);
 	_vItem.push_back(_candela);
-
 	
 
-	_selItemRc = RectMake(_vItem[_index]->getInvX(), _vItem[_index]->getInvY(), 104, 104);
-
+	if (_vItem.size() > 0)
+	{
+		_selItemRc = RectMake(_vItem[_index]->getX(), _vItem[_index]->getY(), 104, 104);
+		_equipItem = _vItem[_index];
+	}
 	return S_OK;
 }
 
@@ -45,7 +50,8 @@ void inventoryManager::release()
 
 void inventoryManager::update()
 {
-	controlKey();
+	RECT rc = CAMERAMANAGER->getScreen();
+	if (_vItem.size() > 0)_selItemRc = RectMakeCenter(rc.left + _vItem[_index]->getInvX() + 31, rc.top + _vItem[_index]->getInvY() + 29, 104, 104);
 	controlFrame();
 }
 
@@ -53,34 +59,25 @@ void inventoryManager::render(HDC hdc)
 {
 	RECT rc = CAMERAMANAGER->getScreen();
 	_bgImg->render(hdc, rc.left, rc.top);
+	//_bagImg->render(getMemDC(), _bagRC.left, _bagRC.top);
+
+	//Rectangle(getMemDC(), _selItemRc);
 
 	for (_viItem = _vItem.begin(); _viItem != _vItem.end(); ++_viItem)
 	{
-		(*_viItem)->render(hdc, rc.left + (*_viItem)->getInvX(), rc.top + (*_viItem)->getInvY());
+		(*_viItem)->getImage()->render(hdc, rc.left + (*_viItem)->getInvX(), rc.top + (*_viItem)->getInvY());
 	}
 
-	_selItemRc = RectMake(rc.left + _vItem[_index]->getInvX() - 20, rc.top + _vItem[_index]->getInvY() - 20, 104, 104);
-	_selImg->frameRender(hdc, _selItemRc.left, _selItemRc.top);
+	if (_vItem.size() > 0)
+	{
+		_vItem[_index]->getImage()->render(hdc, rc.left + 800, rc.top + 100);
+		_selImg->frameRender(hdc, _selItemRc.left, _selItemRc.top);
+	}
 
-	_vItem[_index]->getImage()->render(hdc, rc.left + 800, rc.top + 100);
-}
-
-void inventoryManager::addItem(item * item)
-{
-	_vItem.push_back(item);
 }
 
 void inventoryManager::controlKey()
 {
-	if (KEYMANAGER->isOnceKeyDown(VK_LEFT))
-	{
-		_index = (_index - 1 + _vItem.size()) % _vItem.size();
-	}
-
-	if (KEYMANAGER->isOnceKeyDown(VK_RIGHT))
-	{
-		_index = (_index + 1) % _vItem.size();
-	}
 }
 
 void inventoryManager::controlFrame()
@@ -95,5 +92,28 @@ void inventoryManager::controlFrame()
 			_selImg->setFrameX(_selImg->getFrameX() + 1);
 
 		_count = 0;
+	}
+}
+
+void inventoryManager::addItem(item * itemName)
+{
+	_vItem.push_back(itemName);
+}
+
+void inventoryManager::plusIndex()
+{
+	if (_vItem.size() > 0)
+	{
+		_index = (_index + 1) % _vItem.size();
+		_equipItem = _vItem[_index];
+	}
+}
+
+void inventoryManager::minusIndex()
+{
+	if (_vItem.size() > 0)
+	{
+		_index = (_index - 1 + _vItem.size()) % _vItem.size();
+		_equipItem = _vItem[_index];
 	}
 }

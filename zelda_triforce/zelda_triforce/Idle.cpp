@@ -63,6 +63,13 @@ void Idle::controlKey()
 		STATEMANAGER->changeState(RUN);
 	}
 
+	//인벤토리 오픈
+	if (KEYMANAGER->isOnceKeyDown(KEY_INVEN))
+	{
+		INVENTORYMANAGER->open();
+		STATEMANAGER->changeState(INVENOPEN);
+	}
+
 	//공격
 	if (KEYMANAGER->isOnceKeyDown(KEY_SLASH))
 	{
@@ -79,6 +86,35 @@ void Idle::controlKey()
 	if (KEYMANAGER->isStayKeyDown('D'))
 	{
 		STATEMANAGER->changeState(PUSH);
+	}
+
+	//장착 아이템 사용
+	if (KEYMANAGER->isOnceKeyDown('F'))
+	{
+		float angle;
+		int x = 0;
+		int y = 0;
+		switch (_direct) {
+		case UP:
+			angle = PI / 2;
+			y = -64;
+			break;
+		case DOWN:
+			angle = 3 * PI / 2;
+			y = 64;
+			break;
+		case LEFT:
+			angle = PI;
+			x = -64;
+			break;
+		case RIGHT:
+			angle = 0;
+			x = 64;
+			break;
+		}
+
+		if (INVENTORYMANAGER->getEquipItem()->getType() == BOOMERANG) INVENTORYMANAGER->getEquipItem()->useItem(_player->getX(), _player->getY(), angle);
+		if (INVENTORYMANAGER->getEquipItem()->getType() == CANDELA) INVENTORYMANAGER->getEquipItem()->useItem(_player->getX() + x, _player->getY() + y, angle);
 	}
 }
 

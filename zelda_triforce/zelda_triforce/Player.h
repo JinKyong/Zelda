@@ -1,5 +1,6 @@
 #pragma once
 #include "gameNode.h"
+#include "item.h"
 
 class Player : public gameNode
 {
@@ -22,6 +23,7 @@ private:
 
 
 	//¿Ã∆Â∆Æ
+	float _angle;
 public:
 	Player() {};
 	~Player() {};

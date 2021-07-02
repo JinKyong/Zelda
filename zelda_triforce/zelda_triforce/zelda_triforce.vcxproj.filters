@@ -252,6 +252,9 @@
     <ClInclude Include="magic.h">
       <Filter>playGround\effect</Filter>
     </ClInclude>
+    <ClInclude Include="InvenOpen.h">
+      <Filter>playGround\state</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="zelda_triforce.rc">
@@ -434,6 +437,9 @@
     </ClCompile>
     <ClCompile Include="magic.cpp">
       <Filter>playGround\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="InvenOpen.cpp">
+      <Filter>playGround\state</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

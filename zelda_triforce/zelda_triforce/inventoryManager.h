@@ -1,8 +1,9 @@
 #pragma once
 #include "singletonBase.h"
-#include "item.h"
+#include "State.h"
 
 class item;
+class Player;
 
 class inventoryManager : public singletonBase<inventoryManager>
 {
@@ -16,9 +17,7 @@ private:
 
 	image* _bgImg;
 
-	item* _boomerang;
-	item* _candela;
-	item* _mushroom;
+	item* _equipItem;
 
 	int _a, _b;
 
@@ -26,8 +25,7 @@ private:
 	image* _selImg;
 	float _count;
 	int _index;
-
-	bool _open;
+	bool _invOpen;
 
 public:
 	inventoryManager() {};
@@ -40,9 +38,16 @@ public:
 
 	void addItem(item* item);
 
+	void plusIndex();
+	void minusIndex();
+
 	void controlKey();
 	void controlFrame();
 
-	void setOpen(bool open) { _open = open; }
-	bool isOpen() { return _open; }
+	item* getEquipItem() { return _equipItem; }
+	int getIndex() { return _index; }
+
+	void open() { _invOpen = true; }
+	void close() { _invOpen = false; }
+	bool isOpen() { return _invOpen; }
 };

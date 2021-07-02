@@ -8,7 +8,7 @@ HRESULT rupee::init(float x, float y, float z)
 	_x = x;
 	_y = y;
 	_z = z;
-	_rc = RectMakeCenter(_x, _y, 32, 32);
+	_itemRC = RectMakeCenter(_x, _y, 32, 32);
 	_type = RUPEE;
 
 	return S_OK;
@@ -23,5 +23,17 @@ void rupee::update()
 }
 
 void rupee::render(HDC hdc, float x, float y)
+{
+}
+
+void rupee::useItem(float x, float y, float angle)
+{
+}
+
+void rupee::itemMove(float x, float y, float angle)
+{
+}
+
+void rupee::controlFrame()
 {
 }
