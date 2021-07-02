@@ -17,6 +17,8 @@ HRESULT stage1::init(Player * player)
 	setDivRect();
 	TILEMANAGER->initMap(_background, RGB(72, 152, 72));
 
+	COLLISIONMANAGER->init(this);
+
 	_direct = ENDDIRECT;
 	_change = false;
 	_em = new enemyManager;
@@ -65,9 +67,9 @@ void stage1::changeScene()
 	float y = _player->getY();
 
 	if ((3072 <= x && x <= 3136) &&
-		(2750 < y && y < 3042)) {
+		(2750 < y && y < 3100)) {
 		CAMERAMANAGER->setFade(FADEOUT);
-		_player->move(UP);
+		_player->move(UP, 2);
 
 		if (CAMERAMANAGER->getAlpha() == 255) {
 			//x, y ¼³Á¤
@@ -80,12 +82,11 @@ void stage1::changeScene()
 
 void stage1::setEnemy()
 {
-	_em->setEnemy(_Egreen, 2800, 3000,0);
-	_em->setEnemy(_Eblue, 3000, 3200,1);
-	_em->setEnemy(_Escout, 3200, 3200,2);
-	_em->setEnemy(_Esnake, 3400, 3200,3);
-	_em->setEnemy(_Emouse, 3500, 3200,4);
-	_em->setBoss(3000, 2500);
+	_em->setEnemy(_Egreen, 2500, 2800);
+	_em->setEnemy(_Eblue, 2500, 2800);
+	_em->setEnemy(_Emouse, 2500, 2800);
+	_em->setEnemy(_Esnake, 2500, 2800);
+	//_em->setBoss(3000, 3000);
 }
 
 void stage1::setDivRect()

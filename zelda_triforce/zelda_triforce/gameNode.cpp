@@ -31,7 +31,6 @@ HRESULT gameNode::init(bool managerInit)
 		CAMERAMANAGER->init(_backBuffer->getWidth(), _backBuffer->getHeight());
 		TIMEMANAGER->init();
 		PRINTMANAGER->init();
-		COLLISIONMANAGER->init();
 		EFFECTMANAGER->init();
 		INVENTORYMANAGER->init();
 	}
@@ -58,9 +57,6 @@ void gameNode::release()
 
 		PRINTMANAGER->release();
 		PRINTMANAGER->releaseSingleton();
-
-		COLLISIONMANAGER->release();
-		COLLISIONMANAGER->releaseSingleton();
 
 		EFFECTMANAGER->release();
 		EFFECTMANAGER->releaseSingleton();

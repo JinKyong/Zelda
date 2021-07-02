@@ -25,6 +25,7 @@ HRESULT playGround::init()
 
 	TILEMANAGER->init(_player);
 	SCENEMANAGER->init(_player);
+	COLLISIONMANAGER->init(_player);
 	UIMANAGER->init(_player);
 
 	SCENEMANAGER->addScene("title", new title);
@@ -33,7 +34,6 @@ HRESULT playGround::init()
 
 	SCENEMANAGER->changeScene("title");
 
-	_invOpen = false;
 	_debug = false;
 
 	return S_OK;
@@ -53,11 +53,17 @@ void playGround::release()
 {
 	gameNode::release();
 
+	INVENTORYMANAGER->release();
+	INVENTORYMANAGER->releaseSingleton();
+
 	TILEMANAGER->release();
 	TILEMANAGER->releaseSingleton();
 
 	UIMANAGER->release();
 	UIMANAGER->releaseSingleton();
+
+	COLLISIONMANAGER->release();
+	COLLISIONMANAGER->releaseSingleton();
 
 	SCENEMANAGER->release();
 	SCENEMANAGER->releaseSingleton();
@@ -92,6 +98,12 @@ void playGround::render()
 	//글자 배경색 모드
 	SetBkMode(getMemDC(), TRANSPARENT);
 	SetTextColor(getMemDC(), RGB(255, 255, 255));
+	//투명 브러쉬
+	HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+	HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), myBrush);
+
+	HPEN myPen = (HPEN)CreatePen(1, 2, RGB(255, 0, 0));
+	SelectObject(getMemDC(), myPen);
 
 	//_player->render();
 	SCENEMANAGER->render();
@@ -99,16 +111,11 @@ void playGround::render()
 
 	if (INVENTORYMANAGER->isOpen()) INVENTORYMANAGER->render(getMemDC());
 
-	//투명 브러쉬
-	/*HBRUSH myBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
-	HBRUSH oldBrush = (HBRUSH)SelectObject(getMemDC(), myBrush);
-
-	HPEN myPen = (HPEN)CreatePen(1, 2, RGB(255, 0, 0));
-	SelectObject(getMemDC(), myPen);
+	
 
 	SelectObject(getMemDC(), oldBrush);
 	DeleteObject(myPen);
-	DeleteObject(myBrush);*/
+	DeleteObject(myBrush);
 
 	//==================================================s
 	//this->getBackBuffer()->render(getHDC(), 0, 0);

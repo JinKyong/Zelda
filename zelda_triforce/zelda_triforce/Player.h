@@ -24,6 +24,8 @@ private:
 
 	//이펙트
 	float _angle;
+	PTILE _object;
+
 public:
 	Player() {};
 	~Player() {};
@@ -43,6 +45,7 @@ public:
 
 	//동작
 	void move(int direct); //플레이어 이동함수
+	void move(int direct, float speed);
 
 	//================= 접근자 =================//
 	void setX(float x) { _x = x; }
@@ -56,4 +59,7 @@ public:
 
 	void setRect(float x, float y, int width, int height) { _body = RectMakeCenter(x, y, width, height); } //플레이어 바디 설정자
 	RECT getBody() { return _body; }
+
+	void setObject(PTILE object) { _object = object; }
+	PTILE getObject() { return _object; }
 };

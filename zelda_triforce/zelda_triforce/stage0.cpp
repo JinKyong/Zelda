@@ -12,8 +12,9 @@ HRESULT stage0::init(Player * player)
 	CAMERAMANAGER->setBackScreenSize(MAPWIDTH * TILEX, MAPHEIGHT * TILEY);
 
 	TILEMANAGER->initMap(_tileground, RGB(57, 40, 41));
-//	TILEMANAGER->initMap(_background, RGB(72, 152, 72));
+	//	TILEMANAGER->initMap(_background, RGB(72, 152, 72));
 
+	COLLISIONMANAGER->init(this);
 
 	return S_OK;
 }
@@ -47,12 +48,12 @@ void stage0::changeScene()
 
 	if (y >= 1082) {
 		CAMERAMANAGER->setFade(FADEOUT);
-		_player->move(DOWN);
+		_player->move(DOWN, 2);
 
 		if (CAMERAMANAGER->getAlpha() == 255) {
 			//x, y ¼³Á¤
 			_player->setX(3104);
-			_player->setY(3042);
+			_player->setY(3100);
 			SCENEMANAGER->changeScene("stage1");
 		}
 	}

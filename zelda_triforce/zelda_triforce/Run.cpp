@@ -24,11 +24,11 @@ void Run::release()
 void Run::update()
 {
 	controlKey();
-	controlFrame();
 }
 
 void Run::render(HDC hdc)
 {
+	controlFrame();
 	_player->setRect(_player->getX(), _player->getY(), 64, 64);
 	_img->frameRender(hdc, _player->getBody().left - 3, _player->getBody().top - 33);
 }

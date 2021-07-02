@@ -3,6 +3,8 @@ class Effect
 {
 protected:
 	RECT _slashBox;
+
+
 public:
 	Effect() {};
 	~Effect() {};

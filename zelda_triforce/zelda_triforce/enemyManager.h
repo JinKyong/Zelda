@@ -61,7 +61,7 @@ public:
 	virtual void update();
 	virtual void render(int z);
 
-	void setEnemy(int ET, int i, int j,int k);
+	void setEnemy(int ET, int i, int j);
 	void setBoss(int i, int j);
 
 	void removeEnemy(int arrNum);

@@ -54,6 +54,10 @@ void Player::update()
 	//========================================
 
 	STATEMANAGER->update();
+	_body = RectMakeCenter(_x, _y, 64, 64);
+
+	COLLISIONMANAGER->collisionPlayer();
+	_body = RectMakeCenter(_x, _y, 64, 64);
 	//STATEMANAGER->getCurrentState()->updateRect();
 	if (INVENTORYMANAGER->getEquipItem() != nullptr)
 	{
@@ -61,7 +65,6 @@ void Player::update()
 		INVENTORYMANAGER->getEquipItem()->controlFrame();
 	}
 
-	_body = RectMakeCenter(_x, _y, 64, 64);
 }
 
 void Player::render()
@@ -151,6 +154,27 @@ void Player::move(int direct)
 		break;
 	case DOWN:
 		_y += _speed;
+		break;
+	default:
+		break;
+	}
+}
+
+void Player::move(int direct, float speed)
+{
+	switch (direct)
+	{
+	case RIGHT:
+		_x += speed;
+		break;
+	case LEFT:
+		_x -= speed;
+		break;
+	case UP:
+		_y -= speed;
+		break;
+	case DOWN:
+		_y += speed;
 		break;
 	default:
 		break;

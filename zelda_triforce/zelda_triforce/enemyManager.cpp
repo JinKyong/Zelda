@@ -21,8 +21,10 @@ void enemyManager::update()
 	
 	for (_viEnemy = _vEnemy.begin(); _viEnemy != _vEnemy.end(); ++_viEnemy)
 	{
-		
 		(*_viEnemy)->update();
+		//갱신
+		COLLISIONMANAGER->collisionEnemy((*_viEnemy));
+		//갱신
 	}
 	
 	for (_viBoss = _vBoss.begin(); _viBoss != _vBoss.end(); ++_viBoss)
@@ -68,7 +70,7 @@ void enemyManager::render(int z)
 	_circul->render();
 }
 
-void enemyManager::setEnemy(int ET, int i, int j, int k)
+void enemyManager::setEnemy(int ET, int i, int j)
 {
 	enemy* Enemy;
 

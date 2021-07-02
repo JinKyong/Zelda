@@ -7,7 +7,6 @@ class playGround : public gameNode
 private:
 	Player* _player;
 
-	bool _invOpen;
 	bool _debug;
 
 public:

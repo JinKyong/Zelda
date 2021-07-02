@@ -49,4 +49,8 @@ public:
 
 	PTILE makeTile(float x, float y, int ID, int z = 0);
 	static bool compare(PTILE a, PTILE b);
+
+	image* getBack() { return _background; }
+	tileList* getGTile() { return &_mapGTile; }
+	tileList* getBTile() { return &_mapBTile; }
 };
