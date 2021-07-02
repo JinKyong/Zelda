@@ -213,7 +213,7 @@ void collisionManager::interactPlayer()
 			tile = (*TILEMANAGER->getBTile())[index];
 			if (tile->g == THROWABLE) {
 				_player->setObject(tile);
-				//(*TILEMANAGER->getBTile())[index] = TILEMANAGER->makeTile(j * TILEX, i *TILEY, NOTHING);
+				(*TILEMANAGER->getBTile())[index] = TILEMANAGER->makeTile(j * TILEX, i *TILEY, NOTHING);
 				break;
 			}
 		}
@@ -225,7 +225,7 @@ void collisionManager::interactPlayer()
 			tile = (*TILEMANAGER->getGTile())[index];
 			if (tile->g == THROWABLE) {
 				_player->setObject(tile);
-				//(*tile) = *TILEMANAGER->makeTile(j * TILEX, i *TILEY, NOTHING);
+				(*tile) = *TILEMANAGER->makeTile(j * TILEX, i *TILEY, NOTHING);
 				break;
 			}
 		}
@@ -291,7 +291,7 @@ void collisionManager::enemyWithTile(enemy * Enemy)
 					else
 						Enemy->setY(Enemy->getY() - height);
 				}
-
+				Enemy->setWay(false);
 				//Enemy->setRect(Enemy->getX(), Enemy->getY(), 64, 64);
 			}
 		}
@@ -331,7 +331,7 @@ void collisionManager::enemyWithTile(enemy * Enemy)
 					else
 						Enemy->setY(Enemy->getY() - height);
 				}
-
+				Enemy->setWay(false);
 				//Enemy->setRect(Enemy->getX(), Enemy->getY(), 64, 64);
 			}
 		}
@@ -346,6 +346,34 @@ void collisionManager::enemyWithPlayer(enemy * Enemy)
 		float height = tmp.bottom - tmp.top;
 		float x = (Enemy->getRC().right + Enemy->getRC().left) / 2;
 		float y = (Enemy->getRC().bottom + Enemy->getRC().top) / 2;
+
+		//좌우 충돌
+		if (height > width) {
+			//좌
+			if (_player->getX() < x)
+				_player->move(LEFT, TILEX * 1.5);
+			//우
+			else
+				_player->move(RIGHT, TILEX * 1.5);
+		}
+		//상하 충돌
+		else if (width > height) {
+			//아래
+			if (_player->getY() > y)
+				_player->move(DOWN, TILEY * 1.5);
+			//위
+			else
+				_player->move(UP, TILEY * 1.5);
+		}
+
+		_player->changeHP(16);
+		_player->setRect(_player->getX(), _player->getY(), 64, 64);
+	}
+	if (IntersectRect(&tmp, &_player->getBody(), &Enemy->getSword())) {
+		float width = tmp.right - tmp.left;
+		float height = tmp.bottom - tmp.top;
+		float x = (Enemy->getSword().right + Enemy->getSword().left) / 2;
+		float y = (Enemy->getSword().bottom + Enemy->getSword().top) / 2;
 
 		//좌우 충돌
 		if (height > width) {

@@ -5,7 +5,6 @@ HRESULT fireball::init( int bulletMax, float range)
 {	
 	_fireMax = bulletMax;
 	_range = range;
-	_indexY = 6;
 	return S_OK;
 }
 

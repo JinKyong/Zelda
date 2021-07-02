@@ -122,6 +122,7 @@ void enemyManager::fire()
 						_ptMouse.x+CAMERAMANAGER->getScreen().left,
 						_ptMouse.y+CAMERAMANAGER->getScreen().top), 3.0f);
 				continue;
+				
 			}
 		}
 		if ((*_viBoss)->getD() == 1 && (*_viBoss)->getPattern() == 0 && !(*_viBoss)->getLightning())
@@ -210,7 +211,7 @@ void enemyManager::fire()
 			}
 		}
 
-		
+		_fire->setIndexY(6);
 	}
 }
 

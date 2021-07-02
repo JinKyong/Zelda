@@ -50,7 +50,7 @@ private:
 
 	float _range;
 	int _fireMax;
-	int _indexY =6;
+	int _indexY;
 	boss* _boss;
 public:
 	fireball() {};
