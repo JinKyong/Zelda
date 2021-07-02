@@ -219,13 +219,9 @@ void collisionManager::enemyWithTile(enemy * Enemy)
 	RECT tmp;
 	PTILE tile;
 
-	_collision = false;
 	for (int i = initY; i <= endY; i++) {
-		if (_collision) break;
 
 		for (int j = initX; j <= endX; j++) {
-			if (_collision) break;
-
 			int index = i * width + j;
 			tile = TILEMANAGER->getBTile()->at(index);
 
@@ -257,18 +253,14 @@ void collisionManager::enemyWithTile(enemy * Enemy)
 				}
 
 				//Enemy->setRect(Enemy->getX(), Enemy->getY(), 64, 64);
-				_collision = true;
 			}
 		}
 	}
 
 
-	_collision = false;
 	for (int i = initY; i <= endY; i++) {
-		if (_collision) break;
 
 		for (int j = initX; j <= endX; j++) {
-			if (_collision) break;
 
 			int index = i * width + j;
 			tile = TILEMANAGER->getGTile()->at(index);
@@ -301,7 +293,6 @@ void collisionManager::enemyWithTile(enemy * Enemy)
 				}
 
 				//Enemy->setRect(Enemy->getX(), Enemy->getY(), 64, 64);
-				_collision = true;
 			}
 		}
 	}

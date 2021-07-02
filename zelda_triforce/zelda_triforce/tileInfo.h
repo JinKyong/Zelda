@@ -56,7 +56,7 @@ typedef struct tagTile {
 
 
 /********** BLUE(TILE ID) **********/
-#define	PLAYER		0
+#define	NOTHING		0
 
 //========= bush =========//
 #define BUSH		1
@@ -64,6 +64,7 @@ typedef struct tagTile {
 #define WEED		3
 #define RUG			4
 #define GRASSTILE	5
+#define HALL		6
 
 //========= tree =========//
 #define TREEUP1			7
@@ -308,5 +309,5 @@ typedef struct tagTile {
 
 
 
-
+#define BOTTOM		254
 #define COLLISION	255

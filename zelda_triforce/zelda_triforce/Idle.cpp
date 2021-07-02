@@ -79,7 +79,9 @@ void Idle::controlKey()
 	//물건잡기, 상자열기
 	if (KEYMANAGER->isOnceKeyDown(KEY_CARRY))
 	{
-		STATEMANAGER->changeState(CARRY);
+		COLLISIONMANAGER->interactPlayer();
+		if (_player->getObject())
+			STATEMANAGER->changeState(CARRY);
 	}
 
 	//밀기 테스트

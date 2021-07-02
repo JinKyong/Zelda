@@ -159,6 +159,8 @@ void addRoad()
 	IMAGEMANAGER->addImage(FENCE1, "img/tile/ground/fence1.bmp", TILEX, TILEY * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage(FENCE2, "img/tile/ground/fence2.bmp", TILEX, TILEY * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage(FENCE3, "img/tile/ground/fence3.bmp", TILEX, TILEY * 2, true, RGB(255, 0, 255));
+
+	IMAGEMANAGER->addImage(BOTTOM, "img/tile/ground/bottom.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
 }
 
 void addWall()

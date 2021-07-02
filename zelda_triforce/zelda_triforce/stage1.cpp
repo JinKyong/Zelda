@@ -54,9 +54,9 @@ void stage1::render()
 {
 	//Z순서 맞춰주기 필요(던전에서는)
 	for (int i = Z0; i <= Z2; i += 2) {
+		_em->render(i);
 		if (_player->getZ() < i)
 			_player->render();
-		_em->render(i);
 		TILEMANAGER->render(getMemDC(), i);
 	}
 }
@@ -82,10 +82,10 @@ void stage1::changeScene()
 
 void stage1::setEnemy()
 {
-	_em->setEnemy(_Egreen, 2500, 2800);
-	_em->setEnemy(_Eblue, 2500, 2800);
-	_em->setEnemy(_Emouse, 2500, 2800);
-	_em->setEnemy(_Esnake, 2500, 2800);
+	_em->setEnemy(_Egreen, 2700, 3000);
+	_em->setEnemy(_Eblue, 2700, 3000);
+	_em->setEnemy(_Emouse, 2700, 3000);
+	_em->setEnemy(_Esnake, 2700, 3000);
 	//_em->setBoss(3000, 3000);
 }
 

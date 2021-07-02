@@ -15,18 +15,23 @@ PTILE makeObject(float x, float y, int ID, int z);
 
 
 PTILE makeColTile(float x, float y, int ID, int z);
+PTILE makeBottomTile(float x, float y, int ID, int z);
 
 
 PTILE tileManager::makeTile(float x, float y, int ID, int z)
 {
 	PTILE tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, Z0, TILEX, TILEY, nullptr);
 
-	if (ID == COLLISION)
+	if (ID == NOTHING || ID > COLLISION) return tile;
+
+	else if (ID == COLLISION)
 		tile = makeColTile(x, y, ID, z);
-	else if (ID > STATUE2) return tile;
+
+	else if (ID == BOTTOM)
+		tile = makeBottomTile(x, y, ID, z);
 
 	//========= bush =========//
-	if (BUSH <= ID && ID <= GRASSTILE)
+	else if (BUSH <= ID && ID <= GRASSTILE)
 		tile = makeBush(x, y, ID);
 
 	//========= tree =========//
@@ -572,6 +577,17 @@ PTILE makeObject(float x, float y, int ID, int z)
 }
 
 PTILE makeColTile(float x, float y, int ID, int z)
+{
+	PTILE tile;
+	image* img = IMAGEMANAGER->findImage(ID);
+
+	tile = new TILE(IMPASSABLE, IMMUTABLE, ID, x, y, Z0,
+		img->getWidth(), img->getHeight(), img);
+
+	return tile;
+}
+
+PTILE makeBottomTile(float x, float y, int ID, int z)
 {
 	PTILE tile;
 	image* img = IMAGEMANAGER->findImage(ID);

@@ -5,7 +5,7 @@
 HRESULT Carry::init(Player * player)
 {
 	State::init(player);
-	_img = IMAGEMANAGER->addFrameImage("lift", "img/link/lift.bmp", 544, 368, 4, 4, true, RGB(255, 0, 255));
+	_img = IMAGEMANAGER->addFrameImage("lift", "img/link/lift.bmp", 408, 368, 3, 4, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addFrameImage("carry", "img/link/carry.bmp", 408, 368, 6, 4, true, RGB(255, 0, 255));
 
 	_isCarry = false;
@@ -16,12 +16,14 @@ HRESULT Carry::init(Player * player)
 	_img->setFrameX(0);
 	_img->setFrameY(_direct);
 
+	_object = IMAGEMANAGER->findImage(_player->getObject()->b);
 
 	return S_OK;
 }
 
 void Carry::release()
 {
+	_player->setObject(nullptr);
 }
 
 void Carry::update()
@@ -45,6 +47,13 @@ void Carry::render(HDC hdc)
 		else if (_direct == UP)		_img->frameRender(hdc, _player->getBody().left - 2, _player->getBody().top - 27);
 		else if (_direct == RIGHT)	_img->frameRender(hdc, _player->getBody().left - 3, _player->getBody().top - 29);
 		else						_img->frameRender(hdc, _player->getBody().left - 2, _player->getBody().top - 29);
+	}
+
+	if (_object && _isCarry) {
+		_object->render(hdc, _player->getBody().left, _player->getBody().top - _object->getHeight());
+
+		PTILE tile = _player->getObject();
+		(*tile) = *TILEMANAGER->makeTile(tile->x * TILEX, tile->y *TILEY, NOTHING);
 	}
 }
 

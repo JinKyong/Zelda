@@ -1,9 +1,12 @@
 #pragma once
 #include "State.h"
+
 class Carry :
 	public State
 {
 private:
+	image* _object;
+
 	bool _isCarry;
 	bool _isMove;
 
