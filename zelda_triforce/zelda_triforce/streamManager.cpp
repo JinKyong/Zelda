@@ -13,13 +13,15 @@ streamManager::~streamManager()
 
 HRESULT streamManager::init(void)
 {
-
+	addVideo("title", "video/title.wmv");
 
 	return S_OK;
 }
 
 void streamManager::release()
 {
+	findVideo("title")->deletVideo();
+	_mapVideoList.erase("title");
 }
 
 video* streamManager::addVideo(string strKey, const char * fileName)
@@ -44,10 +46,10 @@ video* streamManager::addVideo(string strKey, const char * fileName)
 void streamManager::startVideo(string strKey)
 {
 	video* _video = findVideo(strKey);
-	for (mapVideoIter iter = _mapVideoList.begin(); iter != _mapVideoList.end(); iter++) 
+	for (mapVideoIter iter = _mapVideoList.begin(); iter != _mapVideoList.end(); iter++)
 	{
-		if(_video != iter->second)
-		iter->second->closeVideo();
+		if (_video != iter->second)
+			iter->second->closeVideo();
 
 	}
 	_video->playVideo();
@@ -64,7 +66,7 @@ void streamManager::playVideo(string strKey)
 {
 	video* _video = findVideo(strKey);
 	_video->playVideo();
-	
+
 }
 
 

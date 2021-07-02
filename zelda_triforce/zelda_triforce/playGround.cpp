@@ -1,8 +1,5 @@
 #include "stdafx.h"
 #include "playGround.h"
-#include "title.h"
-#include "stage0.h"
-#include "stage1.h"
 
 playGround::playGround()
 {
@@ -13,7 +10,6 @@ playGround::~playGround()
 {
 }
 
-//우와
 //초기화는 여기다 하세요 제발
 HRESULT playGround::init()
 {
@@ -22,15 +18,12 @@ HRESULT playGround::init()
 	_player = new Player;
 	_player->init();
 
-
 	TILEMANAGER->init(_player);
 	SCENEMANAGER->init(_player);
 	COLLISIONMANAGER->init(_player);
 	UIMANAGER->init(_player);
-
-	SCENEMANAGER->addScene("title", new title);
-	SCENEMANAGER->addScene("stage0", new stage0);
-	SCENEMANAGER->addScene("stage1", new stage1);
+	EFFECTMANAGER->init();
+	INVENTORYMANAGER->init();
 
 	SCENEMANAGER->changeScene("title");
 
@@ -67,6 +60,12 @@ void playGround::release()
 
 	SCENEMANAGER->release();
 	SCENEMANAGER->releaseSingleton();
+
+	EFFECTMANAGER->release();
+	EFFECTMANAGER->releaseSingleton();
+
+	INVENTORYMANAGER->release();
+	INVENTORYMANAGER->releaseSingleton();
 }
 
 
@@ -77,7 +76,7 @@ void playGround::update()
 	if (KEYMANAGER->isOnceKeyDown(VK_TAB)) {
 		_debug = !_debug;
 		PRINTMANAGER->setDebug(_debug);
-	}	
+	}
 
 	INVENTORYMANAGER->update();
 
@@ -111,7 +110,7 @@ void playGround::render()
 
 	if (INVENTORYMANAGER->isOpen()) INVENTORYMANAGER->render(getMemDC());
 
-	
+
 
 	SelectObject(getMemDC(), oldBrush);
 	DeleteObject(myPen);

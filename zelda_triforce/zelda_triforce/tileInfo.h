@@ -64,7 +64,7 @@ typedef struct tagTile {
 #define WEED		3
 #define RUG			4
 #define GRASSTILE	5
-#define HALL		6
+#define BOARD		6
 
 //========= tree =========//
 #define TREEUP1			7
@@ -180,9 +180,9 @@ typedef struct tagTile {
 
 /*********** dungeon ***********/
 //========= wall =========//
-#define HARDRAIL1	102
-#define HARDRAIL2	103
-#define HARDRAIL3	104
+#define HANDRAIL1	102
+#define HANDRAIL2	103
+#define HANDRAIL3	104
 
 #define WALLIN1		105
 #define WALLIN2		106
@@ -261,27 +261,36 @@ typedef struct tagTile {
 #define BOTTOMTILE2F	171
 
 //========= path =========//
-#define DOORUP1			172
-#define DOORUP2			173
+//#define DOORUP1			172
+//#define DOORUP2			173
 
-#define DOORRIGHT1		174
-#define DOORRIGHT2		175
+#define DOORRIGHT1		172
+#define DOORRIGHT2		173
+#define DOORRIGHT3		174
+#define DOORRIGHT4		175
 
-#define DOORDOWN1		176
-#define DOORDOWN2		177
+//#define DOORDOWN1		176
+//#define DOORDOWN2		177
 
-#define DOORLEFT1		178
-#define DOORLEFT2		179
+#define DOORLEFT1		176
+#define DOORLEFT2		177
+#define DOORLEFT3		178
+#define DOORLEFT4		179
 
-#define LADDER1			180
-#define LADDER2			181
-#define LADDER3			182
-#define LADDER4			183
+#define DOORDOWN2F1		180
+#define DOORDOWN2F2		181
+#define DOORDOWN2F3		182
+#define DOORDOWN2F4		183
 
-#define UPSTAIR1		184
-#define UPSTAIR2		185
-#define UPSTAIR3		186
-#define UPSTAIR4		187
+#define LADDER1			184
+#define LADDER2			185
+#define LADDER3			186
+//#define LADDER4			183
+
+//#define UPSTAIR1		184
+//#define UPSTAIR2		185
+//#define UPSTAIR3		186
+//#define UPSTAIR4		187
 #define DOWNSTAIR1		188
 #define DOWNSTAIR2		189
 #define DOWNSTAIR3		190
@@ -290,24 +299,49 @@ typedef struct tagTile {
 
 //========= object =========//
 #define BOX			192
+#define BOXOPEN		193
 
-#define CANDLE1		193
-#define CANDLE2		194
-#define CANDLE3		195
-#define CANDLE4		196
+#define CANDLE1		194
+#define CANDLE2		195
+#define CANDLE3		196
+#define CANDLE4		197
 
-#define JAR			197
-#define JARBOTTOM	198
+#define JAR			198
+#define JARBOTTOM	199
 
-#define PILLAR1		199
-#define PILLAR2		200
-#define PILLAR3		201
+#define PILLAR1		200
+#define PILLAR2		201
+#define PILLAR3		202
 
-#define STATUE1		202
-#define STATUE2		203
-
-
+#define STATUE		203
 
 
+
+//========= wall2 =========//
+#define WALL2OUT1		204
+#define WALL2OUT2		205
+#define WALL2OUT3		206
+#define WALL2OUT4		207
+#define WALL2OUT5		208
+#define WALL2OUT6		209
+#define WALL2OUT7		210
+#define WALL2OUT8		211
+
+#define WALL2IN1		212
+#define WALL2IN2		213
+#define WALL2IN3		214
+#define WALL2IN4		215
+#define WALL2IN5		216
+#define WALL2IN6		217
+#define WALL2IN7		218
+#define WALL2IN8		219
+#define WALL2IN9		220
+#define WALL2IN10		221
+#define WALL2IN11		222
+#define WALL2IN12		223
+
+
+
+#define HOLE		253
 #define BOTTOM		254
 #define COLLISION	255

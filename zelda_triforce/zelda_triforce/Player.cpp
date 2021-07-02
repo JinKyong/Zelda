@@ -5,8 +5,8 @@
 HRESULT Player::init()
 {
 	//¸öÃ¼
-	_x = 2500;
-	_y = 2500;
+	_x = WINSIZEX / 2;
+	_y = WINSIZEY / 2;
 	_z = 1;
 	_direct = 0;
 	_body = RectMakeCenter(_x, _y, 64, 64);
@@ -18,7 +18,9 @@ HRESULT Player::init()
 	_moneyCount = _bombCount = _arrowCount = 0;
 
 	//»óÅÂ
-
+	_updown = false;
+	_destX = 0;
+	_destY = 0;
 
 	//ÀÌÆåÆ®
 	STATEMANAGER->init(this);
@@ -44,7 +46,7 @@ void Player::update()
 
 	if (KEYMANAGER->isOnceKeyDown('5'))	changeArrow(-5);
 	if (KEYMANAGER->isOnceKeyDown('6'))	changeArrow(5);
-	
+
 	//////////////////////////////////////////
 
 	if (KEYMANAGER->isOnceKeyDown('7'))	changeHP(16);
@@ -53,12 +55,16 @@ void Player::update()
 	if (KEYMANAGER->isOnceKeyDown('0'))	changeMP(-4);
 	//========================================
 
-	STATEMANAGER->update();
-	_body = RectMakeCenter(_x, _y, 64, 64);
+	if (_updown) {
+		changeZ();
+	}
+	else {
+		STATEMANAGER->update();
+		_body = RectMakeCenter(_x, _y, 64, 64);
+		COLLISIONMANAGER->collisionPlayer();
+		_body = RectMakeCenter(_x, _y, 64, 64);
+	}
 
-	COLLISIONMANAGER->collisionPlayer();
-	_body = RectMakeCenter(_x, _y, 64, 64);
-	//STATEMANAGER->getCurrentState()->updateRect();
 	if (INVENTORYMANAGER->getEquipItem() != nullptr)
 	{
 		INVENTORYMANAGER->getEquipItem()->itemMove(_x, _y, _angle);
@@ -177,6 +183,30 @@ void Player::move(int direct, float speed)
 		_y += speed;
 		break;
 	default:
+		break;
+	}
+}
+
+void Player::changeZ()
+{
+
+	switch (_direct) {
+	case UP:
+		move(UP, 1);
+		if (_y + 32 <= _destY) {
+			_updown = false;
+			_z = 4 - _z;
+		}
+		break;
+	case DOWN:
+		move(DOWN, 1);
+		if (_y - 32 >= _destY) {
+			_updown = false;
+		}
+		break;
+
+	default:
+		_updown = false;
 		break;
 	}
 }

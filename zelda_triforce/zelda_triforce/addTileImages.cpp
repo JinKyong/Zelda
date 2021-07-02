@@ -12,6 +12,7 @@ void addWall();
 void addTile();
 void addPath();
 void addObject();
+void addWall2();
 
 
 
@@ -29,9 +30,11 @@ void tileManager::addTileImages()
 	addTile();
 	addPath();
 	addObject();
+	addWall2();
 
 
 
+	IMAGEMANAGER->addImage(HOLE, "img/tile/bush/hole.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage(COLLISION, "img/tile/collisionTile.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
 }
 
@@ -46,6 +49,7 @@ void addBush()
 	IMAGEMANAGER->addImage(WEED, "img/tile/bush/weed.bmp", TILEX * 2, TILEY, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage(RUG, "img/tile/bush/rug.bmp", TILEX * 2, TILEY, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage(GRASSTILE, "img/tile/bush/grassTILE.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(BOARD, "img/tile/bush/board.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
 }
 
 void addTree()
@@ -165,9 +169,9 @@ void addRoad()
 
 void addWall()
 {
-	IMAGEMANAGER->addImage(HARDRAIL1, "img/tile/dungeon/wall/hardrail1.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(HARDRAIL2, "img/tile/dungeon/wall/hardrail2.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(HARDRAIL3, "img/tile/dungeon/wall/hardrail3.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(HANDRAIL1, "img/tile/dungeon/wall/handrail1.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(HANDRAIL2, "img/tile/dungeon/wall/handrail2.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(HANDRAIL3, "img/tile/dungeon/wall/handrail3.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
 
 	char str[128];
 	for (int i = 1, j = WALLIN1; j <= WALLIN20; i++, j++) {
@@ -195,31 +199,40 @@ void addTile()
 	IMAGEMANAGER->addImage(BORDER7, "img/tile/dungeon/tile/border7.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage(BORDER8, "img/tile/dungeon/tile/border8.bmp", TILEX, TILEY * 2, true, RGB(255, 0, 255));
 
+	IMAGEMANAGER->addImage(BORDER2F1, "img/tile/dungeon/tile/border2F1.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(BORDER2F2, "img/tile/dungeon/tile/border2F2.bmp", TILEX * 2, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(BORDER2F3, "img/tile/dungeon/tile/border2F3.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(BORDER2F4, "img/tile/dungeon/tile/border2F4.bmp", TILEX, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(BORDER2F5, "img/tile/dungeon/tile/border2F5.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(BORDER2F6, "img/tile/dungeon/tile/border2F6.bmp", TILEX * 2, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(BORDER2F7, "img/tile/dungeon/tile/border2F7.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(BORDER2F8, "img/tile/dungeon/tile/border2F8.bmp", TILEX, TILEY * 2, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addImage(BOTTOMTILE, "img/tile/dungeon/tile/bottomTILE.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(BOTTOMTILE2F, "img/tile/dungeon/tile/bottomTILE2F.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage(ROOFTILE, "img/tile/dungeon/tile/roofTILE.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
 }
 
 void addPath()
 {
-	IMAGEMANAGER->addImage(DOORUP1, "img/tile/dungeon/path/doorUP1.bmp", TILEX * 4, TILEY * 3, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(DOORUP2, "img/tile/dungeon/path/doorUP2.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(DOORRIGHT1, "img/tile/dungeon/path/doorRIGHT1.bmp", TILEX * 3, TILEY * 4, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(DOORRIGHT2, "img/tile/dungeon/path/doorRIGHT2.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(DOORDOWN1, "img/tile/dungeon/path/doorDOWN1.bmp", TILEX * 4, TILEY * 3, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(DOORDOWN2, "img/tile/dungeon/path/doorDOWN2.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(DOORLEFT1, "img/tile/dungeon/path/doorLEFT1.bmp", TILEX * 3, TILEY * 4, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(DOORLEFT2, "img/tile/dungeon/path/doorLEFT2.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(DOORRIGHT1, "img/tile/dungeon/path/doorRIGHT1.bmp", TILEX, TILEY * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(DOORRIGHT2, "img/tile/dungeon/path/doorRIGHT2.bmp", TILEX * 2, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(DOORRIGHT3, "img/tile/dungeon/path/doorRIGHT3.bmp", TILEX * 2, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(DOORRIGHT4, "img/tile/dungeon/path/doorRIGHT4.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(DOORLEFT1, "img/tile/dungeon/path/doorLEFT1.bmp", TILEX, TILEY * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(DOORLEFT2, "img/tile/dungeon/path/doorLEFT2.bmp", TILEX * 2, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(DOORLEFT3, "img/tile/dungeon/path/doorLEFT3.bmp", TILEX * 2, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(DOORLEFT4, "img/tile/dungeon/path/doorLEFT4.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
 
-	char str[128];
-	for (int i = 1, j = LADDER1; j <= LADDER4; i++, j++) {
-		sprintf_s(str, "img/tile/dungeon/path/ladder%d.bmp", i);
-		IMAGEMANAGER->addImage(j, str, TILEX * 4, TILEY * 4, true, RGB(255, 0, 255));
-	}
+	IMAGEMANAGER->addImage(DOORDOWN2F1, "img/tile/dungeon/path/doorDOWN2F1.bmp", TILEX * 4, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(DOORDOWN2F2, "img/tile/dungeon/path/doorDOWN2F2.bmp", TILEX, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(DOORDOWN2F3, "img/tile/dungeon/path/doorDOWN2F3.bmp", TILEX, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(DOORDOWN2F4, "img/tile/dungeon/path/doorDOWN2F4.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage(UPSTAIR1, "img/tile/dungeon/path/upStair1.bmp", TILEX * 4, TILEY * 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(UPSTAIR2, "img/tile/dungeon/path/upStair2.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(UPSTAIR3, "img/tile/dungeon/path/upStair3.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(UPSTAIR4, "img/tile/dungeon/path/upStair4.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(LADDER1, "img/tile/dungeon/path/ladder1.bmp", TILEX, TILEY * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(LADDER2, "img/tile/dungeon/path/ladder2.bmp", TILEX * 2, TILEY * 4, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(LADDER3, "img/tile/dungeon/path/ladder3.bmp", TILEX, TILEY * 4, true, RGB(255, 0, 255));
+
 	IMAGEMANAGER->addImage(DOWNSTAIR1, "img/tile/dungeon/path/downStair1.bmp", TILEX * 4, TILEY * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage(DOWNSTAIR2, "img/tile/dungeon/path/downStair2.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage(DOWNSTAIR3, "img/tile/dungeon/path/downStair3.bmp", TILEX, TILEY, true, RGB(255, 0, 255));
@@ -242,6 +255,19 @@ void addObject()
 	IMAGEMANAGER->addImage(PILLAR2, "img/tile/dungeon/object/pillar2.bmp", TILEX * 2, TILEY, true, RGB(255, 0, 255));
 	IMAGEMANAGER->addImage(PILLAR3, "img/tile/dungeon/object/pillar3.bmp", TILEX * 2, TILEY * 3, true, RGB(255, 0, 255));
 
-	IMAGEMANAGER->addImage(STATUE1, "img/tile/dungeon/object/statue1.bmp", TILEX * 2, TILEY, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addImage(STATUE2, "img/tile/dungeon/object/statue2.bmp", TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
+	IMAGEMANAGER->addImage(STATUE, "img/tile/dungeon/object/statue.bmp", TILEX * 2, TILEY * 3, true, RGB(255, 0, 255));
+}
+
+void addWall2()
+{
+	char str[128];
+	for (int i = 1, j = WALL2OUT1; j <= WALL2OUT8; i++, j++) {
+		sprintf_s(str, "img/tile/dungeon/wall/wall2_out%d.bmp", i);
+		IMAGEMANAGER->addImage(j, str, TILEX * 2, TILEY * 2, true, RGB(255, 0, 255));
+	}
+
+	for (int i = 1, j = WALL2IN1; j <= WALL2IN12; i++, j++) {
+		sprintf_s(str, "img/tile/dungeon/wall/wall2_in%d.bmp", i);
+		IMAGEMANAGER->addImage(j, str, TILEX, TILEY, true, RGB(255, 0, 255));
+	}
 }

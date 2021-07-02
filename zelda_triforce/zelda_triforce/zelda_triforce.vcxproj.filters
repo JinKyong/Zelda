@@ -261,6 +261,9 @@
     <ClInclude Include="snake.h">
       <Filter>playGround\enemy\species</Filter>
     </ClInclude>
+    <ClInclude Include="stage2.h">
+      <Filter>playGround\stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="zelda_triforce.rc">
@@ -446,6 +449,9 @@
     </ClCompile>
     <ClCompile Include="snake.cpp">
       <Filter>playGround\enemy\species</Filter>
+    </ClCompile>
+    <ClCompile Include="stage2.cpp">
+      <Filter>playGround\stage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

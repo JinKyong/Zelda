@@ -20,7 +20,8 @@ private:
 	int _arrowCount;
 
 	//상태
-
+	bool _updown;
+	float _destX, _destY;
 
 	//이펙트
 	float _angle;
@@ -47,6 +48,8 @@ public:
 	void move(int direct); //플레이어 이동함수
 	void move(int direct, float speed);
 
+	void changeZ();
+
 	//================= 접근자 =================//
 	void setX(float x) { _x = x; }
 	float getX() { return _x; }
@@ -59,6 +62,11 @@ public:
 
 	void setRect(float x, float y, int width, int height) { _body = RectMakeCenter(x, y, width, height); } //플레이어 바디 설정자
 	RECT getBody() { return _body; }
+
+	void setUpDown(bool updown) { _updown = updown; }
+	bool getUpDown() { return _updown; }
+	void setDestX(float x) { _destX = x; }
+	void setDestY(float y) { _destY = y; }
 
 	void setObject(PTILE object) { _object = object; }
 	PTILE getObject() { return _object; }

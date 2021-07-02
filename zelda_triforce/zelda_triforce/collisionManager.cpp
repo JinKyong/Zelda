@@ -18,6 +18,10 @@ HRESULT collisionManager::init(Scene* scene)
 	return S_OK;
 }
 
+void collisionManager::release()
+{
+}
+
 void collisionManager::collisionPlayer()
 {
 	playerWithTile();
@@ -44,82 +48,118 @@ void collisionManager::playerWithTile()
 	RECT tmp;
 	PTILE tile;
 
-	for (int i = initY; i <= endY; i++) {
+	int i, j;
 
-		for (int j = initX; j <= endX; j++) {
+	for (i = initY, j = initX; i <= endY; j++) {
+		int index = i * width + j;
+		tile = TILEMANAGER->getBTile()->at(index);
 
-			int index = i * width + j;
-			tile = TILEMANAGER->getBTile()->at(index);
+		if (IntersectRect(&tmp, &tile->body, &_player->getBody())) {
+			if (tile->r == PASSABLE) continue;
 
-			if (IntersectRect(&tmp, &tile->body, &_player->getBody())) {
-				if (tile->r == PASSABLE) continue;
+			float width = tmp.right - tmp.left;
+			float height = tmp.bottom - tmp.top;
+			float x = (tile->body.right + tile->body.left) / 2;
+			float y = (tile->body.bottom + tile->body.top) / 2;
 
-				float width = tmp.right - tmp.left;
-				float height = tmp.bottom - tmp.top;
-				float x = (tile->body.right + tile->body.left) / 2;
-				float y = (tile->body.bottom + tile->body.top) / 2;
-
-				//좌우 충돌
-				if (height > width) {
-					//좌
-					if (_player->getX() < x)
-						_player->setX(_player->getX() - width);
-					//우
-					else
-						_player->setX(_player->getX() + width);
+			//좌우 충돌
+			if (height > width) {
+				//좌
+				if (_player->getX() < x) {
+					_player->setX(_player->getX() - width);
 				}
-				//상하 충돌
-				else if (width > height) {
-					//아래
-					if (_player->getY() > y)
-						_player->setY(_player->getY() + height);
-					//위
-					else
-						_player->setY(_player->getY() - height);
+				//우
+				else {
+					_player->setX(_player->getX() + width);
 				}
-
-				_player->setRect(_player->getX(), _player->getY(), 64, 64);
 			}
+			//상하 충돌
+			else if (width > height) {
+				//아래
+				if (_player->getY() > y) {
+					if (tile->r == UPDOWN) {
+						_player->setUpDown(true);
+						_player->setDestY(tile->body.top);
+						break;
+					}
+					_player->setY(_player->getY() + height);
+				}
+				//위
+				else {
+					if (tile->r == UPDOWN) {
+						_player->setUpDown(true);
+						_player->setDestY(tile->body.bottom);
+						_player->setZ(4 - _player->getZ());
+						break;
+					}
+					_player->setY(_player->getY() - height);
+				}
+			}
+
+			_player->setRect(_player->getX(), _player->getY(), 64, 64);
+
+		}
+
+		if (j >= endX) {
+			i++;
+			j = initX - 1;
 		}
 	}
 
 
-	for (int i = initY; i <= endY; i++) {
+	for (i = initY, j = initX; i <= endY; j++) {
+		int index = i * width + j;
+		tile = TILEMANAGER->getGTile()->at(index);
 
-		for (int j = initX; j <= endX; j++) {
+		if (IntersectRect(&tmp, &tile->body, &_player->getBody())) {
+			if (tile->r == PASSABLE) continue;
 
-			int index = i * width + j;
-			tile = TILEMANAGER->getGTile()->at(index);
+			float width = tmp.right - tmp.left;
+			float height = tmp.bottom - tmp.top;
+			float x = (tile->body.right + tile->body.left) / 2;
+			float y = (tile->body.bottom + tile->body.top) / 2;
 
-			if (IntersectRect(&tmp, &tile->body, &_player->getBody())) {
-				if (tile->r == PASSABLE) continue;
-
-				float width = tmp.right - tmp.left;
-				float height = tmp.bottom - tmp.top;
-				float x = (tile->body.right + tile->body.left) / 2;
-				float y = (tile->body.bottom + tile->body.top) / 2;
-
-				//좌우 충돌
-				if (height > width) {
-					//좌
-					if (_player->getX() < x)
-						_player->setX(_player->getX() - width);
-					//우
-					else
-						_player->setX(_player->getX() + width);
+			//좌우 충돌
+			if (height > width) {
+				//좌
+				if (_player->getX() < x) {
+					_player->setX(_player->getX() - width);
 				}
-				//상하 충돌
-				else if (width > height) {
-					//아래
-					if (_player->getY() > y)
-						_player->setY(_player->getY() + height);
-					//위
-					else
-						_player->setY(_player->getY() - height);
+				//우
+				else {
+					_player->setX(_player->getX() + width);
 				}
-
-				_player->setRect(_player->getX(), _player->getY(), 64, 64);
 			}
+			//상하 충돌
+			else if (width > height) {
+				//아래
+				if (_player->getY() > y) {
+					if (tile->r == UPDOWN) {
+						_player->setUpDown(true);
+						_player->setDestY(tile->body.top);
+						break;
+					}
+					_player->setY(_player->getY() + height);
+				}
+				//위
+				else {
+					if (tile->r == UPDOWN) {
+						_player->setUpDown(true);
+						_player->setDestY(tile->body.bottom);
+						_player->setZ(4 - _player->getZ());
+						break;
+					}
+					_player->setY(_player->getY() - height);
+				}
+			}
+
+			_player->setRect(_player->getX(), _player->getY(), 64, 64);
+		}
+
+
+		if (j >= endX) {
+			i++;
+			j = initX - 1;
 		}
 	}
 }
@@ -251,7 +291,7 @@ void collisionManager::enemyWithTile(enemy * Enemy)
 					else
 						Enemy->setY(Enemy->getY() - height);
 				}
-				Enemy->setWay(false);
+
 				//Enemy->setRect(Enemy->getX(), Enemy->getY(), 64, 64);
 			}
 		}
@@ -291,7 +331,7 @@ void collisionManager::enemyWithTile(enemy * Enemy)
 					else
 						Enemy->setY(Enemy->getY() - height);
 				}
-				Enemy->setWay(false);
+
 				//Enemy->setRect(Enemy->getX(), Enemy->getY(), 64, 64);
 			}
 		}
@@ -329,36 +369,4 @@ void collisionManager::enemyWithPlayer(enemy * Enemy)
 		_player->changeHP(16);
 		_player->setRect(_player->getX(), _player->getY(), 64, 64);
 	}
-	if (IntersectRect(&tmp, &_player->getBody(), &Enemy->getSword())) {
-		float width = tmp.right - tmp.left;
-		float height = tmp.bottom - tmp.top;
-		float x = (Enemy->getSword().right + Enemy->getSword().left) / 2;
-		float y = (Enemy->getSword().bottom + Enemy->getSword().top) / 2;
-
-		//좌우 충돌
-		if (height > width) {
-			//좌
-			if (_player->getX() < x)
-				_player->move(LEFT, TILEX * 1.5);
-			//우
-			else
-				_player->move(RIGHT, TILEX * 1.5);
-		}
-		//상하 충돌
-		else if (width > height) {
-			//아래
-			if (_player->getY() > y)
-				_player->move(DOWN, TILEY * 1.5);
-			//위
-			else
-				_player->move(UP, TILEY * 1.5);
-		}
-
-		_player->changeHP(16);
-		_player->setRect(_player->getX(), _player->getY(), 64, 64);
-	}
-}
-
-void collisionManager::release()
-{
 }

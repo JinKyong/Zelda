@@ -9,7 +9,6 @@ HRESULT title::init(Player * player)
 	CAMERAMANAGER->setFade(FADEOUT);
 	CAMERAMANAGER->setBackScreenSize(WINSIZEX, WINSIZEY);
 
-	STREAMMANAGER->addVideo("title", "video/title.wmv");
 	STREAMMANAGER->playVideo("title");
 
 	_change = false;
@@ -41,10 +40,10 @@ void title::changeScene()
 
 	if (_change) {
 		if (CAMERAMANAGER->getAlpha() == 255) {
-			SCENEMANAGER->changeScene("stage0");
-
 			_player->setX(WINSIZEX / 2);
 			_player->setY(WINSIZEY / 2);
+
+			SCENEMANAGER->changeScene("stage0");
 		}
 	}
 }

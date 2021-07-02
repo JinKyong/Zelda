@@ -1,6 +1,10 @@
 #include "stdafx.h"
 #include "sceneManager.h"
 #include "Scene.h"
+#include "title.h"
+#include "stage0.h"
+#include "stage1.h"
+#include "stage2.h"
 
 Player* sceneManager::_player = NULL;
 Scene* sceneManager::_currentScene = NULL;
@@ -18,6 +22,11 @@ HRESULT sceneManager::init(Player* player)
 {
 	_player = player;
 	_currentScene = NULL;
+
+	SCENEMANAGER->addScene("title", new title);
+	SCENEMANAGER->addScene("stage0", new stage0);
+	SCENEMANAGER->addScene("stage1", new stage1);
+	SCENEMANAGER->addScene("stage2", new stage2);
 
 	return S_OK;
 }

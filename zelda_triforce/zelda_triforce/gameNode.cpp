@@ -31,8 +31,7 @@ HRESULT gameNode::init(bool managerInit)
 		CAMERAMANAGER->init(_backBuffer->getWidth(), _backBuffer->getHeight());
 		TIMEMANAGER->init();
 		PRINTMANAGER->init();
-		EFFECTMANAGER->init();
-		INVENTORYMANAGER->init();
+		STREAMMANAGER->init();
 	}
 
 	return S_OK;
@@ -58,11 +57,8 @@ void gameNode::release()
 		PRINTMANAGER->release();
 		PRINTMANAGER->releaseSingleton();
 
-		EFFECTMANAGER->release();
-		EFFECTMANAGER->releaseSingleton();
-
-		INVENTORYMANAGER->release();
-		INVENTORYMANAGER->releaseSingleton();
+		STREAMMANAGER->release();
+		STREAMMANAGER->releaseSingleton();
 	}
 
 	ReleaseDC(_hWnd, _hdc);

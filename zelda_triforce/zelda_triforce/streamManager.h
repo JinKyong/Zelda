@@ -25,7 +25,7 @@ public:
 
 	//void getPosition();
 	//void getLenthEnd();
-	
+
 	video* findVideo(string strKey);
 
 	long getPosition(string strKey) { video* _video = findVideo(strKey); return _video->getLangStart(); }
@@ -34,5 +34,5 @@ public:
 
 
 
-	
+
 

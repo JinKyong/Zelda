@@ -24,7 +24,7 @@ HRESULT stage1::init(Player * player)
 	_em = new enemyManager;
 	_em->init();
 
-	setEnemy();
+	//setEnemy();
 
 	return S_OK;
 }
@@ -57,7 +57,7 @@ void stage1::render()
 	//Z순서 맞춰주기 필요(던전에서는)
 	for (int i = Z0; i <= Z2; i += 2) {
 		_em->render(i);
-		if (_player->getZ() < i)
+		if (_player->getZ() == i - 1)
 			_player->render();
 		TILEMANAGER->render(getMemDC(), i);
 	}
@@ -80,6 +80,33 @@ void stage1::changeScene()
 			SCENEMANAGER->changeScene("stage0");
 		}
 	}
+
+	if ((3712 <= x && x <= 3776) &&
+		y < 350) {
+		CAMERAMANAGER->setFade(FADEOUT);
+		//_player->move(UP, 2);
+
+		if (CAMERAMANAGER->getAlpha() == 255) {
+			//x, y 설정
+			_player->setX(2465);
+			_player->setY(1375);
+			SCENEMANAGER->changeScene("stage2");
+		}
+	}
+
+	else if ((513 <= x && x <= 577) &&
+		y < 265) {
+		CAMERAMANAGER->setFade(FADEOUT);
+		_player->move(UP, 2);
+
+		if (CAMERAMANAGER->getAlpha() == 255) {
+			//x, y 설정
+			_player->setX(800);
+			_player->setY(1665);
+			_player->setZ(3);
+			SCENEMANAGER->changeScene("stage2");
+		}
+	}
 }
 
 void stage1::setEnemy()
@@ -88,7 +115,7 @@ void stage1::setEnemy()
 	_em->setEnemy(_Eblue, 2700, 3000);
 	_em->setEnemy(_Emouse, 2700, 3000);
 	_em->setEnemy(_Esnake, 2700, 3000);
-	_em->setBoss(3000, 3000);
+	//_em->setBoss(3000, 3000);
 }
 
 void stage1::setDivRect()
@@ -147,6 +174,7 @@ void stage1::updateDivRect()
 			CAMERAMANAGER->setRatioX(0.5);
 		}
 		break;
+
 	default:
 		break;
 	}

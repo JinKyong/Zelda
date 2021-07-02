@@ -12,10 +12,9 @@ PTILE makeWall(float x, float y, int ID, int z);
 PTILE makeDTile(float x, float y, int ID, int z);
 PTILE makePath(float x, float y, int ID, int z);
 PTILE makeObject(float x, float y, int ID, int z);
+PTILE makeWall2(float x, float y, int ID, int z);
 
-
-PTILE makeColTile(float x, float y, int ID, int z);
-PTILE makeBottomTile(float x, float y, int ID, int z);
+PTILE makeExtraTile(float x, float y, int ID, int z);
 
 
 PTILE tileManager::makeTile(float x, float y, int ID, int z)
@@ -24,14 +23,11 @@ PTILE tileManager::makeTile(float x, float y, int ID, int z)
 
 	if (ID == NOTHING || ID > COLLISION) return tile;
 
-	else if (ID == COLLISION)
-		tile = makeColTile(x, y, ID, z);
-
-	else if (ID == BOTTOM)
-		tile = makeBottomTile(x, y, ID, z);
+	else if (HOLE <= ID && ID <= COLLISION)
+		tile = makeExtraTile(x, y, ID, z);
 
 	//========= bush =========//
-	else if (BUSH <= ID && ID <= GRASSTILE)
+	else if (BUSH <= ID && ID <= BOARD)
 		tile = makeBush(x, y, ID);
 
 	//========= tree =========//
@@ -61,7 +57,7 @@ PTILE tileManager::makeTile(float x, float y, int ID, int z)
 
 	/*********** dungeon ***********/
 	//========= wall =========//
-	else if (HARDRAIL1 <= ID && ID <= WALL8)
+	else if (HANDRAIL1 <= ID && ID <= WALL8)
 		tile = makeWall(x, y, ID, z);
 
 	//========= tile =========//
@@ -69,12 +65,16 @@ PTILE tileManager::makeTile(float x, float y, int ID, int z)
 		tile = makeDTile(x, y, ID, z);
 
 	//========= path =========//
-	else if (DOORUP1 <= ID && ID <= DOWNSTAIR4)
+	else if (DOORRIGHT1 <= ID && ID <= DOWNSTAIR4)
 		tile = makePath(x, y, ID, z);
 
 	//========= object =========//
-	else if (BOX <= ID && ID <= STATUE2)
+	else if (BOX <= ID && ID <= STATUE)
 		tile = makeObject(x, y, ID, z);
+
+	//========= wall2 =========//
+	else if (WALL2OUT1 <= ID && ID <= WALL2IN12)
+		tile = makeWall2(x, y, ID, z);
 
 
 	return tile;
@@ -97,6 +97,11 @@ PTILE makeBush(float x, float y, int ID)
 	case RUG:
 	case GRASSTILE:
 		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, Z0,
+			img->getWidth(), img->getHeight(), img);
+		break;
+
+	case BOARD:
+		tile = new TILE(IMPASSABLE, IMMUTABLE, ID, x, y, Z0,
 			img->getWidth(), img->getHeight(), img);
 		break;
 
@@ -365,9 +370,9 @@ PTILE makeWall(float x, float y, int ID, int z)
 	img = IMAGEMANAGER->findImage(ID);
 
 	switch (ID) {
-	case HARDRAIL1:
-	case HARDRAIL2:
-	case HARDRAIL3:
+	case HANDRAIL1:
+	case HANDRAIL2:
+	case HANDRAIL3:
 
 	case WALLIN1:
 	case WALLIN2:
@@ -450,11 +455,24 @@ PTILE makeDTile(float x, float y, int ID, int z)
 	case BORDER8:
 	case BOTTOMTILE:
 		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, z,
-			img->getWidth(), img->getHeight(), img, z * 125);
+			img->getWidth(), img->getHeight(), img);
+		break;
+
+	case BORDER2F1:
+	case BORDER2F2:
+	case BORDER2F3:
+	case BORDER2F4:
+	case BORDER2F5:
+	case BORDER2F6:
+	case BORDER2F7:
+	case BORDER2F8:
+	case BOTTOMTILE2F:
+		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, z,
+			img->getWidth(), img->getHeight(), img);
 		break;
 
 	case ROOFTILE:
-		tile = new TILE(IMPASSABLE, IMMUTABLE, ID, x, y, z + Z2,
+		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, Z4,
 			img->getWidth(), img->getHeight(), img);
 		break;
 
@@ -475,42 +493,50 @@ PTILE makePath(float x, float y, int ID, int z)
 	img = IMAGEMANAGER->findImage(ID);
 
 	switch (ID) {
-	case DOORUP1:
 	case DOORRIGHT1:
-	case DOORDOWN1:
 	case DOORLEFT1:
+	case DOORDOWN2F1:
+		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, z + Z2,
+			img->getWidth(), img->getHeight(), img);
+		break;
+
+	case DOORRIGHT2:
+	case DOORLEFT2:
+	case DOORDOWN2F2:
+	case DOORRIGHT3:
+	case DOORLEFT3:
+	case DOORDOWN2F3:
 		tile = new TILE(IMPASSABLE, IMMUTABLE, ID, x, y, z,
 			img->getWidth(), img->getHeight(), img);
 		break;
 
-	case DOORUP2:
-	case DOORRIGHT2:
-	case DOORDOWN2:
-	case DOORLEFT2:
+	case DOORRIGHT4:
+	case DOORLEFT4:
+	case DOORDOWN2F4:
 		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, z,
 			img->getWidth(), img->getHeight(), img);
 		break;
 
 	case LADDER1:
-	case LADDER2:
 	case LADDER3:
-	case LADDER4:
+		tile = new TILE(IMPASSABLE, IMMUTABLE, ID, x, y, z,
+			img->getWidth(), img->getHeight(), img);
+		break;
+
+	case LADDER2:
 		tile = new TILE(UPDOWN, IMMUTABLE, ID, x, y, z,
 			img->getWidth(), img->getHeight(), img);
 		break;
 
-	case UPSTAIR1:
 	case DOWNSTAIR1:
 		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, z + Z2,
 			img->getWidth(), img->getHeight(), img);
 		break;
-	case UPSTAIR2:
+
 	case DOWNSTAIR2:
 		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, z,
 			img->getWidth(), img->getHeight(), img);
 		break;
-	case UPSTAIR3:
-	case UPSTAIR4:
 	case DOWNSTAIR3:
 	case DOWNSTAIR4:
 		tile = new TILE(IMPASSABLE, IMMUTABLE, ID, x, y, z,
@@ -552,19 +578,17 @@ PTILE makeObject(float x, float y, int ID, int z)
 			img->getWidth(), img->getHeight(), img);
 		break;
 	case JARBOTTOM:
-		tile = new TILE(IMPASSABLE, IMMUTABLE, ID, x, y, z,
+		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, z,
 			img->getWidth(), img->getHeight(), img);
 		break;
 
 	case PILLAR1:
 	case PILLAR2:
 	case PILLAR3:
+	case STATUE:
 		tile = new TILE(IMPASSABLE, IMMUTABLE, ID, x, y, z,
 			img->getWidth(), img->getHeight(), img);
 		break;
-
-	case STATUE1:
-	case STATUE2:
 
 
 	default:
@@ -576,24 +600,83 @@ PTILE makeObject(float x, float y, int ID, int z)
 	return tile;
 }
 
-PTILE makeColTile(float x, float y, int ID, int z)
+PTILE makeWall2(float x, float y, int ID, int z)
 {
 	PTILE tile;
-	image* img = IMAGEMANAGER->findImage(ID);
+	image* img;
 
-	tile = new TILE(IMPASSABLE, IMMUTABLE, ID, x, y, Z0,
-		img->getWidth(), img->getHeight(), img);
+	img = IMAGEMANAGER->findImage(ID);
+
+	switch (ID) {
+	case WALL2OUT1:
+	case WALL2OUT2:
+	case WALL2OUT3:
+	case WALL2OUT4:
+	case WALL2OUT5:
+	case WALL2OUT6:
+	case WALL2OUT7:
+	case WALL2OUT8:
+		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, z + Z2,
+			img->getWidth(), img->getHeight(), img);
+		break;
+
+	case WALL2IN1:
+	case WALL2IN2:
+	case WALL2IN3:
+	case WALL2IN4:
+	case WALL2IN5:
+	case WALL2IN6:
+	case WALL2IN7:
+	case WALL2IN8:
+	case WALL2IN9:
+	case WALL2IN10:
+	case WALL2IN11:
+	case WALL2IN12:
+		tile = new TILE(IMPASSABLE, IMMUTABLE, ID, x, y, z,
+			img->getWidth(), img->getHeight(), img);
+		break;
+
+
+	default:
+		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, Z0,
+			TILEX, TILEY, nullptr);
+		break;
+	}
 
 	return tile;
+
+
 }
 
-PTILE makeBottomTile(float x, float y, int ID, int z)
+PTILE makeExtraTile(float x, float y, int ID, int z)
 {
 	PTILE tile;
-	image* img = IMAGEMANAGER->findImage(ID);
+	image* img;
 
-	tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, Z0,
-		img->getWidth(), img->getHeight(), img);
+	img = IMAGEMANAGER->findImage(ID);
+
+	switch (ID) {
+	case HOLE:
+		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, Z0,
+			img->getWidth(), img->getHeight(), img);
+		break;
+
+	case BOTTOM:
+		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, Z0,
+			img->getWidth(), img->getHeight(), img);
+		break;
+
+	case COLLISION:
+		tile = new TILE(IMPASSABLE, IMMUTABLE, ID, x, y, Z0,
+			img->getWidth(), img->getHeight(), img);
+		break;
+
+
+	default:
+		tile = new TILE(PASSABLE, IMMUTABLE, ID, x, y, Z0,
+			TILEX, TILEY, nullptr);
+		break;
+	}
 
 	return tile;
 }

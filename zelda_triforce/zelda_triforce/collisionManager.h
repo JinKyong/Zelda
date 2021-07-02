@@ -14,14 +14,13 @@ private:
 
 	int _state;
 
-	bool _collision;
-
 public:
 	collisionManager() {};
 	~collisionManager() {};
 
 	HRESULT init(Player* player);
 	HRESULT init(Scene* scene);
+	void release();
 
 	//플레이어 충돌
 	void collisionPlayer();
@@ -34,5 +33,4 @@ public:
 	void enemyWithTile(enemy* Enemy);
 	void enemyWithPlayer(enemy* Enemy);
 
-	void release();
 };
