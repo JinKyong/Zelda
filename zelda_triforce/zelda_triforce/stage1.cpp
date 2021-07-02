@@ -35,6 +35,8 @@ void stage1::release()
 
 void stage1::update()
 {
+	_em->update();
+
 	if (_change) {
 		updateDivRect();
 	}
@@ -46,7 +48,7 @@ void stage1::update()
 
 	CAMERAMANAGER->updateScreen2(_player->getX(), _player->getY(), _current);
 	TILEMANAGER->update();
-	_em->update();
+
 	changeScene();
 }
 
