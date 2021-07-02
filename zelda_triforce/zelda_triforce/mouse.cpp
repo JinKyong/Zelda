@@ -17,7 +17,7 @@ HRESULT mouse::init(POINT position)
 	_state = MOUSE_IDLE;
 	
 
-	_next = RND->getFromIntTo(4, 10);
+	_next = RND->getFromIntTo(7, 10);
 	_findway = RND->getInt(4);
 	_direction = RND->getInt(4);
 	_indexY = _direction;
@@ -25,6 +25,7 @@ HRESULT mouse::init(POINT position)
 	_maxHP = _currentHP = 30;
 	_z = 1;
 	_idle = _next + 2;
+	_way = true;
 
 	_rc = RectMake(_x, _y, mouseI->getFrameWidth(), mouseI->getFrameHeight());
 
@@ -39,6 +40,34 @@ void mouse::release()
 
 void mouse::update()
 {
+	if (!_way)
+	{
+		if (_direction == 0)
+		{
+			_direction = 1;
+			_next += 2;
+			_way = true;
+		}
+		else if (_direction == 1)
+		{
+			_direction = 0;
+			_next += 2;
+			_way = true;
+		}
+		else if (_direction == 2)
+		{
+			_direction = 3;
+			_next += 2;
+			_way = true;
+		}
+		else if (_direction == 3)
+		{
+			_direction = 2;
+			_next += 2;
+			_way = true;
+		}
+	}
+
 	if (_findway == 0 && (_next <= 0 || _next < _idle))_state = MOUSE_IDLE;
 	if (_findway == 1 && (_next <= 0 || _next < _idle))_state = MOUSE_IDLE;
 	if (_findway == 2 && (_next <= 0 || _next < _idle))_state = MOUSE_IDLE;
@@ -75,10 +104,10 @@ void mouse::update()
 	if (_movecount > 20 && _next > 0 && _next >= _idle)
 	{
 		_movecount = 0;
-		if (_direction == 0)_y += 30;
-		if (_direction == 1)_y -= 30;
-		if (_direction == 2)_x -= 30;
-		if (_direction == 3)_x += 30;
+		if (_direction == 0)_y += 16;
+		if (_direction == 1)_y -= 16;
+		if (_direction == 2)_x -= 16;
+		if (_direction == 3)_x += 16;
 		_next--;
 		_idle--;
 	}

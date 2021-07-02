@@ -80,10 +80,10 @@ void green::update()
 	if (_movecount >= 20 && _next > 0)
 	{
 		_movecount = 0;
-		if (_direction == 0)_y += 30;
-		if (_direction == 1)_y-=30;
-		if (_direction == 2)_x-=30;
-		if (_direction == 3)_x+=30;
+		if (_direction == 0)_y += 16;
+		if (_direction == 1)_y-=16;
+		if (_direction == 2)_x-=16;
+		if (_direction == 3)_x+=16;
 		_next--;
 	}
 

@@ -17,7 +17,7 @@ HRESULT blue::init(POINT position)
 	
 
 
-	_next = RND->getFromIntTo(5, 8);
+	_next = RND->getFromIntTo(8, 12);
 	_findway = RND->getInt(4);
 	_direction = RND->getInt(4);
 
@@ -27,8 +27,10 @@ HRESULT blue::init(POINT position)
 	_maxHP = _currentHP = 30;
 	_z = 1;
 
+	_way = true;
 	_radius = 300;
 	_rc = RectMakeCenter(_x, _y, 80, 112);
+
 
 	return S_OK;
 }
@@ -39,6 +41,34 @@ void blue::release()
 
 void blue::update()
 {
+	if (!_way)
+	{
+		if (_direction == 0)
+		{
+			_direction = 1;
+			_next += 2;
+			_way = true;
+		}
+		else if (_direction == 1)
+		{
+			_direction = 0;
+			_next += 2;
+			_way = true;
+		}
+		else if (_direction == 2)
+		{
+			_direction = 3;
+			_next += 2;
+			_way = true;
+		}
+		else if (_direction == 3)
+		{
+			_direction = 2;
+			_next += 2;
+			_way = true;
+		}
+	}
+
 	if (_findway == 0 && _next <= 0)_state = BLUE_SEARCH;
 	if (_findway == 1 && _next <= 0)_state = BLUE_SEARCH;
 	if (_findway == 2 && _next <= 0)_state = BLUE_SEARCH;
@@ -81,10 +111,10 @@ void blue::update()
 	if (_movecount >= 20 && _next > 0)
 	{
 		_movecount = 0;
-		if (_direction == 0)_y += 30;
-		if (_direction == 1)_y -= 30;
-		if (_direction == 2)_x -= 30;
-		if (_direction == 3)_x += 30;
+		if (_direction == 0)_y += 16;
+		if (_direction == 1)_y -= 16;
+		if (_direction == 2)_x -= 16;
+		if (_direction == 3)_x += 16;
 		
 		_next--;
 	}

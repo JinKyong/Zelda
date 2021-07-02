@@ -48,19 +48,6 @@ void enemyManager::render(int z)
 		if((*_viEnemy)->getZ() < z)
 			(*_viEnemy)->render();
 	}
-	
-	
-
-	//for (_viMouse = _vMouse.begin(); _viMouse != _vMouse.end(); ++_viMouse)
-	//{
-	//	RECT tmp;
-	//	if (IntersectRect(&tmp, &rc, &(*_viMouse)->getRC())) {
-	//
-	//		if ((*_viMouse)->getZ() < z)
-	//			(*_viMouse)->render();
-	//	}
-	//}
-	
 	for (_viBoss = _vBoss.begin(); _viBoss != _vBoss.end(); ++_viBoss)
 	{
 		if ((*_viBoss)->getZ() < z)
@@ -122,10 +109,11 @@ void enemyManager::fire()
 	{
 		if ((*_viBoss)->getD()==0&&(*_viBoss)->getPattern()==0&&!(*_viBoss)->getLightning())
 		{
-			
+			if (_fire->getIndexY() > 5)
+				_fire->setIndexY(0);
 			if ((*_viBoss)->getaC()>=17)
 			{
-				_fire->setIndexY(0);
+				
 				float fx = (*_viBoss)->getI()->getX();
 				float fy = (*_viBoss)->getI()->getY();
 				RECT rc = (*_viBoss)->getRect();
@@ -133,15 +121,16 @@ void enemyManager::fire()
 					getAngle(fx + (rc.right - rc.left) / 2, rc.bottom, 
 						_ptMouse.x+CAMERAMANAGER->getScreen().left,
 						_ptMouse.y+CAMERAMANAGER->getScreen().top), 3.0f);
-				break;
+				continue;
 			}
 		}
 		if ((*_viBoss)->getD() == 1 && (*_viBoss)->getPattern() == 0 && !(*_viBoss)->getLightning())
 		{
-			
+			if (_fire->getIndexY() < 0)
+			_fire->setIndexY(1);
 			if ((*_viBoss)->getaC() >= 17)
 			{
-				_fire->setIndexY(1);
+				
 				float fx = (*_viBoss)->getI()->getX();
 				float fy = (*_viBoss)->getI()->getY();
 				RECT rc = (*_viBoss)->getRect();
@@ -149,15 +138,16 @@ void enemyManager::fire()
 					getAngle(fx + (rc.right - rc.left) / 2, rc.top,
 						_ptMouse.x + CAMERAMANAGER->getScreen().left,
 						_ptMouse.y + CAMERAMANAGER->getScreen().top), 3.0f);
-				break;
+				continue;
 			}
 		}
 		if ((*_viBoss)->getD() == 2 && (*_viBoss)->getPattern() == 0 && !(*_viBoss)->getLightning())
 		{
-			
+			if (_fire->getIndexY() <0)
+			_fire->setIndexY(2);
 			if ((*_viBoss)->getaC() >= 17)
 			{
-				_fire->setIndexY(2);
+				
 				float fx = (*_viBoss)->getI()->getX();
 				float fy = (*_viBoss)->getI()->getY();
 				RECT rc = (*_viBoss)->getRect();
@@ -165,15 +155,16 @@ void enemyManager::fire()
 					getAngle(fx, fy + (rc.bottom - rc.top) / 2,
 						_ptMouse.x + CAMERAMANAGER->getScreen().left,
 						_ptMouse.y + CAMERAMANAGER->getScreen().top), 3.0f);
-				break;
+				continue;
 			}
 		}
 		if ((*_viBoss)->getD() == 3 && (*_viBoss)->getPattern() == 0 && !(*_viBoss)->getLightning())
 		{
-			
+			if (_fire->getIndexY() < 0)
+			_fire->setIndexY(3);
 			if ((*_viBoss)->getaC() >= 17)
 			{
-				_fire->setIndexY(3);
+				
 				float fx = (*_viBoss)->getI()->getX();
 				float fy = (*_viBoss)->getI()->getY();
 				RECT rc = (*_viBoss)->getRect();
@@ -181,15 +172,16 @@ void enemyManager::fire()
 					getAngle(rc.right, fy + (rc.bottom - rc.top) / 2,
 						_ptMouse.x + CAMERAMANAGER->getScreen().left,
 						_ptMouse.y + CAMERAMANAGER->getScreen().top), 3.0f);
-				break;
+				continue;
 			}
 		}
 		if ((*_viBoss)->getD() == 4 && (*_viBoss)->getPattern() == 0 && !(*_viBoss)->getLightning())
 		{
-			
+			if (_fire->getIndexY() < 0)
+			_fire->setIndexY(4);
 			if ((*_viBoss)->getaC() >= 17)
 			{
-				_fire->setIndexY(4);
+				
 				float fx = (*_viBoss)->getI()->getX();
 				float fy = (*_viBoss)->getI()->getY();
 				RECT rc = (*_viBoss)->getRect();
@@ -197,15 +189,16 @@ void enemyManager::fire()
 					getAngle(fx, rc.bottom,
 						_ptMouse.x + CAMERAMANAGER->getScreen().left,
 						_ptMouse.y + CAMERAMANAGER->getScreen().top), 3.0f);
-				break;
+				continue;
 			}
 		}
 		if ((*_viBoss)->getD() == 5 && (*_viBoss)->getPattern() == 0 && !(*_viBoss)->getLightning())
 		{
-			
+			if (_fire->getIndexY() < 0)
+			_fire->setIndexY(5);
 			if ((*_viBoss)->getaC() >= 17)
 			{
-				_fire->setIndexY(5);
+				
 				float fx = (*_viBoss)->getI()->getX();
 				float fy = (*_viBoss)->getI()->getY();
 				RECT rc = (*_viBoss)->getRect();
@@ -213,7 +206,7 @@ void enemyManager::fire()
 					getAngle(fx + (rc.right - rc.left), rc.bottom,
 						_ptMouse.x + CAMERAMANAGER->getScreen().left,
 						_ptMouse.y + CAMERAMANAGER->getScreen().top), 3.0f);
-				break;
+				continue;
 			}
 		}
 

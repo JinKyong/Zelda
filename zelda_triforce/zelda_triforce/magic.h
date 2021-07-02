@@ -50,7 +50,7 @@ private:
 
 	float _range;
 	int _fireMax;
-	int _indexY = 0;
+	int _indexY =6;
 	boss* _boss;
 public:
 	fireball() {};
@@ -66,7 +66,7 @@ public:
 	void move();
 
 	void setIndexY(int IndexY) { _indexY = IndexY; }
-
+	int getIndexY() { return _indexY; }
 	//총알을 지워달라고 소통하는 함수
 	void removeBullet(int arrNum);
 

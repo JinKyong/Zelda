@@ -70,6 +70,12 @@
     <Filter Include="2DFramework\video">
       <UniqueIdentifier>{0a6c8094-7272-4757-9e53-432539f27fbf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="playGround\enemy\base">
+      <UniqueIdentifier>{d09d00d9-3d12-4637-a5ab-f1777fbc3158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="playGround\enemy\species">
+      <UniqueIdentifier>{1fba998a-acec-4637-9a77-3b4a8233b1e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -204,9 +210,6 @@
     <ClInclude Include="boss.h">
       <Filter>playGround\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="enemy.h">
-      <Filter>playGround\enemy</Filter>
-    </ClInclude>
     <ClInclude Include="enemyManager.h">
       <Filter>playGround\enemy</Filter>
     </ClInclude>
@@ -234,26 +237,29 @@
     <ClInclude Include="title.h">
       <Filter>playGround\stage</Filter>
     </ClInclude>
-    <ClInclude Include="blue.h">
-      <Filter>playGround\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="green.h">
-      <Filter>playGround\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="mouse.h">
-      <Filter>playGround\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="scout.h">
-      <Filter>playGround\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="snake.h">
-      <Filter>playGround\enemy</Filter>
-    </ClInclude>
     <ClInclude Include="magic.h">
       <Filter>playGround\effect</Filter>
     </ClInclude>
     <ClInclude Include="InvenOpen.h">
       <Filter>playGround\state</Filter>
+    </ClInclude>
+    <ClInclude Include="enemy.h">
+      <Filter>playGround\enemy\base</Filter>
+    </ClInclude>
+    <ClInclude Include="blue.h">
+      <Filter>playGround\enemy\species</Filter>
+    </ClInclude>
+    <ClInclude Include="green.h">
+      <Filter>playGround\enemy\species</Filter>
+    </ClInclude>
+    <ClInclude Include="mouse.h">
+      <Filter>playGround\enemy\species</Filter>
+    </ClInclude>
+    <ClInclude Include="scout.h">
+      <Filter>playGround\enemy\species</Filter>
+    </ClInclude>
+    <ClInclude Include="snake.h">
+      <Filter>playGround\enemy\species</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -390,9 +396,6 @@
     <ClCompile Include="boss.cpp">
       <Filter>playGround\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="enemy.cpp">
-      <Filter>playGround\enemy</Filter>
-    </ClCompile>
     <ClCompile Include="enemyManager.cpp">
       <Filter>playGround\enemy</Filter>
     </ClCompile>
@@ -420,26 +423,29 @@
     <ClCompile Include="title.cpp">
       <Filter>playGround\stage</Filter>
     </ClCompile>
-    <ClCompile Include="snake.cpp">
-      <Filter>playGround\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="scout.cpp">
-      <Filter>playGround\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="mouse.cpp">
-      <Filter>playGround\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="green.cpp">
-      <Filter>playGround\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="blue.cpp">
-      <Filter>playGround\enemy</Filter>
-    </ClCompile>
     <ClCompile Include="magic.cpp">
       <Filter>playGround\effect</Filter>
     </ClCompile>
     <ClCompile Include="InvenOpen.cpp">
       <Filter>playGround\state</Filter>
+    </ClCompile>
+    <ClCompile Include="enemy.cpp">
+      <Filter>playGround\enemy\base</Filter>
+    </ClCompile>
+    <ClCompile Include="blue.cpp">
+      <Filter>playGround\enemy\species</Filter>
+    </ClCompile>
+    <ClCompile Include="green.cpp">
+      <Filter>playGround\enemy\species</Filter>
+    </ClCompile>
+    <ClCompile Include="mouse.cpp">
+      <Filter>playGround\enemy\species</Filter>
+    </ClCompile>
+    <ClCompile Include="scout.cpp">
+      <Filter>playGround\enemy\species</Filter>
+    </ClCompile>
+    <ClCompile Include="snake.cpp">
+      <Filter>playGround\enemy\species</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -21,6 +21,7 @@ HRESULT snake::init(POINT position)
 	_indexY = _direction;
 	_maxHP = _currentHP = 30;
 	_z = 1;
+	_way = true;
 
 	_rc = RectMake(snakeI->getX(), snakeI->getY(), snakeI->getFrameWidth(), snakeI->getFrameHeight());
 
@@ -34,7 +35,33 @@ void snake::release()
 
 void snake::update()
 {
-	_state = SNAKE_MOVE;
+	if (!_way)
+	{
+		if (_direction == 0)
+		{
+			_direction = 1;
+			_next += 2;
+			_way = true;
+		}
+		else if (_direction == 1)
+		{
+			_direction = 0;
+			_next += 2;
+			_way = true;
+		}
+		else if (_direction == 2)
+		{
+			_direction = 3;
+			_next += 2;
+			_way = true;
+		}
+		else if (_direction == 3)
+		{
+			_direction = 2;
+			_next += 2;
+			_way = true;
+		}
+	}
 	_indexY = _direction;
 
 	_count++;
@@ -42,12 +69,12 @@ void snake::update()
 	if (_movecount >= 20 && _next > 0)
 	{
 
-		_direction = _findway;
+		
 		_movecount = 0;
-		if (_direction == 0)_y += 30;
-		if (_direction == 1)_y -= 30;
-		if (_direction == 2)_x -= 30;
-		if (_direction == 3)_x += 30;
+		if (_direction == 0)_y += 16;
+		if (_direction == 1)_y -= 16;
+		if (_direction == 2)_x -= 16;
+		if (_direction == 3)_x += 16;
 		_next--;
 	}
 	if (_count >= 4)
@@ -68,6 +95,7 @@ void snake::update()
 	{
 		_next = RND->getFromIntTo(3, 7);
 		_findway = RND->getInt(4);
+		_direction = _findway;
 	}
 	
 	_rc = RectMake(_x, _y, snakeI->getFrameWidth(), snakeI->getFrameHeight());
