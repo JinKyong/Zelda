@@ -26,11 +26,15 @@ HRESULT stage2::init(Player * player)
 
 	setEnemy();
 
+	//°î Àç»ý
+	SOUNDMANAGER->play("castle");
+
 	return S_OK;
 }
 
 void stage2::release()
 {
+	SOUNDMANAGER->stop("castle");
 }
 
 void stage2::update()

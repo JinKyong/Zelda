@@ -213,7 +213,7 @@ void collisionManager::interactPlayer()
 			tile = (*TILEMANAGER->getBTile())[index];
 			if (tile->g == THROWABLE) {
 				_player->setObject(tile);
-				(*TILEMANAGER->getBTile())[index] = TILEMANAGER->makeTile(j * TILEX, i *TILEY, NOTHING);
+				//(*TILEMANAGER->getBTile())[index] = TILEMANAGER->makeTile(j * TILEX, i *TILEY, NOTHING);
 				break;
 			}
 		}
@@ -225,7 +225,7 @@ void collisionManager::interactPlayer()
 			tile = (*TILEMANAGER->getGTile())[index];
 			if (tile->g == THROWABLE) {
 				_player->setObject(tile);
-				(*tile) = *TILEMANAGER->makeTile(j * TILEX, i *TILEY, NOTHING);
+				//(*tile) = *TILEMANAGER->makeTile(j * TILEX, i *TILEY, NOTHING);
 				break;
 			}
 		}
@@ -397,4 +397,13 @@ void collisionManager::enemyWithPlayer(enemy * Enemy)
 		_player->changeHP(16);
 		_player->setRect(_player->getX(), _player->getY(), 64, 64);
 	}
+}
+
+void collisionManager::collisionItem(item * Item)
+{
+	itemWithPlayer(Item);
+}
+
+void collisionManager::itemWithPlayer(item * Item)
+{
 }

@@ -28,6 +28,7 @@
 #include "tileManager.h"
 #include "txtData.h"
 #include "streamManager.h"
+#include "soundManager.h"
 
 using namespace std;
 using namespace MACRO_FUNC;
@@ -59,6 +60,7 @@ using namespace MACRO_FUNC;
 #define TILEMANAGER tileManager::getSingleton()
 #define TXTDATA txtData::getSingleton()
 #define STREAMMANAGER streamManager::getSingleton()
+#define SOUNDMANAGER soundManager::getSingleton()
 
 #define SAFE_DELETE(p) { if(p) { delete(p); (p) = nullptr; } }
 #define SAFE_DELETE_ARRAY(p) { if(p) { delete[](p); (p) = nullptr; } }

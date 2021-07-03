@@ -24,6 +24,7 @@ HRESULT playGround::init()
 	UIMANAGER->init(_player);
 	EFFECTMANAGER->init();
 	INVENTORYMANAGER->init();
+	SOUNDMANAGER->init();
 
 	SCENEMANAGER->changeScene("title");
 
@@ -66,6 +67,9 @@ void playGround::release()
 
 	INVENTORYMANAGER->release();
 	INVENTORYMANAGER->releaseSingleton();
+
+	SOUNDMANAGER->release();
+	SOUNDMANAGER->releaseSingleton();
 }
 
 
