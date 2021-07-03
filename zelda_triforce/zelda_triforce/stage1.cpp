@@ -27,14 +27,14 @@ HRESULT stage1::init(Player * player)
 	//setEnemy();
 
 	//°î Àç»ý
-	SOUNDMANAGER->play("beginning");
-
+	
+	SOUNDMANAGER->play("castle");
 	return S_OK;
 }
 
 void stage1::release()
 {
-	SOUNDMANAGER->stop("beginning");
+	SOUNDMANAGER->stop("castle");
 }
 
 void stage1::update()

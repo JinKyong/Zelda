@@ -109,7 +109,6 @@ void enemyManager::fire()
 	{
 		if ((*_viBoss)->getD()==0&&(*_viBoss)->getPattern()==0&&!(*_viBoss)->getLightning())
 		{
-			if (_fire->getIndexY() > 5)
 				_fire->setIndexY(0);
 			if ((*_viBoss)->getaC()>=17)
 			{
@@ -127,7 +126,6 @@ void enemyManager::fire()
 		}
 		if ((*_viBoss)->getD() == 1 && (*_viBoss)->getPattern() == 0 && !(*_viBoss)->getLightning())
 		{
-			if (_fire->getIndexY() < 0)
 			_fire->setIndexY(1);
 			if ((*_viBoss)->getaC() >= 17)
 			{
@@ -144,7 +142,6 @@ void enemyManager::fire()
 		}
 		if ((*_viBoss)->getD() == 2 && (*_viBoss)->getPattern() == 0 && !(*_viBoss)->getLightning())
 		{
-			if (_fire->getIndexY() <0)
 			_fire->setIndexY(2);
 			if ((*_viBoss)->getaC() >= 17)
 			{
@@ -161,7 +158,6 @@ void enemyManager::fire()
 		}
 		if ((*_viBoss)->getD() == 3 && (*_viBoss)->getPattern() == 0 && !(*_viBoss)->getLightning())
 		{
-			if (_fire->getIndexY() < 0)
 			_fire->setIndexY(3);
 			if ((*_viBoss)->getaC() >= 17)
 			{
@@ -178,7 +174,6 @@ void enemyManager::fire()
 		}
 		if ((*_viBoss)->getD() == 4 && (*_viBoss)->getPattern() == 0 && !(*_viBoss)->getLightning())
 		{
-			if (_fire->getIndexY() < 0)
 			_fire->setIndexY(4);
 			if ((*_viBoss)->getaC() >= 17)
 			{
@@ -195,7 +190,6 @@ void enemyManager::fire()
 		}
 		if ((*_viBoss)->getD() == 5 && (*_viBoss)->getPattern() == 0 && !(*_viBoss)->getLightning())
 		{
-			if (_fire->getIndexY() < 0)
 			_fire->setIndexY(5);
 			if ((*_viBoss)->getaC() >= 17)
 			{

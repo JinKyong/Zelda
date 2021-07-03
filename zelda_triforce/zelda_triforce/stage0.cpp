@@ -15,12 +15,13 @@ HRESULT stage0::init(Player * player)
 	//	TILEMANAGER->initMap(_background, RGB(72, 152, 72));
 
 	COLLISIONMANAGER->init(this);
-
+	SOUNDMANAGER->play("beginning");
 	return S_OK;
 }
 
 void stage0::release()
 {
+	SOUNDMANAGER->stop("beginning");
 }
 
 void stage0::update()

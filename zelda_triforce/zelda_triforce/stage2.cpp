@@ -27,14 +27,14 @@ HRESULT stage2::init(Player * player)
 	setEnemy();
 
 	//°î Àç»ý
-	SOUNDMANAGER->play("castle");
+	SOUNDMANAGER->play("dungeon");
 
 	return S_OK;
 }
 
 void stage2::release()
 {
-	SOUNDMANAGER->stop("castle");
+	SOUNDMANAGER->stop("dungeon");
 }
 
 void stage2::update()
