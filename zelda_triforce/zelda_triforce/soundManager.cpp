@@ -30,6 +30,7 @@ HRESULT soundManager::init()
 	addSound("beginning", "music/Beginning of the Journey.mp3",	true, true);
 	addSound("castle", "music/Hyrule Castle.mp3", true, true);
 	addSound("dungeon", "music/Time of the Falling Rain.mp3", true, true);
+
 	return S_OK;
 }
 
