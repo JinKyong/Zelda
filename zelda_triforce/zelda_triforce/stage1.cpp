@@ -28,13 +28,13 @@ HRESULT stage1::init(Player * player)
 
 	//°î Àç»ý
 	
-	SOUNDMANAGER->play("castle");
+	SOUNDMANAGER->play("beginning");
 	return S_OK;
 }
 
 void stage1::release()
 {
-	SOUNDMANAGER->stop("castle");
+	SOUNDMANAGER->stop("beginning");
 }
 
 void stage1::update()
