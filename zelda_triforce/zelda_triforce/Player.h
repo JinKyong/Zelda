@@ -21,6 +21,8 @@ private:
 
 	//상태
 	bool _updown;
+	bool _invincible;
+	int _iCount;
 	float _destX, _destY;
 
 	//이펙트
@@ -47,6 +49,7 @@ public:
 	//동작
 	void move(int direct); //플레이어 이동함수
 	void move(int direct, float speed);
+	void invincibleTime();
 
 	void changeZ();
 
@@ -67,6 +70,9 @@ public:
 	bool getUpDown() { return _updown; }
 	void setDestX(float x) { _destX = x; }
 	void setDestY(float y) { _destY = y; }
+
+	bool getInvincible() { return _invincible; }
+	void invincibleOn() { _invincible = true; }
 
 	void setObject(PTILE object) { _object = object; }
 	PTILE getObject() { return _object; }

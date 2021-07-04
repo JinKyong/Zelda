@@ -267,6 +267,9 @@
     <ClInclude Include="soundManager.h">
       <Filter>2DFramework\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="Stun.h">
+      <Filter>playGround\state</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="zelda_triforce.rc">
@@ -458,6 +461,9 @@
     </ClCompile>
     <ClCompile Include="soundManager.cpp">
       <Filter>2DFramework\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Stun.cpp">
+      <Filter>playGround\state</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

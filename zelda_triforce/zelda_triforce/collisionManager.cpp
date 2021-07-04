@@ -351,23 +351,35 @@ void collisionManager::enemyWithPlayer(enemy * Enemy)
 		if (height > width) {
 			//좌
 			if (_player->getX() < x)
-				_player->move(LEFT, TILEX * 1.5);
+			{
+				_player->setDirect(LEFT);
+				STATEMANAGER->changeState(STUN);
+			}
 			//우
 			else
-				_player->move(RIGHT, TILEX * 1.5);
+			{
+				_player->setDirect(RIGHT);
+				STATEMANAGER->changeState(STUN);
+			}
 		}
 		//상하 충돌
 		else if (width > height) {
 			//아래
 			if (_player->getY() > y)
-				_player->move(DOWN, TILEY * 1.5);
+			{
+				_player->setDirect(DOWN);
+				STATEMANAGER->changeState(STUN);
+			}
 			//위
 			else
-				_player->move(UP, TILEY * 1.5);
+			{
+				_player->setDirect(UP);
+				STATEMANAGER->changeState(STUN);
+			}
 		}
 
 		_player->changeHP(16);
-		_player->setRect(_player->getX(), _player->getY(), 64, 64);
+		_player->invincibleOn();
 	}
 	if (IntersectRect(&tmp, &_player->getBody(), &Enemy->getSword())) {
 		float width = tmp.right - tmp.left;

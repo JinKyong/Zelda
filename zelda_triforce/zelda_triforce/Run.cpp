@@ -6,10 +6,11 @@ HRESULT Run::init(Player * player)
 {
 	State::init(player);
 
-	_img = IMAGEMANAGER->addFrameImage("run", "img/link/run.bmp", 576, 384, 8, 4, true, RGB(255, 0, 255));
+	_img = IMAGEMANAGER->addFrameImage("run", "img/link/run.bmp", 576, 384, 8, 4, true, RGB(255, 0, 255), true);
 
 	_count = 0;
 	_direct = _player->getDirect();
+	_alphaValue = 255;
 
 	_img->setFrameY(_direct);
 
@@ -24,13 +25,15 @@ void Run::release()
 void Run::update()
 {
 	controlKey();
+	if (_player->getInvincible())	controlAlpha();
+	else							_alphaValue = 255;
 }
 
 void Run::render(HDC hdc)
 {
 	controlFrame();
 	_player->setRect(_player->getX(), _player->getY(), 64, 64);
-	_img->frameRender(hdc, _player->getBody().left - 3, _player->getBody().top - 33);
+	_img->frameAlphaRender(hdc, _player->getBody().left - 3, _player->getBody().top - 33, _alphaValue);
 }
 
 void Run::updateDirect(int direct)
@@ -89,5 +92,15 @@ void Run::controlFrame()
 			_img->setFrameX(_img->getFrameX() + 1);
 
 		_count = 0;
+	}
+}
+
+void Run::controlAlpha()
+{
+	_alphaCount++;
+	if (_alphaCount % 5 == 0)
+	{
+		_alphaValue = _alphaValue == 0 ? 170 : 0;
+		_alphaCount = 0;
 	}
 }

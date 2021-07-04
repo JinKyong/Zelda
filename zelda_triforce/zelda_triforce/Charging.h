@@ -25,6 +25,7 @@ public:
 
 	void controlKey();
 	void controlFrame();
+	void controlAlpha();
 	void effectFrame();
 	void charge();
 };

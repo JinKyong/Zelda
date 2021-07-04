@@ -6,10 +6,11 @@ HRESULT Idle::init(Player * player)
 {
 	State::init(player);
 
-	_img = IMAGEMANAGER->addFrameImage("idle", "img/link/idle.bmp", 64, 368, 1, 4, true, RGB(255, 0, 255));
+	_img = IMAGEMANAGER->addFrameImage("idle", "img/link/idle.bmp", 64, 368, 1, 4, true, RGB(255, 0, 255), true);
 
 	_count = 0;
 	_direct = _player->getDirect();
+	_alphaValue = 255;
 
 	_img->setFrameY(_direct);
 
@@ -24,11 +25,13 @@ void Idle::release()
 void Idle::update()
 {
 	controlKey();
+	if (_player->getInvincible())	controlAlpha();
+	else							_alphaValue = 255;
 }
 
 void Idle::render(HDC hdc)
 {
-	_img->frameRender(hdc, _player->getBody().left, _player->getBody().top - 28);
+	_img->frameAlphaRender(hdc, _player->getBody().left, _player->getBody().top - 28, _alphaValue);
 }
 
 void Idle::updateDirect(int direct)
@@ -37,6 +40,7 @@ void Idle::updateDirect(int direct)
 
 void Idle::updateRect()
 {
+
 }
 
 void Idle::controlKey()
@@ -75,7 +79,7 @@ void Idle::controlKey()
 	{
 		STATEMANAGER->changeState(SLASH);
 	}
-	
+
 	//물건잡기, 상자열기
 	if (KEYMANAGER->isOnceKeyDown(KEY_CARRY))
 	{
@@ -122,4 +126,14 @@ void Idle::controlKey()
 
 void Idle::controlFrame()
 {
+}
+
+void Idle::controlAlpha()
+{
+	_alphaCount++;
+	if (_alphaCount % 5 == 0)
+	{
+		_alphaValue = _alphaValue == 0 ? 170 : 0;
+		_alphaCount = 0;
+	}
 }

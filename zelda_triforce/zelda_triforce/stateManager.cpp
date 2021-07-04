@@ -11,6 +11,7 @@
 #include "Throw.h"
 #include "Push.h"
 #include "InvenOpen.h"
+#include "Stun.h"
 
 Player* stateManager::_player = NULL;
 State* stateManager::_currentState = NULL;
@@ -30,6 +31,7 @@ HRESULT stateManager::init(Player * player)
 	addState(THROW, new Throw);
 	addState(PUSH, new Push);
 	addState(INVENOPEN, new InvenOpen);
+	addState(STUN, new Stun);
 
 	/**** ป๓ลย ****/
 	changeState(IDLE);
