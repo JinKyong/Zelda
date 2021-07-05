@@ -26,6 +26,7 @@ public:
 	//플레이어 충돌
 	void collisionPlayer();
 	void playerWithTile();
+	void playerWithEnemy(enemy* Enemy);
 
 	//플레이어 상호작용
 	void interactPlayer();

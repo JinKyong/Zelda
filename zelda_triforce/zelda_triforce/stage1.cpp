@@ -24,7 +24,7 @@ HRESULT stage1::init(Player * player)
 	_em = new enemyManager;
 	_em->init();
 
-	//setEnemy();
+	setEnemy();
 
 	//°î Àç»ý
 	
