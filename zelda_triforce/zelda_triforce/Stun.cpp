@@ -44,7 +44,7 @@ void Stun::update()
 
 void Stun::render(HDC hdc)
 {
-	_img->frameAlphaRender(hdc, _player->getBody().left, _player->getBody().top, _alphaValue);
+	_img->frameAlphaRender(hdc, _player->getBody().left, _player->getBody().top - 28, _alphaValue);
 }
 
 void Stun::updateDirect(int direct)

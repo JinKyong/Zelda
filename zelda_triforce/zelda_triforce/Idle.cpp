@@ -120,7 +120,11 @@ void Idle::controlKey()
 		}
 
 		if (INVENTORYMANAGER->getEquipItem()->getType() == BOOMERANG) INVENTORYMANAGER->getEquipItem()->useItem(_player->getX(), _player->getY(), angle);
-		if (INVENTORYMANAGER->getEquipItem()->getType() == CANDELA) INVENTORYMANAGER->getEquipItem()->useItem(_player->getX() + x, _player->getY() + y, angle);
+		if (INVENTORYMANAGER->getEquipItem()->getType() == CANDELA)
+		{
+			INVENTORYMANAGER->getEquipItem()->useItem(_player->getX() + x, _player->getY() + y, angle);
+			_player->changeMP(8.f);
+		}
 	}
 }
 

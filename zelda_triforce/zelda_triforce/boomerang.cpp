@@ -76,7 +76,7 @@ void boomerang::controlFrame()
 	{
 		_count++;
 
-		if (_count >= 10)
+		if (_count >= 6)
 		{
 			if (_useImg->getFrameX() >= _useImg->getMaxFrameX())
 				_useImg->setFrameX(0);
