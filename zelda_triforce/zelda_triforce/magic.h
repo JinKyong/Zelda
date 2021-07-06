@@ -41,6 +41,7 @@ struct tagSpread
 	float _fireX, _fireY;		//총알 발사시 처음 좌표(발사된 좌표)
 	bool _isFire;
 	int _count;				//총알 프레임카운트용
+	int indexY;
 };
 class fireball : public gameNode
 {
@@ -89,49 +90,53 @@ private:
 	float _range;
 	int _fireMax;
 	int _index=0;
+	int _spreadMax;
+	int _indexs = 0;
 	float innerX;
 	float innerY;
-
+	
 	boss* _boss;
 	
 public:
 	circulator() {};
 	~circulator() {};
 
-	HRESULT init(int bulletMax, float range);
+	HRESULT init(int bulletMax,int spreadMax, float range);
 	void release();
 	void update();
 	void render();
 
 	void fire(float x, float y, float angle, float speed);
-	void spreadfire(float x, float y, float angle, float speed);
+	void spreadfire(float x, float y, float angle, float speed, int indexY);
 
 	void move();
 
 
 	//총알을 지워달라고 소통하는 함수
 	void removeBullet(int arrNum);
+	void removeSpread(int arrNum);
 
 
 
 	vector<tagCircul> getVCir() { return _vCircul; }
 	vector<tagCircul>::iterator getViCir() { return _viCircul; }
+	vector<tagSpread> getVSpread() { return _vSpread; }
+	vector<tagSpread>::iterator getViSpread() { return _viSpread; }
 
 };
 
-//class spread : public gameNode
+//class thunder :public gameNode
 //{
 //private:
-//	vector<tagSpread>				 _vSpread;
-//	vector<tagSpread>::iterator		_viSpread;
+//	
 //
 //	float _range;
 //	int _fireMax;
-//	int _indexY = 0;
+//	int _indexY;
 //	boss* _boss;
 //public:
-//	spread() {};
-//	~spread() {};
+//	thunder() {};
+//	~thunder() {};
 //
 //	HRESULT init(int bulletMax, float range);
 //	void release();
@@ -140,22 +145,17 @@ public:
 //
 //	void fire(float x, float y, float angle, float speed);
 //
-//	void move();
-//
 //	void setIndexY(int IndexY) { _indexY = IndexY; }
-//
+//	int getIndexY() { return _indexY; }
 //	//총알을 지워달라고 소통하는 함수
 //	void removeBullet(int arrNum);
 //
 //
 //
-//	vector<tagSpread> getVSpread() { return _vSpread; }
-//	vector<tagSpread>::iterator getViSpread() { return _viSpread; }
-//
+//	
 //};
-//
-//
-//class magic
-//{
-//};
+
+class magic
+{
+};
 

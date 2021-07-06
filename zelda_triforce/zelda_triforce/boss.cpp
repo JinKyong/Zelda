@@ -40,7 +40,8 @@ HRESULT boss::init(POINT position)
 	_rc = RectMakeCenter(_x, _y, 80, 65);
 	_censor = RectMakeCenter(_cx, _cy+100, 700, 700);
 	_indexX = 0;
-	_pattern = RND->getInt(2);
+	//_pattern = RND->getInt(2);
+	_pattern = 1;
 	return S_OK;
 }
 
@@ -138,7 +139,8 @@ void boss::update()
 			if (_mCount <= 12)_indexX++;
 			if (_mCount > 12)
 			{
-				_pattern = RND->getInt(2);
+				//_pattern = RND->getInt(2);
+				_pattern = 1;
 				_mCount = 0;
 				_mPossible = false;
 				_aPossible = true;

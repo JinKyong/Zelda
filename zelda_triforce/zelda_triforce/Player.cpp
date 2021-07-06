@@ -193,7 +193,7 @@ void Player::move(int direct, float speed)
 void Player::invincibleTime()
 {
 	_iCount++;
-	if (_iCount > 180)
+	if (_iCount > 60)
 	{
 		_invincible = false;
 		_iCount = 0;

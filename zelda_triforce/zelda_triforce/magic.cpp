@@ -91,9 +91,10 @@ void fireball::removeBullet(int arrNum)
 	_vFire.erase(_vFire.begin() + arrNum);
 }
 
-HRESULT circulator::init(int bulletMax, float range)
+HRESULT circulator::init(int bulletMax,int spreadMax, float range)
 {
 	_fireMax = bulletMax;
+	_spreadMax = spreadMax;
 	_range = range;
 	return S_OK;
 }
@@ -134,6 +135,31 @@ void circulator::render()
 		if (PRINTMANAGER->isDebug())
 			Rectangle(getMemDC(), _viCircul->_rc);
 	}
+	for (_viSpread = _vSpread.begin(); _viSpread != _vSpread.end(); ++_viSpread)
+	{
+		_viSpread->_spreadImage->frameRender(getMemDC(),
+			_viSpread->_rc.left,
+			_viSpread->_rc.top,
+			_indexs, _viSpread->indexY);
+
+		_viSpread->_count++;
+
+		if (_viSpread->_count >= 20)
+		{
+			_viSpread->_spreadImage->setFrameX(_indexs);
+
+			//최대 프레임보다 커지면
+			_indexs++;
+			if (_indexs > _viSpread->_spreadImage->getMaxFrameX())
+			{
+				_indexs = 0;
+			}
+
+			_viSpread->_count = 0;
+		}
+		if (PRINTMANAGER->isDebug())
+			Rectangle(getMemDC(), _viSpread->_rc);
+	}
 }
 
 void circulator::fire(float x, float y, float angle, float speed)
@@ -157,6 +183,27 @@ void circulator::fire(float x, float y, float angle, float speed)
 
 }
 
+void circulator::spreadfire(float x, float y, float angle, float speed,int indexY)
+{
+	if (_spreadMax < _vSpread.size()) return;
+
+	tagSpread _spread;
+	ZeroMemory(&_spread, sizeof(tagSpread));
+	_spread._spreadImage = IMAGEMANAGER->addFrameImage("spread", "img/effect/spread all.bmp", 90, 240, 3, 8, true, PINK);
+	_spread._speed = speed;
+	_spread._radius = _spread._spreadImage->getWidth() / 2;
+	_spread._x = _spread._fireX = x;
+	_spread._y = _spread._fireY = y;
+	_spread._dmg = 15.0f;
+	_spread._angle = angle;
+	_spread.indexY = indexY;
+
+	_spread._rc = RectMakeCenter(_spread._x, _spread._y,
+		20, 20);
+
+	_vSpread.push_back(_spread);
+}
+
 void circulator::move()
 {
 	for (_viCircul = _vCircul.begin(); _viCircul != _vCircul.end();)
@@ -172,10 +219,32 @@ void circulator::move()
 
 		if (_range < getDistance(_viCircul->_x, _viCircul->_y, _viCircul->_fireX, _viCircul->_fireY))
 		{
-			//_spread->fire(innerX, innerY, PI, 4.0f);
+			spreadfire(innerX, innerY, PI*3/2, 4.0f, 0);
+			spreadfire(innerX, innerY, PI/2, 4.0f, 1);
+			spreadfire(innerX, innerY, PI, 4.0f,2);
+			spreadfire(innerX, innerY, 0, 4.0f, 3);
+			spreadfire(innerX, innerY, PI*5/4, 4.0f, 4);
+			spreadfire(innerX, innerY, PI*7/4, 4.0f, 5);
+			spreadfire(innerX, innerY, PI*3/4, 4.0f, 6);
+			spreadfire(innerX, innerY, PI/4, 4.0f, 7);
 			_viCircul = _vCircul.erase(_viCircul);
 		}
 		else ++_viCircul;
+	}
+	for (_viSpread = _vSpread.begin(); _viSpread != _vSpread.end();)
+	{
+		_viSpread->_x += cosf(_viSpread->_angle) * _viSpread->_speed;
+		_viSpread->_y += -sinf(_viSpread->_angle) * _viSpread->_speed;
+
+
+		_viSpread->_rc = RectMakeCenter(_viSpread->_x, _viSpread->_y,
+			20, 20);
+
+		if (_range < getDistance(_viSpread->_x, _viSpread->_y, _viSpread->_fireX, _viSpread->_fireY))
+		{
+			_viSpread = _vSpread.erase(_viSpread);
+		}
+		else ++_viSpread;
 	}
 }
 
@@ -184,91 +253,7 @@ void circulator::removeBullet(int arrNum)
 	_vCircul.erase(_vCircul.begin() + arrNum);
 }
 
-//HRESULT spread::init(int bulletMax, float range)
-//{
-//	_fireMax = bulletMax;
-//	_range = range;
-//	return S_OK;
-//}
-//
-//void spread::release()
-//{
-//}
-//
-//void spread::update()
-//{
-//	move();
-//}
-//
-//void spread::render()
-//{
-//	for (_viSpread = _vSpread.begin(); _viSpread != _vSpread.end(); ++_viSpread)
-//	{
-//		_viSpread->_spreadImage->frameRender(getMemDC(),
-//			_viSpread->_rc.left,
-//			_viSpread->_rc.top,
-//			_viSpread->_spreadImage->getFrameX(), _indexY);
-//
-//		_viSpread->_count++;
-//
-//		if (_viSpread->_count >= 20)
-//		{
-//			_viSpread->_spreadImage->setFrameX(_viSpread->_spreadImage->getFrameX() + 1);
-//
-//			//최대 프레임보다 커지면
-//			if (_viSpread->_spreadImage->getFrameX() >= _viSpread->_spreadImage->getMaxFrameX())
-//			{
-//				_viSpread->_spreadImage->setFrameX(0);
-//			}
-//
-//			_viSpread->_count = 0;
-//		}
-//		if (PRINTMANAGER->isDebug())
-//			Rectangle(getMemDC(), _viSpread->_rc);
-//	}
-//}
-//
-//void spread::fire(float x, float y, float angle, float speed)
-//{
-//	if (_fireMax < _vSpread.size()) return;
-//
-//	tagSpread spread;
-//	ZeroMemory(&spread, sizeof(tagSpread));
-//	spread._spreadImage = IMAGEMANAGER->addFrameImage("spread", "img/effect/spread all.bmp", 90, 240, 3, 8, true, PINK);
-//	spread._speed = speed;
-//	spread._radius = spread._spreadImage->getWidth() / 2;
-//	spread._x = spread._fireX = x;
-//	spread._y = spread._fireY = y;
-//	spread._dmg = 15.0f;
-//	spread._angle = angle;
-//
-//	spread._rc = RectMakeCenter(spread._x, spread._y,
-//		20, 20);
-//
-//	_vSpread.push_back(spread);
-//}
-//
-//void spread::move()
-//{
-//	for (_viSpread = _vSpread.begin(); _viSpread != _vSpread.end();)
-//	{
-//		_viSpread->_x += cosf(_viSpread->_angle) * _viSpread->_speed;
-//		_viSpread->_y += -sinf(_viSpread->_angle) * _viSpread->_speed;
-//
-//
-//		_viSpread->_rc = RectMakeCenter(_viSpread->_x, _viSpread->_y,
-//			20,
-//			20);
-//
-//		if (_range < getDistance(_viSpread->_x, _viSpread->_y, _viSpread->_fireX, _viSpread->_fireY))
-//		{
-//			_viSpread = _vSpread.erase(_viSpread);
-//		}
-//		else ++_viSpread;
-//	}
-//}
-//
-//void spread::removeBullet(int arrNum)
-//{
-//	_vSpread.erase(_vSpread.begin() + arrNum);
-//}
+void circulator::removeSpread(int arrNum)
+{
+	_vSpread.erase(_vSpread.begin() + arrNum);
+}

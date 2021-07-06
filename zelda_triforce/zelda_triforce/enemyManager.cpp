@@ -6,7 +6,7 @@ HRESULT enemyManager::init()
 	_fire = new fireball;
 	_fire->init(0, 500);
 	_circul = new circulator;
-	_circul->init(0, 500);
+	_circul->init(0,7, 500);
 	_vBoss.clear();
 	_vEnemy.clear();
 	return	S_OK;
@@ -111,7 +111,7 @@ void enemyManager::fire()
 		{
 				_fire->setIndexY(0);
 			if ((*_viBoss)->getaC()>=17)
-			{
+			{	
 				
 				float fx = (*_viBoss)->getI()->getX();
 				float fy = (*_viBoss)->getI()->getY();

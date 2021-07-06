@@ -55,7 +55,7 @@ void Stun::updateRect()
 {
 	if (_player->getInvincible())	_count++;
 
-	if (_count < 60)
+	if (_count < 20)
 	{
 		switch (_direct)
 		{
