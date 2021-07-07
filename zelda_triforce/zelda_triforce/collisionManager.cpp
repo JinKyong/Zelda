@@ -166,6 +166,11 @@ void collisionManager::playerWithTile()
 
 void collisionManager::playerWithEnemy(enemy * Enemy)
 {
+	//RECT tmp;
+	//RECT slash = EFFECTMANAGER->getSlash()->getAttackBox();
+	//if (IntersectRect(&tmp, &slash, &Enemy->getRC())) {
+	//	Enemy->hitDamage(15);
+	//}
 }
 
 void collisionManager::interactPlayer()

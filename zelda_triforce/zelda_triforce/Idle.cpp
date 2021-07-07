@@ -6,7 +6,7 @@ HRESULT Idle::init(Player * player)
 {
 	State::init(player);
 
-	_img = IMAGEMANAGER->addFrameImage("idle", "img/link/idle.bmp", 64, 368, 1, 4, true, RGB(255, 0, 255), true);
+	_img = IMAGEMANAGER->addFrameImage("idle", "img/link/shield_idle.bmp", 76, 368, 1, 4, true, RGB(255, 0, 255), true);
 
 	_count = 0;
 	_direct = _player->getDirect();
@@ -31,7 +31,7 @@ void Idle::update()
 
 void Idle::render(HDC hdc)
 {
-	_img->frameAlphaRender(hdc, _player->getBody().left, _player->getBody().top - 28, _alphaValue);
+	_img->frameAlphaRender(hdc, _player->getBody().left - 8, _player->getBody().top - 28, _alphaValue);
 }
 
 void Idle::updateDirect(int direct)
@@ -97,32 +97,28 @@ void Idle::controlKey()
 	//장착 아이템 사용
 	if (KEYMANAGER->isOnceKeyDown('F'))
 	{
-		float angle;
 		int x = 0;
 		int y = 0;
 		switch (_direct) {
 		case UP:
-			angle = PI / 2;
 			y = -64;
 			break;
 		case DOWN:
-			angle = 3 * PI / 2;
 			y = 64;
 			break;
 		case LEFT:
-			angle = PI;
 			x = -64;
 			break;
 		case RIGHT:
-			angle = 0;
 			x = 64;
 			break;
 		}
 
-		if (INVENTORYMANAGER->getEquipItem()->getType() == BOOMERANG) INVENTORYMANAGER->getEquipItem()->useItem(_player->getX(), _player->getY(), angle);
+		if (INVENTORYMANAGER->getEquipItem()->getType() == BOOMERANG && !INVENTORYMANAGER->getEquipItem()->getFire())
+			STATEMANAGER->changeState(USEITEM);
 		if (INVENTORYMANAGER->getEquipItem()->getType() == CANDELA)
 		{
-			INVENTORYMANAGER->getEquipItem()->useItem(_player->getX() + x, _player->getY() + y, angle);
+			INVENTORYMANAGER->getEquipItem()->useItem(_player->getX() + x, _player->getY() + y, 0);
 			_player->changeMP(8.f);
 		}
 	}

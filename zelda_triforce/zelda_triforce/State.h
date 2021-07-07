@@ -23,7 +23,8 @@ enum PLAYERSTATE {
 	THROW,
 	PUSH,
 	INVENOPEN,
-	STUN
+	STUN,
+	USEITEM
 };
 
 class State

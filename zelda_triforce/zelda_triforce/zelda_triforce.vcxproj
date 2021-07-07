@@ -213,6 +213,7 @@
     <ClInclude Include="title.h" />
     <ClInclude Include="txtData.h" />
     <ClInclude Include="uiManager.h" />
+    <ClInclude Include="UseItem.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="video.h" />
   </ItemGroup>
@@ -274,6 +275,7 @@
     <ClCompile Include="title.cpp" />
     <ClCompile Include="txtData.cpp" />
     <ClCompile Include="uiManager.cpp" />
+    <ClCompile Include="UseItem.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="video.cpp" />
     <ClCompile Include="winMain.cpp" />
