@@ -83,11 +83,11 @@ void Charging::render(HDC hdc)
 	{
 		char str[128];
 		sprintf_s(str, "iCount : %d", _cCount);
-		TextOut(hdc, _player->getX() - 30, _player->getBody().top - 50, str, strlen(str));
+		TextOut(hdc, _player->getX() + 50, _player->getBody().top - 50, str, strlen(str));
 		sprintf_s(str, "direct : %d", _direct);
-		TextOut(hdc, _player->getX() - 30, _player->getBody().top - 70, str, strlen(str));
+		TextOut(hdc, _player->getX() + 50, _player->getBody().top - 70, str, strlen(str));
 		sprintf_s(str, "frameX : %d", _img->getFrameX());
-		TextOut(hdc, _player->getX() - 30, _player->getBody().top - 90, str, strlen(str));
+		TextOut(hdc, _player->getX() + 50, _player->getBody().top - 90, str, strlen(str));
 	}
 }
 
