@@ -47,8 +47,8 @@ void uiManager::render(HDC hdc)
 	RECT rc = CAMERAMANAGER->getScreen();
 
 	_xitem->render(hdc, rc.left + 147, rc.top + 79);
-	INVENTORYMANAGER->getEquipItem()->getImage()->render(hdc, rc.left + 159, rc.top + 90);
 	_rc = RectMake(rc.left + 159, rc.top + 91, 64, 64);
+	INVENTORYMANAGER->getEquipItem()->getImage()->render(hdc, _rc.left, _rc.top);
 
 	//===================================µð¹ö±ë===================================
 	if (PRINTMANAGER->isDebug()) {
