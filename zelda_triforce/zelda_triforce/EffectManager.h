@@ -9,10 +9,10 @@ private:
 	Effect* _slash;
 	Effect* _cgAttack;
 
-public:
 	EffectManager() {};
-	~EffectManager() {};
+	friend singletonBase<EffectManager>;
 
+public:
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();

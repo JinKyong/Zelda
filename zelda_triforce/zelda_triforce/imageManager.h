@@ -18,10 +18,10 @@ private:
 	mapImageList _mImageList;
 	tileImageList _tImageList;
 
-public:
-	imageManager();
-	~imageManager();
+	imageManager() {};
+	friend singletonBase<imageManager>;
 
+public:
 	HRESULT init();
 	void release();
 

@@ -9,15 +9,6 @@
 Player* sceneManager::_player = NULL;
 Scene* sceneManager::_currentScene = NULL;
 
-sceneManager::sceneManager()
-{
-}
-
-
-sceneManager::~sceneManager()
-{
-}
-
 HRESULT sceneManager::init(Player* player)
 {
 	_player = player;

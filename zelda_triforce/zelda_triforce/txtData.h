@@ -18,10 +18,10 @@ private:
 	int _row;
 	int _count;
 
-public:
-	txtData();
-	~txtData();
+	txtData() {};
+	friend singletonBase<txtData>;
 
+public:
 	HRESULT init();
 	HRESULT init(const char* fileName);
 	void release();

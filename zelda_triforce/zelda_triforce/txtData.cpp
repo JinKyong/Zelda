@@ -1,16 +1,6 @@
 #include "stdafx.h"
 #include "txtData.h"
 
-
-txtData::txtData()
-{
-}
-
-
-txtData::~txtData()
-{
-}
-
 HRESULT txtData::init()
 {
 	//_textBackground= IMAGEMANAGER->addImage()

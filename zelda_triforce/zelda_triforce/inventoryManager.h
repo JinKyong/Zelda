@@ -27,10 +27,10 @@ private:
 	int _index;
 	bool _invOpen;
 
-public:
 	inventoryManager() {};
-	~inventoryManager() {};
+	friend singletonBase<inventoryManager>;
 
+public:
 	virtual HRESULT init();
 	virtual void release();
 	virtual void update();

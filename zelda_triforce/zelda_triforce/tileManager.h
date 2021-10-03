@@ -30,10 +30,10 @@ private:
 
 	int _width;
 
-public:
 	tileManager() {};
-	~tileManager() {};
+	friend singletonBase<tileManager>;
 
+public:
 	HRESULT init(Player* player);
 	HRESULT initMap(image* img, COLORREF rgb);
 	void release();

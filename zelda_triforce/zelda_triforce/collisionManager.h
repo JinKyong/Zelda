@@ -15,10 +15,10 @@ private:
 
 	int _state;
 
-public:
 	collisionManager() {};
-	~collisionManager() {};
+	friend singletonBase<collisionManager>;
 
+public:
 	HRESULT init(Player* player);
 	HRESULT init(Scene* scene);
 	void release();

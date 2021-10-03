@@ -26,10 +26,10 @@ private:
 	int _bombCount;
 	int _arrowCount;
 
-public:
 	uiManager() {};
-	~uiManager() {};
+	friend singletonBase<uiManager>;
 
+public:
 	HRESULT init(Player* player);
 	void release();
 	void update();
