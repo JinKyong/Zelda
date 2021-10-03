@@ -4,8 +4,8 @@
 
 HRESULT Charging::init(Player * player)
 {
-	_img = IMAGEMANAGER->addFrameImage("charging", "img/link/charging.bmp", 576, 480, 6, 4, true, RGB(255, 0, 255));
-	IMAGEMANAGER->addFrameImage("complete", "img/link/completeCharge.bmp", 576, 480, 6, 4, true, RGB(255, 0, 255));
+	_img = IMAGEMANAGER->addFrameImage("charging", "img/link/charging.bmp", 576, 480, 6, 4, true, RGB(255, 0, 255), true);
+	IMAGEMANAGER->addFrameImage("complete", "img/link/completeCharge.bmp", 576, 480, 6, 4, true, RGB(255, 0, 255), true);
 	_star = IMAGEMANAGER->addFrameImage("effect", "img/link/chargeEffect.bmp", 396, 88, 9, 2, true, RGB(255, 0, 255));
 
 	_isComplete = false;
@@ -50,6 +50,9 @@ void Charging::update()
 
 	controlKey();
 	controlFrame();
+	if (_player->getInvincible())	controlAlpha();
+	else							_alphaValue = 255;
+
 	effectFrame();
 }
 
@@ -57,22 +60,22 @@ void Charging::render(HDC hdc)
 {
 	if (_direct == DOWN)
 	{
-		_img->frameRender(hdc, _player->getBody().left - 22, _player->getBody().top - 25);
+		_img->frameAlphaRender(hdc, _player->getBody().left - 22, _player->getBody().top - 25, _alphaValue);
 		_star->frameRender(hdc, (_player->getBody().left + _player->getBody().right) / 2 - 15, _player->getBody().bottom);
 	}
 	else if (_direct == UP)
 	{
-		_img->frameRender(hdc, _player->getBody().left - 10, _player->getBody().top - 57);
+		_img->frameAlphaRender(hdc, _player->getBody().left - 10, _player->getBody().top - 57, _alphaValue);
 		_star->frameRender(hdc, (_player->getBody().left + _player->getBody().right) / 2 - 25, _player->getBody().top - 60);
 	}
 	else if (_direct == RIGHT)
 	{
-		_img->frameRender(hdc, _player->getBody().left, _player->getBody().top - 43);
+		_img->frameAlphaRender(hdc, _player->getBody().left, _player->getBody().top - 43, _alphaValue);
 		_star->frameRender(hdc, (_player->getBody().left + _player->getBody().right) / 2 + 35, _player->getBody().top + 10);
 	}
 	else
 	{
-		_img->frameRender(hdc, _player->getBody().left - 32, _player->getBody().top - 43);
+		_img->frameAlphaRender(hdc, _player->getBody().left - 32, _player->getBody().top - 43, _alphaValue);
 		_star->frameRender(hdc, (_player->getBody().left + _player->getBody().right) / 2 - 80, _player->getBody().top + 10);
 	}
 
@@ -80,11 +83,11 @@ void Charging::render(HDC hdc)
 	{
 		char str[128];
 		sprintf_s(str, "iCount : %d", _cCount);
-		TextOut(hdc, _player->getX() - 30, _player->getBody().top - 50, str, strlen(str));
+		TextOut(hdc, _player->getX() + 50, _player->getBody().top - 50, str, strlen(str));
 		sprintf_s(str, "direct : %d", _direct);
-		TextOut(hdc, _player->getX() - 30, _player->getBody().top - 70, str, strlen(str));
+		TextOut(hdc, _player->getX() + 50, _player->getBody().top - 70, str, strlen(str));
 		sprintf_s(str, "frameX : %d", _img->getFrameX());
-		TextOut(hdc, _player->getX() - 30, _player->getBody().top - 90, str, strlen(str));
+		TextOut(hdc, _player->getX() + 50, _player->getBody().top - 90, str, strlen(str));
 	}
 }
 
@@ -164,6 +167,16 @@ void Charging::controlFrame()
 
 			_count = 0;
 		}
+	}
+}
+
+void Charging::controlAlpha()
+{
+	_alphaCount++;
+	if (_alphaCount % 5 == 0)
+	{
+		_alphaValue = _alphaValue == 0 ? 170 : 0;
+		_alphaCount = 0;
 	}
 }
 

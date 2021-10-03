@@ -22,7 +22,9 @@ enum PLAYERSTATE {
 	CARRY,
 	THROW,
 	PUSH,
-	INVENOPEN
+	INVENOPEN,
+	STUN,
+	USEITEM
 };
 
 class State
@@ -34,7 +36,9 @@ protected:
 
 	image* _img;
 	int _count;
+	int _alphaCount;
 	int _direct;
+	int _alphaValue;
 	bool _reverse;
 
 public:

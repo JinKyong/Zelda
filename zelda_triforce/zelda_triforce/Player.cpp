@@ -19,6 +19,8 @@ HRESULT Player::init()
 
 	//상태
 	_updown = false;
+	_invincible = false;
+	_iCount = 0;
 	_destX = 0;
 	_destY = 0;
 
@@ -54,6 +56,7 @@ void Player::update()
 	if (KEYMANAGER->isOnceKeyDown('9'))	changeMP(4);  //CANDELA 32번 사용가능
 	if (KEYMANAGER->isOnceKeyDown('0'))	changeMP(-4);
 	//========================================
+	if (_invincible) invincibleTime();
 
 	if (_updown) {
 		changeZ();
@@ -184,6 +187,16 @@ void Player::move(int direct, float speed)
 		break;
 	default:
 		break;
+	}
+}
+
+void Player::invincibleTime()
+{
+	_iCount++;
+	if (_iCount > 60)
+	{
+		_invincible = false;
+		_iCount = 0;
 	}
 }
 

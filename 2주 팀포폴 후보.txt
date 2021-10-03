@@ -1,9 +1,21 @@
 //가능성 높음
-spelunky
 
-//가능성 중간
-celeste
+//결이 다른 로그라이크
+spelunky(sprite)
 
-//가능성 낮음
-ori
-zenonia
+//그냥 보스전뿐
+titan soul(sprite)
+
+//던전 rpg
+포켓몬 구조대(sprite)
+moonlighter(unity)
+undermine(unity)
+enter the gungeon(sprite, tile X)
+
+//rpg + 퍼즐 + 샌드박스
+forager(sprite, tile X)
+
+
+
+
+결정 : 구조대(시간)

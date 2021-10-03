@@ -6,7 +6,7 @@ HRESULT Slash::init(Player * player)
 {
 	State::init(player);
 
-	_img = IMAGEMANAGER->addFrameImage("slash_front", "img/link/attack.bmp", 1160, 584, 8, 4, true, RGB(255, 0, 255));
+	_img = IMAGEMANAGER->addFrameImage("slash_front", "img/link/attack.bmp", 1160, 584, 8, 4, true, RGB(255, 0, 255), true);
 
 	_direct = _player->getDirect();
 
@@ -44,6 +44,8 @@ void Slash::update()
 {
 	controlKey();
 	controlFrame();
+	if (_player->getInvincible())	controlAlpha();
+	else							_alphaValue = 255;
 }
 
 void Slash::render(HDC hdc)
@@ -60,10 +62,10 @@ void Slash::render(HDC hdc)
 		DeleteObject(brush);
 	}
 
-	if (_direct == DOWN)		_img->frameRender(hdc, _player->getBody().left - 28, _player->getBody().top - 24);
-	else if (_direct == UP)		_img->frameRender(hdc, _player->getBody().left - 52, _player->getBody().top - 67);
-	else if (_direct == RIGHT)	_img->frameRender(hdc, _player->getBody().left, _player->getBody().top - 39);
-	else						_img->frameRender(hdc, _player->getBody().left - 75, _player->getBody().top - 39);
+	if (_direct == DOWN)		_img->frameAlphaRender(hdc, _player->getBody().left - 28, _player->getBody().top - 24, _alphaValue);
+	else if (_direct == UP)		_img->frameAlphaRender(hdc, _player->getBody().left - 52, _player->getBody().top - 67, _alphaValue);
+	else if (_direct == RIGHT)	_img->frameAlphaRender(hdc, _player->getBody().left, _player->getBody().top - 39, _alphaValue);
+	else						_img->frameAlphaRender(hdc, _player->getBody().left - 75, _player->getBody().top - 39, _alphaValue);
 }
 
 void Slash::updateDirect(int direct)
@@ -96,5 +98,15 @@ void Slash::controlFrame()
 			_count = 0;
 		}
 		else _img->setFrameX(_img->getFrameX() + 1);
+	}
+}
+
+void Slash::controlAlpha()
+{
+	_alphaCount++;
+	if (_alphaCount % 5 == 0)
+	{
+		_alphaValue = _alphaValue == 0 ? 170 : 0;
+		_alphaCount = 0;
 	}
 }

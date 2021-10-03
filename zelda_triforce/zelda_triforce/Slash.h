@@ -21,4 +21,5 @@ public:
 
 	void controlKey();
 	void controlFrame();
+	void controlAlpha();
 };

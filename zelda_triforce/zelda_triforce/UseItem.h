@@ -1,14 +1,14 @@
 #pragma once
 #include "State.h"
-
-class Idle : public State
+class UseItem :
+	public State
 {
 private:
+	float angle;
 
 public:
-
-	Idle() {};
-	~Idle() {};
+	UseItem() {};
+	~UseItem() {};
 
 	virtual HRESULT init(Player* player);
 	virtual void release();
@@ -17,10 +17,8 @@ public:
 	virtual void updateDirect(int direct);
 	virtual void updateRect();
 
-	virtual int getStateNum() { return IDLE; }
+	virtual int getStateNum() { return USEITEM; }
 
-	void controlKey();
 	void controlFrame();
-	void controlAlpha();
 };
 

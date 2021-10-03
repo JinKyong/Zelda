@@ -203,6 +203,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="streamManager.h" />
+    <ClInclude Include="Stun.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Throw.h" />
     <ClInclude Include="tileInfo.h" />
@@ -212,6 +213,7 @@
     <ClInclude Include="title.h" />
     <ClInclude Include="txtData.h" />
     <ClInclude Include="uiManager.h" />
+    <ClInclude Include="UseItem.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="video.h" />
   </ItemGroup>
@@ -265,6 +267,7 @@
     <ClCompile Include="State.cpp" />
     <ClCompile Include="stateManager.cpp" />
     <ClCompile Include="streamManager.cpp" />
+    <ClCompile Include="Stun.cpp" />
     <ClCompile Include="Throw.cpp" />
     <ClCompile Include="tileManager.cpp" />
     <ClCompile Include="timeManager.cpp" />
@@ -272,6 +275,7 @@
     <ClCompile Include="title.cpp" />
     <ClCompile Include="txtData.cpp" />
     <ClCompile Include="uiManager.cpp" />
+    <ClCompile Include="UseItem.cpp" />
     <ClCompile Include="utils.cpp" />
     <ClCompile Include="video.cpp" />
     <ClCompile Include="winMain.cpp" />

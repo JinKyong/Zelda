@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "uiManager.h"
 #include "Player.h"
-
-#include "inventoryManager.h"
+#include "item.h"
 
 HRESULT uiManager::init(Player* player)
 {
@@ -49,6 +48,7 @@ void uiManager::render(HDC hdc)
 
 	_xitem->render(hdc, rc.left + 147, rc.top + 79);
 	_rc = RectMake(rc.left + 159, rc.top + 91, 64, 64);
+	INVENTORYMANAGER->getEquipItem()->getImage()->render(hdc, _rc.left, _rc.top);
 
 	//===================================µð¹ö±ë===================================
 	if (PRINTMANAGER->isDebug()) {
